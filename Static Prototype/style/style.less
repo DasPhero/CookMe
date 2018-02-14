@@ -1,0 +1,123 @@
+@import "./colors.less";
+@import "./elevations.less";
+@import "./buttons.less";
+@import "./textInput.less";
+@import url('https://fonts.googleapis.com/css?family=Playball');
+
+*{
+    box-sizing: border-box;
+    color: @fontColorDark;
+    margin: 0;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+                
+::-webkit-scrollbar {
+    width: 5px;
+}
+    
+::-webkit-scrollbar-track {
+    background: @mainLight + 20%;
+    box-shadow: @elevation0;
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: @elevation3;
+    background: @mainDark - 10%; 
+}
+
+.mainWindow {
+    display:flex;
+    width: 100vw;
+
+    & .navBar{
+        flex-basis: 20%;
+        background-color: @mainNormal;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        & .recipeHeader{
+            flex-basis: 5%;
+            text-align: center;
+            padding: 3px 0;
+            margin: 5px;
+            color: @fontColorDark;
+            font-family: 'Playball';
+            font-size: 2.5em;
+            background-color: @mainDark;
+        }
+
+        & .searchWidget{
+            flex-basis: 5%;
+            display: flex;
+
+            & input.searchListTextBox {
+                margin: 5px;
+                flex-basis: 80%;
+            }
+
+            & button[name="clearSearchField"]{
+                flex-basis: 20%;
+            }
+        }
+
+        & .recipeList{
+
+            margin: 5px;
+            margin-left: -25px;
+            padding-top: 10px;
+            background-color: @mainDark + 10%;
+            flex-basis: 90%;
+            overflow-y: auto;
+
+            .listWrapper > li{
+                cursor: default;
+                font-weight: bold;
+                font-size: 18px;
+            }
+            
+            .listWrapper ul > li{
+                padding-top: 1px;
+                padding-left: 2px;
+                    & .listEntry{
+                        padding: 1px 0;
+                        width: 90%;
+                        display: inline-block;
+                        font-size: 17px;
+                        &:hover{
+                            background-color: @mainDark - 5%;
+                        }
+
+                    }
+                    & #activeEntry{
+                        background-color: @mainDark - 55%;
+                        color: @fontColorLight;
+                    }
+                & input[type="checkbox"]:checked ~ .listEntry{
+                    background-color: @mainDark - 15%;
+                }
+            }
+            
+            & ul{
+                list-style: none;
+                cursor: pointer;
+            }
+
+
+        }
+    }
+
+    & .recipeView{
+        flex-basis: 60%;
+        background-color: @mainLight;
+        height: 100vh;
+    }
+
+    & .ingredientsList {
+        flex-basis: 20%;
+        background-color: @mainNormal;
+        height: 100vh;
+        }
+}
+
+

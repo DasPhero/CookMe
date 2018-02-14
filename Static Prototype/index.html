@@ -1,0 +1,237 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Cook Me</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="mainWindow">
+        <div class="navBar">
+            <h1 class="recipeHeader">Rezepte</h1>
+            <div class="searchWidget">
+                <input type="text" placeholder="Rezept suchen..." class="searchListTextBox" />
+                <button name="clearSearchField">Clear</button>
+            </div>
+            <div class="recipeList">
+                <ul class="listWrapper">
+                    <li>Aufl&auml;ufe</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Nudelauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Gnocciauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gyrosauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Hähnchenauflauf</span>
+                            </li>
+                        </ul>
+                    <li>Kuchen</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Schokokuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Erdbeerkuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry" id="activeEntry">Käsekuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Maulwurfkuchen</span>
+                            </li>
+                        </ul>
+                    <li>Fleisch</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenbraten</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Rollade</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Leberknödel</span>
+                                </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Steak</span>
+                            </li>
+                        </ul>
+                    <li>Gem&uuml;se</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Auberginensalat</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Kohltopf</span>
+                            </li>
+                        </ul>
+                    <li>Aufl&auml;ufe</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Nudelauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gnocciauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gyrosauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Hähnchenauflauf</span>
+                            </li>
+                        </ul>
+                    <li>Kuchen</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Schokokuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Erdbeerkuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Käsekuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Maulwurfkuchen</span>
+                            </li>
+                        </ul>
+                    <li>Fleisch</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenbraten</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Rollade</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Leberknödel</span>
+                                </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Steak</span>
+                            </li>
+                        </ul>
+                    <li>Gem&uuml;se</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Auberginensalat</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Kohltopf</span>
+                            </li>
+                        </ul>         
+                    <li>Aufl&auml;ufe</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Nudelauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gnocciauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Gyrosauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenauflauf</span>
+                            </li>
+                        </ul>
+                    <li>Kuchen</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Schokokuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Erdbeerkuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Käsekuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Maulwurfkuchen</span>
+                            </li>
+                        </ul>
+                    <li>Fleisch</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenbraten</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Rollade</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Leberknödel</span>
+                                </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Steak</span>
+                            </li>
+                        </ul>
+                    <li>Gem&uuml;se</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Auberginensalat</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Kohltopf</span>
+                            </li>
+                        </ul>                                       
+                </ul>
+            </div>
+
+
+
+        </div>
+        <div class="recipeView"></div>
+        <div class="ingredientsList"></div>
+    </div>
+</body>
+
+
+</html>

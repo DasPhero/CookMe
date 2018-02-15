@@ -3,6 +3,7 @@
 @import "./buttons.less";
 @import "./textInput.less";
 @import "./login.less";
+@import "./profile.less";
 @import url('https://fonts.googleapis.com/css?family=Playball');
 
 *{
@@ -62,6 +63,7 @@
             }
 
             & button[name="clearSearchField"]{
+                margin: 2px;
                 flex-basis: 20%;
             }
         }
@@ -116,7 +118,7 @@
         }
     }
 
-    & .recipeView{
+    & .recipeView, & .profilePage{
 
         flex-basis: 60%;
         background-color: @mainNormal;
@@ -132,24 +134,8 @@
             margin: 5px;
 
             & .userNameHeader{
-                flex-basis: 75%;
+                flex-basis: 90%;
                 padding: 5px;   
-            }
-
-            & .helpRequest{
-                flex-basis: 15%;
-                box-shadow: @elevation2;
-                & .symbolWrapper{
-                    text-align: center;
-                    cursor: pointer;
-                    font-size: 16px;
-                    font-weight: bold;
-                    padding-top: 10%;
-                    background-color: @mainDark - 80%;
-                    color: @fontColorLight;
-                    height: 100%;
-                    width: 100%;
-                }
             }
 
             & .goToProfileButton{
@@ -365,6 +351,7 @@
 
             & button[name="exportButton"]{
                 flex-basis: 30%;
+                margin: 2px;
             }
         }
 

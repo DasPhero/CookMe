@@ -172,17 +172,89 @@
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText {
   line-height: 1.6;
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 15px;
 }
-.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText img {
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients {
+  flex-basis: 50%;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients h2 {
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients .ingredientList {
+  padding-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients .ingredientList .ingredientItem {
+  flex-basis: 50%;
+  width: 50%;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition img {
   float: left;
-  width: 20%;
+  width: 50%;
   margin: 5px;
+  height: 50%;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition h2 {
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts {
+  padding-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts .nutrionInformation {
+  flex-basis: 50%;
+  width: 50%;
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps {
-  padding-right: 10px;
+  padding: 10px 20px;
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps li {
-  padding: 3px;
+  padding-bottom: 15px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps li::before {
+  content: "• ";
+  color: black;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .commentCreator {
+  flex-basis: 10%;
+  display: flex;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .commentCreator input {
+  margin: 10px;
+  padding: 10px;
+  flex-basis: 85%;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .commentCreator button[name="sendCommentButton"] {
+  flex-basis: 15%;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments {
+  flex-basis: 90%;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments .comment {
+  padding: 5px 20px;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments .comment h4 {
+  margin-bottom: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments .comment p {
+  padding: 0 15px;
+  transform: translateX(10px);
 }
 .mainWindow .ingredientsList {
   flex-basis: 20%;
@@ -282,6 +354,15 @@ button:active {
 }
 [name="exportButton"]:active {
   background-color: #703da3;
+}
+[name="sendCommentButton"] {
+  background-color: #023877;
+}
+[name="sendCommentButton"]:hover {
+  background-color: #164c8b;
+}
+[name="sendCommentButton"]:active {
+  background-color: #0c4281;
 }
 input[type="text"] {
   outline: none;
@@ -508,17 +589,89 @@ input[type="text"]:focus {
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText {
   line-height: 1.6;
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 15px;
 }
-.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText img {
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients {
+  flex-basis: 50%;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients h2 {
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients .ingredientList {
+  padding-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .ingredients .ingredientList .ingredientItem {
+  flex-basis: 50%;
+  width: 50%;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition img {
   float: left;
-  width: 20%;
+  width: 50%;
   margin: 5px;
+  height: 50%;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition h2 {
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts {
+  padding-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts .nutrionInformation {
+  flex-basis: 50%;
+  width: 50%;
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps {
-  padding-right: 10px;
+  padding: 10px 20px;
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps li {
-  padding: 3px;
+  padding-bottom: 15px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps li::before {
+  content: "• ";
+  color: black;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .commentCreator {
+  flex-basis: 10%;
+  display: flex;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .commentCreator input {
+  margin: 10px;
+  padding: 10px;
+  flex-basis: 85%;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .commentCreator button[name="sendCommentButton"] {
+  flex-basis: 15%;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments {
+  flex-basis: 90%;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments .comment {
+  padding: 5px 20px;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments .comment h4 {
+  margin-bottom: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .commentSection .comments .comment p {
+  padding: 0 15px;
+  transform: translateX(10px);
 }
 .mainWindow .ingredientsList {
   flex-basis: 20%;

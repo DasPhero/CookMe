@@ -1,0 +1,411 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Cook Me</title>
+  <link rel="stylesheet" href="style/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="./scripts/animations.js"></script>
+  
+
+</head>
+
+<body>
+    <div class="mainWindow">
+        <div class="navBar">
+            <h1 class="recipeHeader">Rezepte</h1>
+            <div class="searchWidget">
+                <input type="text" placeholder="Rezept suchen..." class="searchListTextBox" />
+                <button id="clearSearchField" name="clearSearchField">Clear</button>
+            </div>
+            <div class="recipeList">
+                <ul class="listWrapper">
+                    <li>Aufl&auml;ufe</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Nudelauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Gnocciauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gyrosauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Hähnchenauflauf</span>
+                            </li>
+                        </ul>
+                    <li>Kuchen</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Schokokuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Erdbeerkuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry" id="activeEntry">Käsekuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Maulwurfkuchen</span>
+                            </li>
+                        </ul>
+                    <li>Fleisch</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenbraten</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Rollade</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Leberknödel</span>
+                                </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Steak</span>
+                            </li>
+                        </ul>
+                    <li>Gem&uuml;se</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Auberginensalat</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Kohltopf</span>
+                            </li>
+                        </ul>
+                    <li>Aufl&auml;ufe</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Nudelauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gnocciauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gyrosauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Hähnchenauflauf</span>
+                            </li>
+                        </ul>
+                    <li>Kuchen</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Schokokuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Erdbeerkuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Käsekuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Maulwurfkuchen</span>
+                            </li>
+                        </ul>
+                    <li>Fleisch</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenbraten</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Rollade</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Leberknödel</span>
+                                </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Steak</span>
+                            </li>
+                        </ul>
+                    <li>Gem&uuml;se</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Auberginensalat</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Kohltopf</span>
+                            </li>
+                        </ul>         
+                    <li>Aufl&auml;ufe</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Nudelauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Gnocciauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" checked/>
+                                <span class="listEntry">Gyrosauflauf</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenauflauf</span>
+                            </li>
+                        </ul>
+                    <li>Kuchen</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Schokokuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Erdbeerkuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Käsekuchen</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Maulwurfkuchen</span>
+                            </li>
+                        </ul>
+                    <li>Fleisch</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Hähnchenbraten</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Rollade</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Leberknödel</span>
+                                </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Steak</span>
+                            </li>
+                        </ul>
+                    <li>Gem&uuml;se</li>
+                        <ul>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Auberginensalat</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" />
+                                <span class="listEntry">Kohltopf</span>
+                            </li>
+                        </ul>                                       
+                </ul>
+            </div>
+        </div>
+
+        <div class="recipeView">
+            <div class="accountBar">
+                <h1 class="userNameHeader">Clemens Kochmeister</h1>
+                <div class="helpRequest">
+                        <div class="symbolWrapper">
+                            Koch Unterstützung
+                            </div>
+                </div>
+                <div class="goToProfileButton">
+                    <div class="symbolWrapper">
+                        Profil
+                    </div>
+                </div>
+
+            </div>
+            <div class="recipeExplanation">
+                <div class="recipeNameHeader">
+                    <div class="h1Wrapper">
+                        <h1>Käsekuchen</h1>
+                    </div>
+                    <button name="addToFavourites">Zu Favoriten hinzufügen</button>
+                </div>
+                <div class="recipeDetails">
+                    <div class="recipeText">
+                            <img src="./resources/cake.jpg" class="recipeImage" />
+                            Die Butter mit Salz schaumig schlagen. (Wer es süßer mag, schlägt sie mit 75 g Zucker schaumig. Mir ist der Kuchen ohne Zucker im Teig süß genug.) Nach und nach Mehl und Wasser unterrühren. Dann den weichen Teig mit den Händen zusammenkneten.
+    
+                            2/3 Des Teiges ausrollen und Boden und Rand der gefetteten Springform damit auslegen. Mit der Konfitüre bestreichen. 
+                            Den restlichen Teig auf Größe des Springformbodens ausrollen und darüber legen, die Ränder leicht andrücken. 
+    
+                            Eigelb mit Zucker dick-cremig aufschlagen, nach und nach Schichtkäse, Mascarpone und Ricotta unterrühren. Dann den Zitronensaft und den Amaretto zugeben und die Speisestärke einsieben. Zu einer glatten Masse verrühren. Die Eiweiße steif schlagen und den Eischnee vorsichtig unterheben. Die Masse auf den Teig geben. 
+    
+                            Bei 180°C 35 - 40 min backen. 
+    
+                            Dann herausholen und rundherum von der Seite ca. 2 cm tief einschneiden. Nach 10 min wieder in den Ofen schieben und in weiteren 20 - 25 min fertig backen.
+                    </div>
+                    <hr />
+                    <div class="recipeSteps">
+                        <h2>Schritte:</h2>
+                        <p>
+                            <ol>
+                                <li>Die Butter mit Salz schaumig schlagen. (Wer es süßer mag, schlägt sie mit 75 g Zucker schaumig. Mir ist der Kuchen ohne Zucker im Teig süß genug.) Nach und nach Mehl und Wasser unterrühren. Dann den weichen Teig mit den Händen zusammenkneten. </li>
+                                <li>2/3 Des Teiges ausrollen und Boden und Rand der gefetteten Springform damit auslegen. Mit der Konfitüre bestreichen.Den restlichen Teig auf Größe des Springformbodens ausrollen und darüber legen, die Ränder leicht andrücken. </li>
+                                <li>Eigelb mit Zucker dick-cremig aufschlagen, nach und nach Schichtkäse, Mascarpone und Ricotta unterrühren. Dann den Zitronensaft und den Amaretto zugeben und die Speisestärke einsieben. Zu einer glatten Masse verrühren. Die Eiweiße steif schlagen und den Eischnee vorsichtig unterheben. Die Masse auf den Teig geben.  </li>
+                                <li>Bei 180°C 35 - 40 min backen.  </li>
+                                <li>Dann herausholen und rundherum von der Seite ca. 2 cm tief einschneiden. Nach 10 min wieder in den Ofen schieben und in weiteren 20 - 25 min fertig backen.</li>
+                                <li>Die Butter mit Salz schaumig schlagen. (Wer es süßer mag, schlägt sie mit 75 g Zucker schaumig. Mir ist der Kuchen ohne Zucker im Teig süß genug.) Nach und nach Mehl und Wasser unterrühren. Dann den weichen Teig mit den Händen zusammenkneten. </li>
+                                <li>2/3 Des Teiges ausrollen und Boden und Rand der gefetteten Springform damit auslegen. Mit der Konfitüre bestreichen.Den restlichen Teig auf Größe des Springformbodens ausrollen und darüber legen, die Ränder leicht andrücken. </li>
+                                <li>Eigelb mit Zucker dick-cremig aufschlagen, nach und nach Schichtkäse, Mascarpone und Ricotta unterrühren. Dann den Zitronensaft und den Amaretto zugeben und die Speisestärke einsieben. Zu einer glatten Masse verrühren. Die Eiweiße steif schlagen und den Eischnee vorsichtig unterheben. Die Masse auf den Teig geben.  </li>
+                                <li>Bei 180°C 35 - 40 min backen.  </li>
+                                <li>Dann herausholen und rundherum von der Seite ca. 2 cm tief einschneiden. Nach 10 min wieder in den Ofen schieben und in weiteren 20 - 25 min fertig backen.</li>
+                                <li>Die Butter mit Salz schaumig schlagen. (Wer es süßer mag, schlägt sie mit 75 g Zucker schaumig. Mir ist der Kuchen ohne Zucker im Teig süß genug.) Nach und nach Mehl und Wasser unterrühren. Dann den weichen Teig mit den Händen zusammenkneten. </li>
+                                <li>2/3 Des Teiges ausrollen und Boden und Rand der gefetteten Springform damit auslegen. Mit der Konfitüre bestreichen.Den restlichen Teig auf Größe des Springformbodens ausrollen und darüber legen, die Ränder leicht andrücken. </li>
+                                <li>Eigelb mit Zucker dick-cremig aufschlagen, nach und nach Schichtkäse, Mascarpone und Ricotta unterrühren. Dann den Zitronensaft und den Amaretto zugeben und die Speisestärke einsieben. Zu einer glatten Masse verrühren. Die Eiweiße steif schlagen und den Eischnee vorsichtig unterheben. Die Masse auf den Teig geben.  </li>
+                                <li>Bei 180°C 35 - 40 min backen.  </li>
+                                <li>Dann herausholen und rundherum von der Seite ca. 2 cm tief einschneiden. Nach 10 min wieder in den Ofen schieben und in weiteren 20 - 25 min fertig backen.</li>
+                                <li>Die Butter mit Salz schaumig schlagen. (Wer es süßer mag, schlägt sie mit 75 g Zucker schaumig. Mir ist der Kuchen ohne Zucker im Teig süß genug.) Nach und nach Mehl und Wasser unterrühren. Dann den weichen Teig mit den Händen zusammenkneten. </li>
+                                <li>2/3 Des Teiges ausrollen und Boden und Rand der gefetteten Springform damit auslegen. Mit der Konfitüre bestreichen.Den restlichen Teig auf Größe des Springformbodens ausrollen und darüber legen, die Ränder leicht andrücken. </li>
+                                <li>Eigelb mit Zucker dick-cremig aufschlagen, nach und nach Schichtkäse, Mascarpone und Ricotta unterrühren. Dann den Zitronensaft und den Amaretto zugeben und die Speisestärke einsieben. Zu einer glatten Masse verrühren. Die Eiweiße steif schlagen und den Eischnee vorsichtig unterheben. Die Masse auf den Teig geben.  </li>
+                                <li>Bei 180°C 35 - 40 min backen.  </li>
+                                <li>Dann herausholen und rundherum von der Seite ca. 2 cm tief einschneiden. Nach 10 min wieder in den Ofen schieben und in weiteren 20 - 25 min fertig backen.</li>
+                                <li>Die Butter mit Salz schaumig schlagen. (Wer es süßer mag, schlägt sie mit 75 g Zucker schaumig. Mir ist der Kuchen ohne Zucker im Teig süß genug.) Nach und nach Mehl und Wasser unterrühren. Dann den weichen Teig mit den Händen zusammenkneten. </li>
+                                <li>2/3 Des Teiges ausrollen und Boden und Rand der gefetteten Springform damit auslegen. Mit der Konfitüre bestreichen.Den restlichen Teig auf Größe des Springformbodens ausrollen und darüber legen, die Ränder leicht andrücken. </li>
+                                <li>Eigelb mit Zucker dick-cremig aufschlagen, nach und nach Schichtkäse, Mascarpone und Ricotta unterrühren. Dann den Zitronensaft und den Amaretto zugeben und die Speisestärke einsieben. Zu einer glatten Masse verrühren. Die Eiweiße steif schlagen und den Eischnee vorsichtig unterheben. Die Masse auf den Teig geben.  </li>
+                                <li>Bei 180°C 35 - 40 min backen.  </li>
+                                <li>Dann herausholen und rundherum von der Seite ca. 2 cm tief einschneiden. Nach 10 min wieder in den Ofen schieben und in weiteren 20 - 25 min fertig backen.</li>
+                                <li>Die Butter mit Salz schaumig schlagen. (Wer es süßer mag, schlägt sie mit 75 g Zucker schaumig. Mir ist der Kuchen ohne Zucker im Teig süß genug.) Nach und nach Mehl und Wasser unterrühren. Dann den weichen Teig mit den Händen zusammenkneten. </li>
+                                <li>2/3 Des Teiges ausrollen und Boden und Rand der gefetteten Springform damit auslegen. Mit der Konfitüre bestreichen.Den restlichen Teig auf Größe des Springformbodens ausrollen und darüber legen, die Ränder leicht andrücken. </li>
+                                <li>Eigelb mit Zucker dick-cremig aufschlagen, nach und nach Schichtkäse, Mascarpone und Ricotta unterrühren. Dann den Zitronensaft und den Amaretto zugeben und die Speisestärke einsieben. Zu einer glatten Masse verrühren. Die Eiweiße steif schlagen und den Eischnee vorsichtig unterheben. Die Masse auf den Teig geben.  </li>
+                                <li>Bei 180°C 35 - 40 min backen.  </li>
+                                <li>Dann herausholen und rundherum von der Seite ca. 2 cm tief einschneiden. Nach 10 min wieder in den Ofen schieben und in weiteren 20 - 25 min fertig backen.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ingredientsList">
+            <h1>Einkaufsliste</h1>
+            <div class="toBuyList">
+                <ul>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                    <li>1 Liter Milch</li>
+                    <li>3 Eier</li>
+                    <li>1 Dose Ananas</li>
+                    <li>7 Hähnchenfilets</li>
+                    <li>500 Gramm Mehl</li>
+                    <li>3 Advokados</li>
+                </ul>
+            </div>
+            <div class="exportWidget">
+                <button name="exportButton">Export</button>
+                <input type="text" class="numberOfPeople" />
+                <span class="personLabel">Anzahl Personen:</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

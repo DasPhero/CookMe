@@ -1,0 +1,57 @@
+//out: false
+@import './style.less';
+
+
+button{
+    flex-basis: 100%;
+    box-shadow: @elevation3;
+    padding: 8px;
+    margin: 6px;    
+    border: none;
+    color: @fontColorLight;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+}
+
+button:hover{
+    box-shadow: @elevation5;
+}
+
+button:active{
+    transform: translate3d(1px, 1px, 0);
+    box-shadow: @elevation3;
+}
+
+[name="clearSearchField"]{
+    background-color: @buttonClearSearchField;
+
+    &:hover{
+        background-color: @buttonClearSearchField + 20%;
+    }
+    &:active{
+        background-color: @buttonClearSearchField + 10%;
+    }
+}
+
+[name="addToFavourites"]{
+    background-color: @buttonAddToFavourites;
+
+    &:hover{
+        background-color: @buttonAddToFavourites + 20%;
+    }
+    &:active{
+        background-color: @buttonAddToFavourites + 10%;
+    }
+}
+
+[name="exportButton"]{
+    background-color: @buttonExport;
+
+    &:hover{
+        background-color: @buttonExport + 20%;
+    }
+    &:active{
+        background-color: @buttonExport + 10%;
+    }
+}

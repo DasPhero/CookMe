@@ -1,0 +1,20 @@
+//out: false
+@import './style.less';
+
+input[type="text"]{
+    outline: none;
+    border: none;
+    box-shadow: @elevation3;
+    padding: 5px;
+    font-size: 16px;
+
+    &:hover {
+        box-shadow: @elevation4;
+    }
+
+    &:focus {
+        box-shadow: @elevation5;
+    }
+
+}
+

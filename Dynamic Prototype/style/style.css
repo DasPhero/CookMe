@@ -1,0 +1,536 @@
+@import url('https://fonts.googleapis.com/css?family=Playball');
+@import url('https://fonts.googleapis.com/css?family=Playball');
+* {
+  box-sizing: border-box;
+  color: black;
+  margin: 0;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  float: none;
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #c4ff6b;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  background: #28c100;
+}
+.mainWindow {
+  display: flex;
+  width: 100vw;
+}
+.mainWindow .navBar {
+  flex-basis: 20%;
+  background-color: #76ff03;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .navBar .recipeHeader {
+  flex-basis: 5%;
+  text-align: center;
+  padding: 3px 0;
+  margin: 5px;
+  color: black;
+  font-family: 'Playball';
+  font-size: 2.5em;
+  background-color: #32cb00;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .searchWidget {
+  flex-basis: 5%;
+  display: flex;
+}
+.mainWindow .navBar .searchWidget input.searchListTextBox {
+  margin: 5px;
+  flex-basis: 80%;
+}
+.mainWindow .navBar .searchWidget button[name="clearSearchField"] {
+  flex-basis: 20%;
+}
+.mainWindow .navBar .recipeList {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  margin: 5px;
+  margin-left: -60px;
+  padding-top: 10px;
+  background-color: #3cd50a;
+  flex-basis: 90%;
+  overflow-y: auto;
+}
+.mainWindow .navBar .recipeList .listWrapper > li {
+  cursor: default;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  font-family: 'Playball';
+  text-align: center;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li {
+  padding-top: 1px;
+  padding-left: 2px;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li .listEntry {
+  padding: 1px 0;
+  width: 90%;
+  display: inline-block;
+  font-size: 17px;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li .listEntry:hover {
+  background-color: #2dc600;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li #activeEntry {
+  background-color: #009400;
+  color: ghostwhite;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry {
+  background-color: #23bc00;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1221322), 0px 2px 4px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList ul {
+  list-style: none;
+  cursor: pointer;
+}
+.mainWindow .recipeView {
+  flex-basis: 60%;
+  background-color: #76ff03;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .recipeView .accountBar {
+  background-color: #b0ff57;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 5%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  margin: 5px;
+}
+.mainWindow .recipeView .accountBar .userNameHeader {
+  flex-basis: 75%;
+  padding: 5px;
+}
+.mainWindow .recipeView .accountBar .helpRequest {
+  flex-basis: 15%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .helpRequest .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
+}
+.mainWindow .recipeView .accountBar .goToProfileButton {
+  flex-basis: 10%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
+}
+.mainWindow .recipeView .recipeExplanation {
+  overflow-y: auto;
+  flex-basis: 95%;
+  background-color: #b0ff57;
+  margin: 5px;
+  padding: 5px;
+  flex-direction: column;
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader {
+  display: flex;
+  flex-direction: row;
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper {
+  flex-basis: 80%;
+  text-align: center;
+  font-size: 26px;
+  letter-spacing: 6px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
+  font-family: 'Playball';
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader button[name="addToFavourites"] {
+  flex-basis: 20%;
+  height: 50px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText {
+  line-height: 1.6;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText img {
+  float: left;
+  width: 20%;
+  margin: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps {
+  padding-right: 10px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps li {
+  padding: 3px;
+}
+.mainWindow .ingredientsList {
+  flex-basis: 20%;
+  background-color: #76ff03;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .ingredientsList h1 {
+  flex-basis: 5%;
+  background-color: #32cb00;
+  text-align: center;
+  padding: 5px;
+  font-family: 'Playball';
+  font-size: 2em;
+  letter-spacing: 2px;
+  margin: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .ingredientsList .toBuyList {
+  padding: 5px 0;
+  margin: 5px;
+  list-style: none;
+  overflow-y: auto;
+  flex-basis: 90%;
+  background-color: #32cb00;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .ingredientsList .toBuyList li {
+  list-style: none;
+  font-size: 1.25em;
+}
+.mainWindow .ingredientsList .exportWidget {
+  flex-basis: 5%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.mainWindow .ingredientsList .exportWidget .personLabel {
+  flex-basis: 40%;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px;
+  word-wrap: none;
+}
+.mainWindow .ingredientsList .exportWidget .numberOfPeople {
+  margin: 5px 10px;
+  flex-basis: 20%;
+  max-width: 60px;
+  font-size: 22px;
+  padding-left: 15px;
+}
+.mainWindow .ingredientsList .exportWidget button[name="exportButton"] {
+  flex-basis: 30%;
+}
+button {
+  flex-basis: 100%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  padding: 8px;
+  margin: 6px;
+  border: none;
+  color: ghostwhite;
+  font-size: 16px;
+  font-weight: bold;
+  outline: none;
+}
+button:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.18852878), 0px 5px 16px rgba(0, 0, 0, 0.23);
+}
+button:active {
+  transform: translate3d(1px, 1px, 0);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+[name="clearSearchField"] {
+  background-color: green;
+}
+[name="clearSearchField"]:hover {
+  background-color: #149414;
+}
+[name="clearSearchField"]:active {
+  background-color: #0a8a0a;
+}
+[name="addToFavourites"] {
+  background-color: darkorange;
+}
+[name="addToFavourites"]:hover {
+  background-color: #ffa014;
+}
+[name="addToFavourites"]:active {
+  background-color: #ff960a;
+}
+[name="exportButton"] {
+  background-color: rebeccapurple;
+}
+[name="exportButton"]:hover {
+  background-color: #7a47ad;
+}
+[name="exportButton"]:active {
+  background-color: #703da3;
+}
+input[type="text"] {
+  outline: none;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  padding: 5px;
+  font-size: 16px;
+}
+input[type="text"]:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16639659), 0px 4px 12px rgba(0, 0, 0, 0.23);
+}
+input[type="text"]:focus {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.18852878), 0px 5px 16px rgba(0, 0, 0, 0.23);
+}
+* {
+  box-sizing: border-box;
+  color: black;
+  margin: 0;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  float: none;
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #c4ff6b;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  background: #28c100;
+}
+.mainWindow {
+  display: flex;
+  width: 100vw;
+}
+.mainWindow .navBar {
+  flex-basis: 20%;
+  background-color: #76ff03;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .navBar .recipeHeader {
+  flex-basis: 5%;
+  text-align: center;
+  padding: 3px 0;
+  margin: 5px;
+  color: black;
+  font-family: 'Playball';
+  font-size: 2.5em;
+  background-color: #32cb00;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .searchWidget {
+  flex-basis: 5%;
+  display: flex;
+}
+.mainWindow .navBar .searchWidget input.searchListTextBox {
+  margin: 5px;
+  flex-basis: 80%;
+}
+.mainWindow .navBar .searchWidget button[name="clearSearchField"] {
+  flex-basis: 20%;
+}
+.mainWindow .navBar .recipeList {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  margin: 5px;
+  margin-left: -60px;
+  padding-top: 10px;
+  background-color: #3cd50a;
+  flex-basis: 90%;
+  overflow-y: auto;
+}
+.mainWindow .navBar .recipeList .listWrapper > li {
+  cursor: default;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  font-family: 'Playball';
+  text-align: center;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li {
+  padding-top: 1px;
+  padding-left: 2px;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li .listEntry {
+  padding: 1px 0;
+  width: 90%;
+  display: inline-block;
+  font-size: 17px;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li .listEntry:hover {
+  background-color: #2dc600;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li #activeEntry {
+  background-color: #009400;
+  color: ghostwhite;
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry {
+  background-color: #23bc00;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1221322), 0px 2px 4px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList ul {
+  list-style: none;
+  cursor: pointer;
+}
+.mainWindow .recipeView {
+  flex-basis: 60%;
+  background-color: #76ff03;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .recipeView .accountBar {
+  background-color: #b0ff57;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 5%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  margin: 5px;
+}
+.mainWindow .recipeView .accountBar .userNameHeader {
+  flex-basis: 75%;
+  padding: 5px;
+}
+.mainWindow .recipeView .accountBar .helpRequest {
+  flex-basis: 15%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .helpRequest .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
+}
+.mainWindow .recipeView .accountBar .goToProfileButton {
+  flex-basis: 10%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
+}
+.mainWindow .recipeView .recipeExplanation {
+  overflow-y: auto;
+  flex-basis: 95%;
+  background-color: #b0ff57;
+  margin: 5px;
+  padding: 5px;
+  flex-direction: column;
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader {
+  display: flex;
+  flex-direction: row;
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper {
+  flex-basis: 80%;
+  text-align: center;
+  font-size: 26px;
+  letter-spacing: 6px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
+  font-family: 'Playball';
+}
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader button[name="addToFavourites"] {
+  flex-basis: 20%;
+  height: 50px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText {
+  line-height: 1.6;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText img {
+  float: left;
+  width: 20%;
+  margin: 5px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps {
+  padding-right: 10px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeSteps li {
+  padding: 3px;
+}
+.mainWindow .ingredientsList {
+  flex-basis: 20%;
+  background-color: #76ff03;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.mainWindow .ingredientsList h1 {
+  flex-basis: 5%;
+  background-color: #32cb00;
+  text-align: center;
+  padding: 5px;
+  font-family: 'Playball';
+  font-size: 2em;
+  letter-spacing: 2px;
+  margin: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .ingredientsList .toBuyList {
+  padding: 5px 0;
+  margin: 5px;
+  list-style: none;
+  overflow-y: auto;
+  flex-basis: 90%;
+  background-color: #32cb00;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .ingredientsList .toBuyList li {
+  list-style: none;
+  font-size: 1.25em;
+}
+.mainWindow .ingredientsList .exportWidget {
+  flex-basis: 5%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.mainWindow .ingredientsList .exportWidget .personLabel {
+  flex-basis: 40%;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px;
+  word-wrap: none;
+}
+.mainWindow .ingredientsList .exportWidget .numberOfPeople {
+  margin: 5px 10px;
+  flex-basis: 20%;
+  max-width: 60px;
+  font-size: 22px;
+  padding-left: 15px;
+}
+.mainWindow .ingredientsList .exportWidget button[name="exportButton"] {
+  flex-basis: 30%;
+}

@@ -6,6 +6,7 @@
   margin: 0;
   font-family: Roboto, Arial, Helvetica, sans-serif;
   float: none;
+  overflow: hidden;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -111,8 +112,23 @@
   margin: 5px;
 }
 .mainWindow .recipeView .accountBar .userNameHeader {
-  flex-basis: 90%;
+  flex-basis: 75%;
   padding: 5px;
+}
+.mainWindow .recipeView .accountBar .helpRequest {
+  flex-basis: 15%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .helpRequest .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton {
   flex-basis: 10%;
@@ -145,7 +161,6 @@
   flex-basis: 80%;
   text-align: center;
   font-size: 26px;
-  transform: translateX(-20%);
   letter-spacing: 6px;
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
@@ -214,7 +229,7 @@
   word-wrap: none;
 }
 .mainWindow .ingredientsList .exportWidget .numberOfPeople {
-  margin: 0 10px;
+  margin: 5px 10px;
   flex-basis: 20%;
   max-width: 60px;
   font-size: 22px;
@@ -287,6 +302,7 @@ input[type="text"]:focus {
   margin: 0;
   font-family: Roboto, Arial, Helvetica, sans-serif;
   float: none;
+  overflow: hidden;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -392,8 +408,23 @@ input[type="text"]:focus {
   margin: 5px;
 }
 .mainWindow .recipeView .accountBar .userNameHeader {
-  flex-basis: 90%;
+  flex-basis: 75%;
   padding: 5px;
+}
+.mainWindow .recipeView .accountBar .helpRequest {
+  flex-basis: 15%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .helpRequest .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton {
   flex-basis: 10%;
@@ -426,7 +457,6 @@ input[type="text"]:focus {
   flex-basis: 80%;
   text-align: center;
   font-size: 26px;
-  transform: translateX(-20%);
   letter-spacing: 6px;
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
@@ -495,7 +525,7 @@ input[type="text"]:focus {
   word-wrap: none;
 }
 .mainWindow .ingredientsList .exportWidget .numberOfPeople {
-  margin: 0 10px;
+  margin: 5px 10px;
   flex-basis: 20%;
   max-width: 60px;
   font-size: 22px;

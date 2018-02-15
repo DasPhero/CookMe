@@ -10,6 +10,7 @@
     margin: 0;
     font-family: Roboto, Arial, Helvetica, sans-serif;
     float: none;
+    overflow: hidden;
 }
 
                 
@@ -130,8 +131,24 @@
             margin: 5px;
 
             & .userNameHeader{
-                flex-basis: 90%;
+                flex-basis: 75%;
                 padding: 5px;   
+            }
+
+            & .helpRequest{
+                flex-basis: 15%;
+                box-shadow: @elevation2;
+                & .symbolWrapper{
+                    text-align: center;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: bold;
+                    padding-top: 10%;
+                    background-color: @mainDark - 80%;
+                    color: @fontColorLight;
+                    height: 100%;
+                    width: 100%;
+                }
             }
 
             & .goToProfileButton{
@@ -166,7 +183,6 @@
                     flex-basis: 80%;
                     text-align: center;
                     font-size: 26px;
-                    transform: translateX(-20%);
                     letter-spacing: 6px;
                     
                     & h1{
@@ -250,7 +266,7 @@
             }
 
             & .numberOfPeople{
-                margin: 0 10px;
+                margin: 5px 10px;
                 flex-basis: 20%;
                 max-width: 60px;
                 font-size: 22px;

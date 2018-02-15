@@ -9,7 +9,9 @@
     color: @fontColorDark;
     margin: 0;
     font-family: Roboto, Arial, Helvetica, sans-serif;
+    float: none;
 }
+
                 
 ::-webkit-scrollbar {
     width: 5px;
@@ -45,6 +47,7 @@
             font-family: 'Playball';
             font-size: 2.5em;
             background-color: @mainDark;
+            box-shadow: @elevation3;
         }
 
         & .searchWidget{
@@ -62,9 +65,9 @@
         }
 
         & .recipeList{
-
+            box-shadow: @elevation3;
             margin: 5px;
-            margin-left: -25px;
+            margin-left: -60px;
             padding-top: 10px;
             background-color: @mainDark + 10%;
             flex-basis: 90%;
@@ -73,7 +76,11 @@
             .listWrapper > li{
                 cursor: default;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 22px;
+                letter-spacing: 1px;
+                margin-top: 4px;
+                font-family: 'Playball';
+                text-align: center;
             }
             
             .listWrapper ul > li{
@@ -86,6 +93,7 @@
                         font-size: 17px;
                         &:hover{
                             background-color: @mainDark - 5%;
+                            box-shadow: @elevation0;
                         }
 
                     }
@@ -95,6 +103,7 @@
                     }
                 & input[type="checkbox"]:checked ~ .listEntry{
                     background-color: @mainDark - 15%;
+                    box-shadow: @elevation1;
                 }
             }
             
@@ -102,22 +111,159 @@
                 list-style: none;
                 cursor: pointer;
             }
-
-
         }
     }
 
     & .recipeView{
-        flex-basis: 60%;
-        background-color: @mainLight;
-        height: 100vh;
-    }
 
+        flex-basis: 60%;
+        background-color: @mainNormal;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        & .accountBar{
+            background-color: @mainLight;
+            display: flex;
+            flex-direction: row;
+            flex-basis: 5%;
+            box-shadow: @elevation3;
+            margin: 5px;
+
+            & .userNameHeader{
+                flex-basis: 90%;
+                padding: 5px;   
+            }
+
+            & .goToProfileButton{
+                flex-basis: 10%;
+                box-shadow: @elevation2;
+                & .symbolWrapper{
+                    text-align: center;
+                    cursor: pointer;
+                    font-size: 22px;
+                    font-weight: bold;
+                    padding: 10%;
+                    background-color: @mainDark - 80%;
+                    color: @fontColorLight;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+
+        & .recipeExplanation{
+            overflow-y: auto;
+            flex-basis: 95%;
+            background-color: @mainLight;
+            margin: 5px;
+            padding: 5px;
+            flex-direction: column;
+            
+            & .recipeNameHeader{
+                display: flex;
+                flex-direction: row;
+                & .h1Wrapper {
+                    flex-basis: 80%;
+                    text-align: center;
+                    font-size: 26px;
+                    transform: translateX(-20%);
+                    letter-spacing: 6px;
+                    
+                    & h1{
+                        font-family: 'Playball';
+                    }
+                        
+
+                }
+                
+                & button[name="addToFavourites"]{
+                    flex-basis: 20%;
+                    height: 50px;
+                }
+            }
+
+            & .recipeDetails{
+                & .recipeText{
+                    line-height: 1.6;
+                    & img{
+                        float: left;
+                        width: 20%;
+                        margin: 5px;
+                    }   
+                }
+                & .recipeSteps{
+                    padding-right: 10px;
+                    
+                    & li{
+                        padding: 3px;
+                    }
+                }
+            }
+        }
+    }
+    
     & .ingredientsList {
         flex-basis: 20%;
         background-color: @mainNormal;
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+        & h1{
+            flex-basis: 5%;
+            background-color: @mainDark;
+            text-align: center;
+            padding: 5px;
+            font-family: 'Playball';
+            font-size: 2em;
+            letter-spacing: 2px;    
+            margin: 5px;
+            box-shadow: @elevation3;
         }
+
+        & .toBuyList{
+            padding: 5px 0;
+            margin: 5px;
+            list-style: none;
+            overflow-y: auto; 
+            flex-basis: 90%;
+            background-color: @mainDark;
+            box-shadow: @elevation3;
+
+            & li{
+                list-style: none;
+                font-size: 1.25em;
+            }
+        }
+
+        & .exportWidget{
+            flex-basis: 5%;
+            display: flex;
+            flex-direction: row-reverse;
+
+            & .personLabel{
+                flex-basis: 40%;
+                display: inline-block;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 5px;
+                word-wrap: none;
+            }
+
+            & .numberOfPeople{
+                margin: 0 10px;
+                flex-basis: 20%;
+                max-width: 60px;
+                font-size: 22px;
+                padding-left: 15px;
+            }
+
+            & button[name="exportButton"]{
+                flex-basis: 30%;
+            }
+        }
+
+
+    }
 }
 
 

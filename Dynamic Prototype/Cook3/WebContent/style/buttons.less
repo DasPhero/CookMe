@@ -5,8 +5,7 @@
 button{
     flex-basis: 100%;
     box-shadow: @elevation3;
-    padding: 8px;
-    margin: 6px;    
+    padding: 8px;  
     border: none;
     color: @fontColorLight;
     font-size: 16px;
@@ -53,5 +52,49 @@ button:active{
     }
     &:active{
         background-color: @buttonExport + 10%;
+    }
+}
+
+[name="sendCommentButton"]{
+    background-color: @buttonSendComment;
+
+    &:hover{
+        background-color: @buttonSendComment + 20%;
+    }
+    &:active{
+        background-color: @buttonSendComment + 10%;
+    }
+}
+
+[name="searchWidgetButton"]{
+    background-color: @searchWidgetButton;
+
+    &:hover{
+        background-color: @searchWidgetButton + 20%;
+    }
+    &:active{
+        background-color: @searchWidgetButton + 10%;
+    }
+}
+
+[name="wordAdderButton"]{
+    background-color: @wordAdderButton;
+
+    &:hover{
+        background-color: @wordAdderButton + 20%;
+    }
+    &:active{
+        background-color: @wordAdderButton + 10%;
+    }
+}
+
+[name="deleteListItem"]{
+    background-color: @deleteListItem;
+
+    &:hover{
+        background-color: @deleteListItem + 20%;
+    }
+    &:active{
+        background-color: @deleteListItem + 10%;
     }
 }

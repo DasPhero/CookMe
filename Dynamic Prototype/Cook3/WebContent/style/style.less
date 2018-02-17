@@ -3,6 +3,7 @@
 @import "./buttons.less";
 @import "./textInput.less";
 @import "./login.less";
+@import "./profile.less";
 @import url('https://fonts.googleapis.com/css?family=Playball');
 
 *{
@@ -62,6 +63,7 @@
             }
 
             & button[name="clearSearchField"]{
+                margin: 2px;
                 flex-basis: 20%;
             }
         }
@@ -116,7 +118,7 @@
         }
     }
 
-    & .recipeView{
+    & .recipeView, & .profilePage{
 
         flex-basis: 60%;
         background-color: @mainNormal;
@@ -132,24 +134,8 @@
             margin: 5px;
 
             & .userNameHeader{
-                flex-basis: 75%;
+                flex-basis: 90%;
                 padding: 5px;   
-            }
-
-            & .helpRequest{
-                flex-basis: 15%;
-                box-shadow: @elevation2;
-                & .symbolWrapper{
-                    text-align: center;
-                    cursor: pointer;
-                    font-size: 16px;
-                    font-weight: bold;
-                    padding-top: 10%;
-                    background-color: @mainDark - 80%;
-                    color: @fontColorLight;
-                    height: 100%;
-                    width: 100%;
-                }
             }
 
             & .goToProfileButton{
@@ -202,19 +188,107 @@
             & .recipeDetails{
                 & .recipeText{
                     line-height: 1.6;
-                    & img{
-                        float: left;
-                        width: 20%;
-                        margin: 5px;
-                    }   
+                    display: flex;
+                    padding-top: 5px;  
+                    padding-bottom: 15px;
+                    
+                    & .ingredients{
+                        flex-basis: 50%;
+                        & h2{
+                            padding-bottom: 5px;
+                            padding-left: 5px;
+                        }
+                        
+                        & .ingredientList {
+                            padding-left: 5px;
+                            display: flex;
+                            flex-wrap: wrap;
+                            
+                            & .ingredientItem{
+                                flex-basis: 50%;
+                                width: 50%;
+                            }
+                        }
+                    }
+
+                    & .nutrition{
+                        flex-basis: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        & img{
+                            float: left;
+                            width: 50%;
+                            margin: 5px;
+                            height: 50%;
+                        } 
+                        & h2{
+                            padding-bottom: 5px;
+                            padding-left: 5px;
+                        }
+    
+                        & .nutritionalFacts {
+                            padding-left: 5px;
+                            display: flex;
+                            flex-wrap: wrap;
+    
+                            & .nutrionInformation{
+                                flex-basis: 50%;
+                                width: 50%;
+                            }
+                        }
+                    }
+
                 }
                 & .recipeSteps{
-                    padding-right: 10px;
-                    
+                    padding: 10px 20px;
+
                     & li{
-                        padding: 3px;
+                         padding-bottom: 15px;
+                        &::before {
+                            content: "• ";
+                            color: @fontColorDark;
+                          }
                     }
                 }
+            }
+
+            & .commentSection{
+                display: flex;
+                width: 100%; 
+                flex-direction: column;
+
+                & .commentCreator{
+                    flex-basis: 10%;
+                    display: flex;
+                    
+                    & input{
+                        margin: 10px;
+                        padding: 10px;
+                        flex-basis: 85%;
+                    }
+
+                    & button[name="sendCommentButton"]{
+                        flex-basis: 15%;
+
+                    }
+                }
+
+                & .comments{
+                    flex-basis: 90%;
+
+                    & .comment{
+                        padding: 5px 20px;
+
+                        & h4{
+                            margin-bottom: 5px;
+                        }
+                        & p{
+                            padding: 0 15px;
+                            transform: translateX(10px);
+                        }
+                    }
+                }
+
             }
         }
     }
@@ -247,6 +321,7 @@
             box-shadow: @elevation3;
 
             & li{
+                 
                 list-style: none;
                 font-size: 1.25em;
             }
@@ -276,6 +351,7 @@
 
             & button[name="exportButton"]{
                 flex-basis: 30%;
+                margin: 2px;
             }
         }
 

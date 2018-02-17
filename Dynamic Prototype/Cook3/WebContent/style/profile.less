@@ -1,0 +1,174 @@
+@import "./colors.less";
+@import "./elevations.less";
+@import "./buttons.less";
+@import "./textInput.less";
+
+.mainWindow .profilePage{
+    display: flex;
+    flex-direction: column;
+
+    & .fridgeView{
+        flex-basis: 50%;
+        & .backgroundContainer{
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            height: 100%;
+            position: relative;
+            flex-direction: column;
+            background-color: @mainDark;
+            box-shadow: @elevation3;
+            
+            & span.heading {
+                    font-family: 'Playball';
+                    font-weight: bold;
+                    font-size: 26px;
+                    letter-spacing: 4px;
+                    margin-top: -3px;
+                    padding-bottom: 3px;
+                    padding-left: 3px;
+                    color: @fontColorDark;
+                }
+    
+                & input{
+                    flex-basis: 10%;
+                    box-shadow: @elevation3;
+    
+                    &:focus, {
+                        box-shadow: @elevation7;
+    
+                        &:hover{
+                            box-shadow: @elevation7;
+                        }
+                    }
+    
+                    &:hover{
+                        box-shadow: @elevation5;
+                    }
+                }
+    
+                & .fridgeSearchWidget{
+                    flex-basis: 10%;
+                    display: flex;
+                    flex-direction: row;
+    
+                    & input{
+                        margin-right: 5px;
+                        flex-basis: 95%;
+                    }
+            
+                    & button{
+                        flex-basis: 5%;
+                        color: @fontColorLight;
+                        box-shadow: @elevation3;
+                        @buttonWidth: 95px;
+                        min-width: @buttonWidth;
+                        max-width: @buttonWidth;
+    
+                        &:hover{
+                            box-shadow: @elevation7;
+                        }
+    
+                        &:active{
+                            box-shadow: @elevation3;
+                        }
+                    }
+    
+    
+                }
+            
+                & .fridgeListView{
+                    flex-basis: 80%;
+                    height: 100%;
+                    overflow-y: auto;
+                    padding: 2px;
+                    margin: 3px 0;
+                    background-color: @mainDark + 10%;
+                    padding: 5px;
+    
+                        & .entryContainer{
+                            font-size: 15px;
+                            box-shadow: @elevation0;
+                            padding: 5px;
+                            margin-top: 1px;
+                            width: 100%;
+                            background-color: @mainNormal + 35%;
+                            display: flex;
+                            & .textBlock{
+                                flex-basis: 99%;
+                                padding: 3px 0 0 2px;
+                                word-break: break-all;
+                            }
+                            button {
+                                margin: auto;
+                                flex-basis: 1%;
+                                opacity: 0.5;
+                                min-width: 25px;
+                                height: 25px;
+                                font-size: 11px;
+                                &:hover, &:active{
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+                    
+                }
+            
+                & .wordAdder{
+                    flex-basis: 10%;
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 10px;
+    
+                    & input{
+                        margin-right: 5px;
+                        flex-basis: 95%;
+                    }
+            
+                    & button{
+                        font-size: 14px;
+                        flex-basis: 5%;
+                        color: @fontColorLight;
+                        box-shadow: @elevation3;
+                        @buttonWidth: 115px;
+                        min-width: @buttonWidth;
+                        max-width: @buttonWidth;
+    
+                        &:hover{
+                            box-shadow: @elevation7;
+                        }
+                    }
+    
+    
+                }
+        }
+    }
+
+    & .recommendationView{
+        flex-basis: 45%;
+        background-color: @mainDark;
+        margin: 10px;
+        box-shadow: @elevation3;
+        
+        & h4{
+            font-family: 'Playball';
+            font-weight: bold;
+            font-size: 26px;
+            letter-spacing: 4px;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        
+        & .recEntryWrapper{
+            height: 90%;
+            overflow-y: auto;
+            & .recEntry{
+                background-color: @mainDark + 10%;
+                padding: 5px;
+                padding-left: 10px;
+                margin: 2px;
+                box-shadow: @elevation0;
+            }
+        }
+    }
+}

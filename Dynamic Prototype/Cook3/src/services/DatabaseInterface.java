@@ -8,9 +8,9 @@ import java.sql.Statement;
 
 public class DatabaseInterface {
 
-	protected final String USER = "cookuser";
-	protected final String PASS = "12345";
-	protected final String DB_URL = "jdbc:mysql://localhost:3306/cookme";
+	private final String USER = "cookme";
+	private final String PASS = "12345";
+	private final String DB_URL = "jdbc:mysql://192.168.3.3:3307/cookme";
 
 	public DatabaseResponse select(int type, String database, String select, String where) {
 		DatabaseResponse response = new DatabaseResponse();

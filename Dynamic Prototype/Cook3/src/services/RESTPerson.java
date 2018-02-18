@@ -35,8 +35,7 @@ public class RESTPerson extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updatePerson(@FormParam("id") int id, @FormParam("username") String userName) {
 		System.out.println(id);
-		DatabaseInterface dbi = new DatabaseInterface();
-		if (!dbi.update(1, "cookme.person", "username", "username = 'patrick'")) {
+		if (!update(1, "cookme.person", "username", "username = 'patrick'")) {
 			System.out.println("Error!!!!!");
 			return "Das Objekt ist nicht Vorhanden in der DB.";
 		} else
@@ -48,8 +47,7 @@ public class RESTPerson extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		String where = "username = '" + userName + "' && password = '" + password + "'";
-		DatabaseInterface dbi = new DatabaseInterface();
-		if (dbi.select(1, "cookme.person", "id,password,username", where) == null) {
+		if (select(1, "cookme.person", "id,password,username", where) == null) {
 			return "Error wrong username or password";
 		} else
 			return "Login sucessfull";
@@ -60,8 +58,7 @@ public class RESTPerson extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteTPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		System.out.println("DELETE----------");
-		DatabaseInterface dbi = new DatabaseInterface();
-		if (dbi.delete(1, userName, password)) {
+		if (delete(1, userName, password)) {
 			return "Success";
 		} else
 			return "Das Objekt ist nicht Vorhanden in der DB.";

@@ -24,18 +24,22 @@ import services.Recipe;
 public class RESTRecipe extends DatabaseInterface {
 
 	@GET
-	@Path("/{id}")
+	@Path("/{id}/{category}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getRecipe(@PathParam("id") int id) {
+	public String getRecipe(@PathParam("id") int id, @PathParam("category") int category) {
+		
+		System.out.println("id: "+ id + "category:" + category);
 		String where = "id = " + id;
 		String select = "id,title,ingrements,rauthor,description";
 		if (id == -1) {
 			where = "id = id";
 			select = "id,title";
 		}
-		 
-		 DatabaseInterface dbi = new DatabaseInterface();
-		 DatabaseResponse responce =dbi.select(0,"cookme.recipe", select, where);
+		if (id == -2) {
+			where = "id = id";
+			select = "id,title";
+		}
+		 DatabaseResponse responce =select(0,"cookme.recipe", select, where);
 		 if (responce == null) {
 			 return "empty";
 		 }
@@ -69,8 +73,7 @@ public class RESTRecipe extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updatePerson(@FormParam("id") int id, @FormParam("username") String userName) {
 		System.out.println(id);
-		DatabaseInterface dbi = new DatabaseInterface();
-		if (!dbi.update(1, "cookme.person", "username", "username = 'patrick'")) {
+		if (!update(1, "cookme.person", "username", "username = 'patrick'")) {
 			System.out.println("Error!!!!!");
 			return "Das Objekt ist nicht Vorhanden in der DB.";
 		} else
@@ -83,8 +86,7 @@ public class RESTRecipe extends DatabaseInterface {
 	public String loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		System.out.println("POST----------");
 		String where = "username = '" + userName + "' && password = '" + password + "'";
-		DatabaseInterface dbi = new DatabaseInterface();
-		if (dbi.select(1, "cookme.person", "id,password,username", where) == null) {
+		if (select(1, "cookme.person", "id,password,username", where) == null) {
 			// dbs.insert(t);
 			return "Error wrong username or password";
 		} else
@@ -96,8 +98,7 @@ public class RESTRecipe extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteTPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		System.out.println("DELETE----------");
-		DatabaseInterface dbi = new DatabaseInterface();
-		if (dbi.delete(1, userName, password)) {
+		if (delete(1, userName, password)) {
 			return "Success";
 		} else
 			return "Das Objekt ist nicht Vorhanden in der DB.";

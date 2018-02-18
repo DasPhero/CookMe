@@ -37,7 +37,8 @@ public class DatabaseInterface {
 			while (rs.next()) {
 				if (type == 0) {// recipe
 					response.addTitle(rs.getString("title"));
-					if (select == "id,title,ingrements,rauthor,description") {
+					response.addCategoryId(rs.getInt("category"));
+					if (select == "id,title,ingrements,rauthor,description,category") {
 						response.addDescription(rs.getString("description"));
 						response.addIngrements(rs.getString("ingrements"));
 						response.addAuthor(rs.getInt("rauthor"));
@@ -46,7 +47,8 @@ public class DatabaseInterface {
 						response.addIngrements("");
 						response.addAuthor(0);
 					}
-				} else { // person login
+					
+				} else if (type == 1){ // person login
 					if (select == "id,password,username,squestion,sanswer") {
 						response.addSAnswer(rs.getString("sanswer"));
 						response.addSQuestion(rs.getInt("squestion"));
@@ -56,6 +58,8 @@ public class DatabaseInterface {
 					}
 					response.addUserName(rs.getString("username"));
 					response.addPassword(rs.getString("password"));
+				} else if (type == 3) { //categories
+					response.addCategoryName(rs.getString("categoryname"));
 				}
 				response.addId(rs.getInt("id"));
 				result = true;

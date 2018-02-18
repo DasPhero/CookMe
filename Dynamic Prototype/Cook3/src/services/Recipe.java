@@ -1,12 +1,13 @@
 package services;
 
-public class Recipe {
+public class Recipe{
 
 	private String title;
 	private int author;
 	private String description;
 	private String ingrements;
 	private int id;
+	private int categoryId;
 
 	public Recipe() {
 		this.title = "";
@@ -14,6 +15,7 @@ public class Recipe {
 		this.description = "";
 		this.ingrements = "";
 		this.id = 0;
+		this.categoryId=0;
 	}
 	
 	public String toString() {
@@ -21,8 +23,17 @@ public class Recipe {
 		text = text + "\nAuthor: " + author;
 		text = text + "\nBeschreibung: " + description;
 		text = text + "\nZutaten: " + ingrements;
-		text = text + "\nID: " + id;	
+		text = text + "\nID: " + id;
+		text = text + "\nKategorie ID: " + categoryId;
 		return text;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getTitle() {

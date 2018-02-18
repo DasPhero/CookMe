@@ -24,46 +24,70 @@ import services.Recipe;
 public class RESTRecipe extends DatabaseInterface {
 
 	@GET
-	@Path("/{id}/{category}")
+	@Path("/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getRecipe(@PathParam("id") int id, @PathParam("category") int category) {
+	public String getRecipe(@PathParam("id") int id) {
 		
-		System.out.println("id: "+ id + "category:" + category);
+		System.out.println("id: "+ id);
 		String where = "id = " + id;
-		String select = "id,title,ingrements,rauthor,description";
+		String select = "id,title,ingrements,rauthor,description,category";
+		String database="cookme.recipe";
+		int type = 0;
 		if (id == -1) {
 			where = "id = id";
-			select = "id,title";
+			select = "id,title,category";
 		}
-		if (id == -2) {
+		if (id == -3) {
 			where = "id = id";
-			select = "id,title";
+			select = "id,categoryname";
+			database= "cookme.categories";
+			type = 3;
 		}
-		 DatabaseResponse responce =select(0,"cookme.recipe", select, where);
+		 DatabaseResponse responce =select(type,database, select, where);
 		 if (responce == null) {
 			 return "empty";
 		 }
-		 for (String title : responce.getTitle()) {
-			System.out.println("----------"+ title);
-		}
+		 //for (String title : responce.getTitle()) {
+		//	System.out.println("----------"+ title);
+		//}
+		 JsonArray recipesJson = new JsonArray();
+		 if (id == -3) {
+			 List<RecipeCategory> list= responce.toRecipeCategoryList();
+			 if (list.isEmpty()) {
+				 System.out.println("Kategorie nicht vorhanden:");
+				 return "empty";
+			 }
+			 			
+			 for (RecipeCategory recipeCategory : list) {
+				 System.out.println("name:" + recipeCategory.getCategoryName() + "+++++++++++++2");
+				 JsonObject rJson = new JsonObject();
+				 rJson.addProperty("name", recipeCategory.getCategoryName());
+				 rJson.addProperty("id", recipeCategory.getId());
+				 recipesJson.add(rJson);
+			}
+		 }else {
+		 
 		 List<Recipe> list= responce.toRecipeList();
 		 if (list.isEmpty()) {
 			 System.out.println("Rezept nicht vorhanden:");
 			 return "empty";
 		 }
-		 JsonArray recipesJson = new JsonArray();
+		 
+		
 		 for (Recipe recipe : list) {
-			 System.out.println("titel:" + recipe.getTitle() + "+++++++++++++2");
+			 System.out.println("title:" + recipe.getTitle() + "+++++++++++++2");
 			 JsonObject rJson = new JsonObject();
-			 rJson.addProperty("titel", recipe.getTitle());
+			 rJson.addProperty("title", recipe.getTitle());
 			 rJson.addProperty("id", recipe.getId());
+			 rJson.addProperty("category", recipe.getCategoryId());
+			 if(id != -1) {
+				 rJson.addProperty("description", recipe.getDescription());
+			 }
 			 recipesJson.add(rJson);
 		}
-		 
+		 }
 		 System.out.println(recipesJson.toString());
-		 
-		String s = list.get(0).getTitle();
-		System.out.println("Rezept:\n" + s);
+
 		return recipesJson.toString();
 	}
 

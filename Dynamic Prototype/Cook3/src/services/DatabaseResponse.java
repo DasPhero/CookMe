@@ -12,8 +12,9 @@ public class DatabaseResponse {
 	private List<Integer> author;
 	private List<String> description;
 	private List<String> ingrements;
+	private List<Integer> categoryId;
 
-	// both
+	// all
 	private List<Integer> id;
 
 	// person == 1
@@ -21,20 +22,26 @@ public class DatabaseResponse {
 	private List<String> password;
 	private List<Integer> sQuestion;
 	private List<String> sAnswer;
+	
+	// category == 3
+	private List<String> categoryName;
 
 	public DatabaseResponse() {
 		this.type = 0;
+		this.id = new ArrayList<Integer>();
 
 		this.title = new ArrayList<String>();
 		this.author = new ArrayList<Integer>();
 		this.description = new ArrayList<String>();
 		this.ingrements = new ArrayList<String>();
+		this.categoryId = new ArrayList<Integer>();
 
 		this.userName = new ArrayList<String>();
 		this.password = new ArrayList<String>();
 		this.sQuestion = new ArrayList<Integer>();
 		this.sAnswer = new ArrayList<String>();
-		this.id = new ArrayList<Integer>();
+		
+		this.categoryName = new ArrayList<String>();
 	}
 
 	public List<Person> toPersonList() {
@@ -60,9 +67,51 @@ public class DatabaseResponse {
 			r.setAuthor(this.author.get(i));
 			r.setDescription(this.description.get(i));
 			r.setIngrements(this.ingrements.get(i));
+			r.setCategoryId(this.categoryId.get(i));
 			list.add(r);
 		}
 		return list;
+	}
+	
+	public List<RecipeCategory> toRecipeCategoryList() {
+		List<RecipeCategory> list = new ArrayList<RecipeCategory>();
+		for (int i = 0; i < this.id.size(); i++) {
+			RecipeCategory r = new RecipeCategory();
+			r.setId(this.id.get(i));
+			r.setCategoryName(this.categoryName.get(i));
+			list.add(r);
+		}
+		return list;
+	}
+	
+	
+	
+	public List<Integer> getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(List<Integer> categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public List<String> getCategoryName() {
+		return categoryName;
+	}
+	
+	public void addCategoryId(int categoryId) {
+		this.categoryId.add(categoryId);
+	}
+
+	public void setCategoryName(List<String> categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public void addCategoryName(String categoryName) {
+		this.categoryName.add(categoryName);
+	}
+	
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public DatabaseResponse(int type) {

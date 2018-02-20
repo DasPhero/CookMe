@@ -5,7 +5,7 @@ public class Recipe{
 	private String title;
 	private int author;
 	private String description;
-	private String ingrements;
+	private String ingredients;
 	private int id;
 	private int categoryId;
 
@@ -13,7 +13,7 @@ public class Recipe{
 		this.title = "";
 		this.author = 0;
 		this.description = "";
-		this.ingrements = "";
+		this.ingredients = "";
 		this.id = 0;
 		this.categoryId=0;
 	}
@@ -22,7 +22,7 @@ public class Recipe{
 		String text= "Titel: "+ title;
 		text = text + "\nAuthor: " + author;
 		text = text + "\nBeschreibung: " + description;
-		text = text + "\nZutaten: " + ingrements;
+		text = text + "\nZutaten: " + ingredients;
 		text = text + "\nID: " + id;
 		text = text + "\nKategorie ID: " + categoryId;
 		return text;
@@ -60,12 +60,12 @@ public class Recipe{
 		this.description = description;
 	}
 
-	public String getIngrements() {
-		return ingrements;
+	public String getIngredients() {
+		return ingredients;
 	}
 
-	public void setIngrements(String ingrements) {
-		this.ingrements = ingrements;
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	public int getId() {

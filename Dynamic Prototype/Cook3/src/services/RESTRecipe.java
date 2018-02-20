@@ -35,7 +35,7 @@ public class RESTRecipe extends DatabaseInterface {
 		
 		System.out.println("id: "+ id);
 		String where = "id = " + id;
-		String select = "id,title,ingrements,rauthor,description,category";
+		String select = "id,title,ingredients,rauthor,description,category";
 		String database="cookme.recipe";
 		int type = TYPE_RECIPE;
 		if (id == GET_NAV_TITLES) {
@@ -87,6 +87,7 @@ public class RESTRecipe extends DatabaseInterface {
 			 rJson.addProperty("category", recipe.getCategoryId());
 			 if(id != GET_NAV_TITLES) {
 				 rJson.addProperty("description", recipe.getDescription());
+				 rJson.addProperty("ingredients", recipe.getIngredients());
 			 }
 			 recipesJson.add(rJson);
 		}
@@ -112,10 +113,11 @@ public class RESTRecipe extends DatabaseInterface {
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
+	public String insertRecipe(@FormParam("title") String title, @FormParam("ingredients") String ingredients, @FormParam("description") String description, @FormParam("category") String category) {
 		System.out.println("POST----------");
-		String where = "username = '" + userName + "' && password = '" + password + "'";
-		if (select(1, "cookme.person", "id,password,username", where) == null) {
+		String insert = " `recipe` ( `title`,`description`,`ingredients`,`category`) ";
+		String values = "'"+ title +"', '"+ description +"','"+ ingredients + "',"+ category + "";
+		if (!insert(TYPE_RECIPE, insert, values)) {
 			// dbs.insert(t);
 			return "Error wrong username or password";
 		} else

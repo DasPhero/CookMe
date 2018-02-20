@@ -44,19 +44,30 @@ function getRecipe(titleM2,object){
 	var id = object.substr(6);	
 	$(".h1Wrapper h1").html(titleM2);
 	$(".recipeSteps h2").next("ul").html("Rezept wird geladen");
+	$(".recipeSteps h2").next("ul").html("<div>Zutatenliste wird geladen</div>");
 	$.get("rest/recipe/" + id,// -1 = get all recipes
 	function(data3, status) {
 		if (data3.length > 1){
 			recipe = JSON.parse(data3); //parse to JSON
 			var sourceCode3="";
+			var sourceCode4="";
 			var description =  JSON.parse(recipe[0]["description"]);
+			var ingredients =  JSON.parse(recipe[0]["ingredients"]);
+			
 			description.forEach(function(step) {
 				sourceCode3 = sourceCode3 + "<li>"
 				+ step 
 				+ "</li>";
 			});
 			
+			ingredients.forEach(function(item) {
+				sourceCode4 = sourceCode4 + "<div class=\"ingredientItem\"><span class=\"itemAmount\">"
+				+ item[0]+ "</span></span class=\"recipeItem\">" +item[1]
+				+ "</span></div>";
+			});
+			
 			$(".recipeSteps h2").next("ul").html(sourceCode3);
+			$(".ingredientList").html(sourceCode4);
 		}
 	});
 }

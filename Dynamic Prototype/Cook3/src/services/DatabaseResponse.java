@@ -11,7 +11,7 @@ public class DatabaseResponse {
 	private List<String> title;
 	private List<Integer> author;
 	private List<String> description;
-	private List<String> ingrements;
+	private List<String> ingredients;
 	private List<Integer> categoryId;
 
 	// all
@@ -33,7 +33,7 @@ public class DatabaseResponse {
 		this.title = new ArrayList<String>();
 		this.author = new ArrayList<Integer>();
 		this.description = new ArrayList<String>();
-		this.ingrements = new ArrayList<String>();
+		this.ingredients = new ArrayList<String>();
 		this.categoryId = new ArrayList<Integer>();
 
 		this.userName = new ArrayList<String>();
@@ -66,7 +66,7 @@ public class DatabaseResponse {
 			r.setId(this.id.get(i));
 			r.setAuthor(this.author.get(i));
 			r.setDescription(this.description.get(i));
-			r.setIngrements(this.ingrements.get(i));
+			r.setIngredients(this.ingredients.get(i));
 			r.setCategoryId(this.categoryId.get(i));
 			list.add(r);
 		}
@@ -163,16 +163,16 @@ public class DatabaseResponse {
 		this.description.add(description);
 	}
 
-	public List<String> getIngrements() {
-		return ingrements;
+	public List<String> getIngredients() {
+		return ingredients;
 	}
 
-	public void setIngrements(List<String> ingrements) {
-		this.ingrements = ingrements;
+	public void setIngredients(List<String> ingredients) {
+		this.ingredients = ingredients;
 	}
 
-	public void addIngrements(String ingrements) {
-		this.ingrements.add(ingrements);
+	public void addIngredients(String ingredients) {
+		this.ingredients.add(ingredients);
 	}
 
 	public List<String> getUserName() {

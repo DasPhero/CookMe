@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import services.Person;
+import static services.Constant.TYPE_PERSON_LOGIN;
 
 @Path("/login")
 @Produces(MediaType.APPLICATION_JSON)
@@ -35,7 +36,7 @@ public class RESTPerson extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updatePerson(@FormParam("id") int id, @FormParam("username") String userName) {
 		System.out.println(id);
-		if (!update(1, "cookme.person", "username", "username = 'patrick'")) {
+		if (!update(TYPE_PERSON_LOGIN, "cookme.person", "username", "username = 'patrick'")) {
 			System.out.println("Error!!!!!");
 			return "Das Objekt ist nicht Vorhanden in der DB.";
 		} else
@@ -47,7 +48,7 @@ public class RESTPerson extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		String where = "username = '" + userName + "' && password = '" + password + "'";
-		if (select(1, "cookme.person", "id,password,username", where) == null) {
+		if (select(TYPE_PERSON_LOGIN, "cookme.person", "id,password,username", where) == null) {
 			return "Error";
 		} else
 			return "Success";
@@ -58,7 +59,7 @@ public class RESTPerson extends DatabaseInterface {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteTPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		System.out.println("DELETE----------");
-		if (delete(1, userName, password)) {
+		if (delete(TYPE_PERSON_LOGIN, userName, password)) {
 			return "Success";
 		} else
 			return "Das Objekt ist nicht Vorhanden in der DB.";

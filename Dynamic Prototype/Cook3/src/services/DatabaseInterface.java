@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static services.Constant.TYPE_PERSON_LOGIN;
+import static services.Constant.TYPE_CATEGORY;
+import static services.Constant.TYPE_RECIPE;
+
 public class DatabaseInterface {
 
 	private final String USER = "cookme";
@@ -35,7 +39,7 @@ public class DatabaseInterface {
 			// Extract data from result set
 
 			while (rs.next()) {
-				if (type == 0) {// recipe
+				if (type == TYPE_RECIPE) {// recipe
 					response.addTitle(rs.getString("title"));
 					response.addCategoryId(rs.getInt("category"));
 					if (select == "id,title,ingrements,rauthor,description,category") {
@@ -48,7 +52,7 @@ public class DatabaseInterface {
 						response.addAuthor(0);
 					}
 					
-				} else if (type == 1){ // person login
+				} else if (type == TYPE_PERSON_LOGIN){ // person login
 					if (select == "id,password,username,squestion,sanswer") {
 						response.addSAnswer(rs.getString("sanswer"));
 						response.addSQuestion(rs.getInt("squestion"));
@@ -58,7 +62,7 @@ public class DatabaseInterface {
 					}
 					response.addUserName(rs.getString("username"));
 					response.addPassword(rs.getString("password"));
-				} else if (type == 3) { //categories
+				} else if (type == TYPE_CATEGORY) { //categories
 					response.addCategoryName(rs.getString("categoryname"));
 				}
 				response.addId(rs.getInt("id"));

@@ -17,6 +17,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import services.Recipe;
+import static services.Constant.GET_NAV_TITLES;
+import static services.Constant.GET_CATEGORIES;
+
+import static services.Constant.TYPE_CATEGORY;
+import static services.Constant.TYPE_RECIPE;
 
 
 @Path("/recipe")
@@ -32,16 +37,16 @@ public class RESTRecipe extends DatabaseInterface {
 		String where = "id = " + id;
 		String select = "id,title,ingrements,rauthor,description,category";
 		String database="cookme.recipe";
-		int type = 0;
-		if (id == -1) {
+		int type = TYPE_RECIPE;
+		if (id == GET_NAV_TITLES) {
 			where = "id = id";
 			select = "id,title,category";
 		}
-		if (id == -3) {
+		if (id == GET_CATEGORIES) {
 			where = "id = id";
 			select = "id,categoryname";
 			database= "cookme.categories";
-			type = 3;
+			type = TYPE_CATEGORY;
 		}
 		 DatabaseResponse responce =select(type,database, select, where);
 		 if (responce == null) {
@@ -51,7 +56,7 @@ public class RESTRecipe extends DatabaseInterface {
 		//	System.out.println("----------"+ title);
 		//}
 		 JsonArray recipesJson = new JsonArray();
-		 if (id == -3) {
+		 if (id == GET_CATEGORIES) {
 			 List<RecipeCategory> list= responce.toRecipeCategoryList();
 			 if (list.isEmpty()) {
 				 System.out.println("Kategorie nicht vorhanden:");
@@ -80,7 +85,7 @@ public class RESTRecipe extends DatabaseInterface {
 			 rJson.addProperty("title", recipe.getTitle());
 			 rJson.addProperty("id", recipe.getId());
 			 rJson.addProperty("category", recipe.getCategoryId());
-			 if(id != -1) {
+			 if(id != GET_NAV_TITLES) {
 				 rJson.addProperty("description", recipe.getDescription());
 			 }
 			 recipesJson.add(rJson);

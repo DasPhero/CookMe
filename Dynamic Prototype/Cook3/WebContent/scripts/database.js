@@ -1,18 +1,17 @@
 $.holdReady(true); //disable document == ready
 
-const GET_CATEGORIES = "-3";
+const GET_CATEGORIES = "-2";
 const GET_NAV_TITLES = "-1";
 $.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 	obj = JSON.parse(data);
-	let quellcode = "";
+	let sourceCode1 = "";
 	
 	obj.forEach(function(element) {
-		quellcode = quellcode + "<li class=\"rCategory\" id=\"r"
+		sourceCode1 = sourceCode1 + "<li class=\"rCategory\" id=\"r"
 				+ element["id"] + "\">" + element["name"]
 				+ "</li><ul class=\"c" + element["id"] + "\"></ul>"; //set class to "c1", "c2" ..
-
 	});
-	$(".listWrapper ").html(quellcode);//override static code
+	$(".listWrapper ").html(sourceCode1);//override static code
 	getTitles();//get titles of each recipe
 	
 });
@@ -22,10 +21,10 @@ function getTitles() {
 			function(data2, status) {
 				recipes = JSON.parse(data2); //parse to JSON
 				$(".rCategory").each(function(i, category) {
-					let quellcode = "";
+					let sourceCode2 = "";
 					recipes.forEach(function(recipe) {
 						if ($(category).attr('id') == "r"+ recipe["category"]) {
-							quellcode = quellcode
+							sourceCode2 = sourceCode2
 							+ "<li><input type=\"checkbox\" id=\"checkbox"
 							+ recipe["id"]
 							+ "\"/> <span class=\"listEntry\" id=\"recipe"
@@ -35,33 +34,29 @@ function getTitles() {
 							+ "</span></li>";
 						}
 					});
-					$(category).next(" ul").html(quellcode);
+					$(category).next(" ul").html(sourceCode2);
 				});
 				$.holdReady(false); //set document ready
 			});
 }
 
-function getRecipe(object){
+function getRecipe(titleM2,object){
 	var id = object.substr(6);	
-	//alert("a"+id);
+	$(".h1Wrapper h1").html(titleM2);
+	$(".recipeSteps h2").next("ul").html("Rezept wird geladen");
 	$.get("rest/recipe/" + id,// -1 = get all recipes
 	function(data3, status) {
-		//alert(data3);
 		if (data3.length > 1){
 			recipe = JSON.parse(data3); //parse to JSON
-			//alert(recipe[0]["description"]  + "2");
-			var quellcode1="";
+			var sourceCode3="";
 			var description =  JSON.parse(recipe[0]["description"]);
-			//alert(description + "!!");
 			description.forEach(function(step) {
-				alert(step + "1");
-				quellcode1 = quellcode1 + "<li>"
+				sourceCode3 = sourceCode3 + "<li>"
 				+ step 
 				+ "</li>";
 			});
 			
-			
-			$(".recipeSteps h2").next("ul").html(quellcode1);
+			$(".recipeSteps h2").next("ul").html(sourceCode3);
 		}
 	});
 }

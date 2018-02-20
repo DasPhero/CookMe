@@ -7,7 +7,8 @@ $(document).ready(function() {
 	//select single recipe
 	$(".listEntry").click(function() {
 		//alert($(this).attr('id')+ " clicked");
-		getRecipe($(this).attr('id'));
+		//getRecipe($(this).attr('id'));
+		getRecipe($(this).text(),$(this).attr('id'));
 	});	
 	
 	

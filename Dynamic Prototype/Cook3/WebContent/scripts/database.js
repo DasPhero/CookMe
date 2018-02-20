@@ -1,10 +1,10 @@
 $.holdReady(true); //disable document == ready
 
-
-
-$.get("rest/recipe/-3", function(data, status) { //get categories
+const GET_CATEGORIES = "-3";
+const GET_NAV_TITLES = "-1";
+$.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 	obj = JSON.parse(data);
-	var quellcode = "";
+	let quellcode = "";
 	
 	obj.forEach(function(element) {
 		quellcode = quellcode + "<li class=\"rCategory\" id=\"r"
@@ -18,11 +18,11 @@ $.get("rest/recipe/-3", function(data, status) { //get categories
 });
 
 function getTitles() {
-	$.get("rest/recipe/-1",// -1 = get all recipes
+	$.get("rest/recipe/"+GET_NAV_TITLES,// -1 = get all recipes
 			function(data2, status) {
 				recipes = JSON.parse(data2); //parse to JSON
 				$(".rCategory").each(function(i, category) {
-					var quellcode = "";
+					let quellcode = "";
 					recipes.forEach(function(recipe) {
 						if ($(category).attr('id') == "r"+ recipe["category"]) {
 							quellcode = quellcode
@@ -50,7 +50,18 @@ function getRecipe(object){
 		if (data3.length > 1){
 			recipe = JSON.parse(data3); //parse to JSON
 			//alert(recipe[0]["description"]  + "2");
-			$(".recipeSteps h2 ").next('ul').text(recipe[0]["description"]);
+			var quellcode1="";
+			var description =  JSON.parse(recipe[0]["description"]);
+			//alert(description + "!!");
+			description.forEach(function(step) {
+				alert(step + "1");
+				quellcode1 = quellcode1 + "<li>"
+				+ step 
+				+ "</li>";
+			});
+			
+			
+			$(".recipeSteps h2").next("ul").html(quellcode1);
 		}
 	});
 }

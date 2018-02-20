@@ -48,9 +48,9 @@ public class RESTPerson extends DatabaseInterface {
 	public String loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		String where = "username = '" + userName + "' && password = '" + password + "'";
 		if (select(1, "cookme.person", "id,password,username", where) == null) {
-			return "Error wrong username or password";
+			return "Error";
 		} else
-			return "Login sucessfull";
+			return "Success";
 	}
 
 	@DELETE

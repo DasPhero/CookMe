@@ -17,6 +17,9 @@ public class DatabaseInterface {
 		Statement stmt = null;
 		Connection conn = null;
 		boolean result = false;
+		
+		//TODO escape strings
+		
 		try {
 			// Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");

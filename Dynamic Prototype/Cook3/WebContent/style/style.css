@@ -136,6 +136,23 @@
   height: 100%;
   width: 100%;
 }
+.mainWindow .recipeView .accountBar .goToStartButton,
+.mainWindow .profilePage .accountBar .goToStartButton {
+  flex-basis: 10%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .goToStartButton .symbolWrapper,
+.mainWindow .profilePage .accountBar .goToStartButton .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
+}
 .mainWindow .recipeView .recipeExplanation,
 .mainWindow .profilePage .recipeExplanation {
   overflow-y: auto;
@@ -730,6 +747,23 @@ input[type="text"]:focus {
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper {
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10%;
+  background-color: #007b00;
+  color: ghostwhite;
+  height: 100%;
+  width: 100%;
+}
+.mainWindow .recipeView .accountBar .goToStartButton,
+.mainWindow .profilePage .accountBar .goToStartButton {
+  flex-basis: 10%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .recipeView .accountBar .goToStartButton .symbolWrapper,
+.mainWindow .profilePage .accountBar .goToStartButton .symbolWrapper {
   text-align: center;
   cursor: pointer;
   font-size: 22px;

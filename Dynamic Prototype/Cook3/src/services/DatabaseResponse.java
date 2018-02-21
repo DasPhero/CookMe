@@ -11,6 +11,7 @@ public class DatabaseResponse {
 	private List<String> title;
 	private List<Integer> author;
 	private List<String> description;
+	private List<String> nutritionFacts;
 	private List<String> ingredients;
 	private List<Integer> categoryId;
 
@@ -34,6 +35,7 @@ public class DatabaseResponse {
 		this.title = new ArrayList<String>();
 		this.author = new ArrayList<Integer>();
 		this.description = new ArrayList<String>();
+		this.nutritionFacts = new ArrayList<String>();
 		this.ingredients = new ArrayList<String>();
 		this.categoryId = new ArrayList<Integer>();
 
@@ -70,6 +72,7 @@ public class DatabaseResponse {
 			r.setAuthor(this.author.get(i));
 			r.setDescription(this.description.get(i));
 			r.setIngredients(this.ingredients.get(i));
+			r.setNutritionFacts(this.nutritionFacts.get(i));
 			r.setCategoryId(this.categoryId.get(i));
 			list.add(r);
 		}
@@ -87,6 +90,19 @@ public class DatabaseResponse {
 		return list;
 	}
 	
+	
+	public void addNutritionFacts(String nutritionFacts) {
+		this.nutritionFacts.add(nutritionFacts);
+	}
+	
+	public List<String> getNutritionFacts() {
+		return nutritionFacts;
+	}
+
+	public void setNutritionFacts(List<String> nutritionFacts) {
+		this.nutritionFacts = nutritionFacts;
+	}
+
 	public void addCookie(String cookie) {
 		this.cookie.add(cookie);
 	}

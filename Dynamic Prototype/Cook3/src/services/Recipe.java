@@ -6,6 +6,7 @@ public class Recipe{
 	private int author;
 	private String description;
 	private String ingredients;
+	private String nutritionFacts;
 	private int id;
 	private int categoryId;
 
@@ -16,6 +17,7 @@ public class Recipe{
 		this.ingredients = "";
 		this.id = 0;
 		this.categoryId=0;
+		this.nutritionFacts = "";
 	}
 	
 	public String toString() {
@@ -25,7 +27,16 @@ public class Recipe{
 		text = text + "\nZutaten: " + ingredients;
 		text = text + "\nID: " + id;
 		text = text + "\nKategorie ID: " + categoryId;
+		text = text + "\nNährwertangaben: " + nutritionFacts;
 		return text;
+	}
+
+	public String getNutritionFacts() {
+		return nutritionFacts;
+	}
+
+	public void setNutritionFacts(String nutritionFacts) {
+		this.nutritionFacts = nutritionFacts;
 	}
 
 	public int getCategoryId() {

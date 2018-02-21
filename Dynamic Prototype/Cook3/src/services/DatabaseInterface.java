@@ -42,14 +42,16 @@ public class DatabaseInterface {
 				if (type == TYPE_RECIPE) {// recipe
 					response.addTitle(rs.getString("title"));
 					response.addCategoryId(rs.getInt("category"));
-					if (select == "id,title,ingredients,rauthor,description,category") {
+					if (select == "id,title,ingredients,rauthor,description,category,nutritionfacts") {
 						response.addDescription(rs.getString("description"));
 						response.addIngredients(rs.getString("ingredients"));
+						response.addNutritionFacts(rs.getString("nutritionfacts"));
 						response.addAuthor(rs.getInt("rauthor"));
 					}else {
 						response.addDescription("");
 						response.addIngredients("");
 						response.addAuthor(0);
+						response.addNutritionFacts("");
 					}
 					
 				} else if (type == TYPE_PERSON_LOGIN){ // person login
@@ -65,8 +67,12 @@ public class DatabaseInterface {
 					}else {
 						response.addCookie("");
 					}
+					if (select == "`id`,`username`,`cookie`") {
+						response.addPassword("");
+					}else {
+						response.addPassword(rs.getString("password"));	
+					}
 					response.addUserName(rs.getString("username"));
-					response.addPassword(rs.getString("password"));
 				} else if (type == TYPE_CATEGORY) { //categories
 					response.addCategoryName(rs.getString("categoryname"));
 				}

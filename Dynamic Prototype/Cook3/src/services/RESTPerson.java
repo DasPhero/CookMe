@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import services.Person;
 import static services.Constant.TYPE_PERSON_LOGIN;
+import static services.Constant.RESOLVE_USERNAME;
 
 import java.util.List;
 
@@ -21,29 +22,47 @@ import java.util.List;
 public class RESTPerson extends DatabaseInterface {
 
 	@GET
-	@Path("/{id}")
+	@Path("/{id}/{uuid}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getCookie(@PathParam("id") int id) {
-		 String where = "id = " + id;
-		 String select = "`id`,`username`,`squestion`,`sanswer`,`password`,  LEFT(\r\n" + 
-		 		"                                   REPLACE(\r\n" + 
-		 		"                                       REPLACE(\r\n" + 
-		 		"                                           REPLACE(\r\n" + 
-		 		"                                               TO_BASE64(\r\n" + 
-		 		"                                                   UNHEX(\r\n" + 
-		 		"                                                       MD5(\r\n" + 
-		 		"                                                           RAND()\r\n" + 
-		 		"                                                       )\r\n" + 
-		 		"                                                   )\r\n" + 
-		 		"                                               ), \"/\", \"\"\r\n" + 
-		 		"                                           ), \"+\", \"\"\r\n" + 
-		 		"                                       ), \"=\", \"\"\r\n" + 
-		 		"                                   ), 20\r\n" + 
-		 		"                               )as `cookie`";
-		 Person t = select(TYPE_PERSON_LOGIN,"cookme.person", select, where).toPersonList().get(0);
-		 String cookie = t.getCookie();
-		 System.out.println(cookie);
-		return cookie;
+	public String getCookie(@PathParam("id") int id,@PathParam("uuid") String uuid) {
+		if (id != RESOLVE_USERNAME ) {
+			 String where = "id = " + id;
+			 String select = "`id`,`username`,`squestion`,`sanswer`,`password`,  LEFT(\r\n" + 
+			 		"                                   REPLACE(\r\n" + 
+			 		"                                       REPLACE(\r\n" + 
+			 		"                                           REPLACE(\r\n" + 
+			 		"                                               TO_BASE64(\r\n" + 
+			 		"                                                   UNHEX(\r\n" + 
+			 		"                                                       MD5(\r\n" + 
+			 		"                                                           RAND()\r\n" + 
+			 		"                                                       )\r\n" + 
+			 		"                                                   )\r\n" + 
+			 		"                                               ), \"/\", \"\"\r\n" + 
+			 		"                                           ), \"+\", \"\"\r\n" + 
+			 		"                                       ), \"=\", \"\"\r\n" + 
+			 		"                                   ), 20\r\n" + 
+			 		"                               )as `cookie`";
+			 List<Person> list = select(TYPE_PERSON_LOGIN,"cookme.person", select, where).toPersonList();
+			 if (list.size() == 0) {
+				 return "invalid";
+			 }
+			 Person t = list.get(0);
+			 String cookie = t.getCookie();
+			 System.out.println(cookie);
+			return cookie;
+		}else {
+			
+			 String where = "cookie = '" + uuid+"'";
+			 String select = "`id`,`username`,`cookie`";
+			 List<Person> list = select(TYPE_PERSON_LOGIN,"cookme.person", select, where).toPersonList();
+			 if (list.size() == 0) {
+				 return "";
+			 }
+			 Person t = list.get(0);
+			 String userName = t.getUserName();
+			 System.out.println(userName);
+			return userName;
+		}
 	}
 
 	@PUT

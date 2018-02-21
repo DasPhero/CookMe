@@ -35,7 +35,7 @@ public class RESTRecipe extends DatabaseInterface {
 		
 		System.out.println("id: "+ id);
 		String where = "id = " + id;
-		String select = "id,title,ingredients,rauthor,description,category";
+		String select = "id,title,ingredients,rauthor,description,category,nutritionfacts";
 		String database="cookme.recipe";
 		int type = TYPE_RECIPE;
 		if (id == GET_NAV_TITLES) {
@@ -88,6 +88,7 @@ public class RESTRecipe extends DatabaseInterface {
 			 if(id != GET_NAV_TITLES) {
 				 rJson.addProperty("description", recipe.getDescription());
 				 rJson.addProperty("ingredients", recipe.getIngredients());
+				 rJson.addProperty("nutritionfacts", recipe.getNutritionFacts());
 			 }
 			 recipesJson.add(rJson);
 		}

@@ -22,6 +22,7 @@ public class DatabaseResponse {
 	private List<String> password;
 	private List<Integer> sQuestion;
 	private List<String> sAnswer;
+	private List<String> cookie;
 	
 	// category == 3
 	private List<String> categoryName;
@@ -40,6 +41,7 @@ public class DatabaseResponse {
 		this.password = new ArrayList<String>();
 		this.sQuestion = new ArrayList<Integer>();
 		this.sAnswer = new ArrayList<String>();
+		this.cookie = new ArrayList<String>();
 		
 		this.categoryName = new ArrayList<String>();
 	}
@@ -53,6 +55,7 @@ public class DatabaseResponse {
 			p.setSQuestion(this.sQuestion.get(i));
 			p.setSAnwser(this.sAnswer.get(i));
 			p.setPassword(this.password.get(i));
+			p.setCookie(this.cookie.get(i));
 			list.add(p);
 		}
 		return list;
@@ -84,8 +87,18 @@ public class DatabaseResponse {
 		return list;
 	}
 	
+	public void addCookie(String cookie) {
+		this.cookie.add(cookie);
+	}
 	
-	
+	public List<String> getCookie() {
+		return cookie;
+	}
+
+	public void setCookie(List<String> cookie) {
+		this.cookie = cookie;
+	}
+
 	public List<Integer> getCategoryId() {
 		return categoryId;
 	}

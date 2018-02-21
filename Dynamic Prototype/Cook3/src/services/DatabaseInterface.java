@@ -60,6 +60,11 @@ public class DatabaseInterface {
 						response.addSAnswer("");
 						response.addSQuestion(0);
 					}
+					if (select.contains("cookie")) {
+						response.addCookie(rs.getString("cookie"));
+					}else {
+						response.addCookie("");
+					}
 					response.addUserName(rs.getString("username"));
 					response.addPassword(rs.getString("password"));
 				} else if (type == TYPE_CATEGORY) { //categories
@@ -104,7 +109,49 @@ public class DatabaseInterface {
 	public boolean update(int type, String database, String update, String where) {
 		/// TODO add
 
-		return false;
+		Statement stmt = null;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// Open a connection
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			// Execute SQL query
+			stmt = conn.createStatement();
+			String sql;
+			sql = "UPDATE "+ database + " SET "+ update + " WHERE " +where+ " ;";
+			//String s = "Test2";
+			//sql = "INSERT INTO `recipe` (`title`,`description`,`ingredients`,`category`) VALUES ( '"+ s +"','Beschreibungstext','Zutaten',2);";
+			System.out.println(sql);
+			int rs = stmt.executeUpdate(sql);
+			System.out.println("result: " +rs);
+			// Clean-up environment
+			stmt.close();
+			conn.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		System.out.println("return!");		
+		return true;
 	}
 
 	public boolean delete(int type, String username, String password) {

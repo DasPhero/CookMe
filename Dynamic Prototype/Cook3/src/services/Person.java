@@ -7,6 +7,7 @@ public class Person {
 	private int sQuestion;
 	private String sAnswer;
 	private int id;
+	private String cookie;
 
 	public Person() {
 		super();
@@ -41,6 +42,16 @@ public class Person {
 		this.password = password;
 		this.sQuestion = sQuestion;
 		this.sAnswer = sAnswer;
+	}
+
+	
+	
+	public String getCookie() {
+		return cookie;
+	}
+
+	public void setCookie(String cookie) {
+		this.cookie = cookie;
 	}
 
 	public String getPassowrd() {

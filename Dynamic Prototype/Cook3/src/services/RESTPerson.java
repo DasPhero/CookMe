@@ -14,29 +14,46 @@ import javax.ws.rs.core.MediaType;
 import services.Person;
 import static services.Constant.TYPE_PERSON_LOGIN;
 
+import java.util.List;
+
 @Path("/login")
 @Produces(MediaType.APPLICATION_JSON)
 public class RESTPerson extends DatabaseInterface {
 
 	@GET
 	@Path("/{id}")
-	// @Produces(MediaType.TEXT_PLAIN)
-	public Person getPerson(@PathParam("id") int id) {
-		// String where = "id = " + id;
-		// DatabaseInterface dbi = new DatabaseInterface();
-		// Person t = dbi.select(1,"cookme.person", "id,username",
-		// where).toPersonList().get(0);
-		System.out.println("Sicherheitsrisiko!!!");
-		return null;
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getCookie(@PathParam("id") int id) {
+		 String where = "id = " + id;
+		 String select = "`id`,`username`,`squestion`,`sanswer`,`password`,  LEFT(\r\n" + 
+		 		"                                   REPLACE(\r\n" + 
+		 		"                                       REPLACE(\r\n" + 
+		 		"                                           REPLACE(\r\n" + 
+		 		"                                               TO_BASE64(\r\n" + 
+		 		"                                                   UNHEX(\r\n" + 
+		 		"                                                       MD5(\r\n" + 
+		 		"                                                           RAND()\r\n" + 
+		 		"                                                       )\r\n" + 
+		 		"                                                   )\r\n" + 
+		 		"                                               ), \"/\", \"\"\r\n" + 
+		 		"                                           ), \"+\", \"\"\r\n" + 
+		 		"                                       ), \"=\", \"\"\r\n" + 
+		 		"                                   ), 20\r\n" + 
+		 		"                               )as `cookie`";
+		 Person t = select(TYPE_PERSON_LOGIN,"cookme.person", select, where).toPersonList().get(0);
+		 String cookie = t.getCookie();
+		 System.out.println(cookie);
+		return cookie;
 	}
 
 	@PUT
 	// @Path("/{customerMail}/{customerPassword}")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updatePerson(@FormParam("id") int id, @FormParam("username") String userName) {
-		System.out.println(id);
-		if (!update(TYPE_PERSON_LOGIN, "cookme.person", "username", "username = 'patrick'")) {
+	public String updateCookie(@FormParam("id") int id, @FormParam("cookie") String cookie) {
+		System.out.println("id: "+ id);
+		System.out.println( " cookie: " + cookie);
+		if (!update(TYPE_PERSON_LOGIN, " `person`", "`cookie` = '"+ cookie + "' ", "`id` = "+ id +"")) {
 			System.out.println("Error!!!!!");
 			return "Das Objekt ist nicht Vorhanden in der DB.";
 		} else
@@ -45,13 +62,20 @@ public class RESTPerson extends DatabaseInterface {
 
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
+	//@Produces(MediaType.TEXT_PLAIN)
+	public Person loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		String where = "username = '" + userName + "' && password = '" + password + "'";
-		if (select(TYPE_PERSON_LOGIN, "cookme.person", "id,password,username", where) == null) {
-			return "Error";
-		} else
-			return "Success";
+		DatabaseResponse response1 = select(TYPE_PERSON_LOGIN, "cookme.person", "id,password,username", where);
+		Person t;
+		if ( response1 == null) {
+			t = new Person();
+			t.setId(-1);
+			return t;
+		} else {
+			List<Person> list1 = response1.toPersonList();
+			t= list1.get(0);
+			return t;
+		}
 	}
 
 	@DELETE

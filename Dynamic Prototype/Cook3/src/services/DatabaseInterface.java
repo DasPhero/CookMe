@@ -1,14 +1,14 @@
 package services;
 
+import static services.Constant.TYPE_CATEGORY;
+import static services.Constant.TYPE_PERSON_LOGIN;
+import static services.Constant.TYPE_RECIPE;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import static services.Constant.TYPE_PERSON_LOGIN;
-import static services.Constant.TYPE_CATEGORY;
-import static services.Constant.TYPE_RECIPE;
 
 public class DatabaseInterface {
 

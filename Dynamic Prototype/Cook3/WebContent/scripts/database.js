@@ -44,6 +44,7 @@ function getTitles() {
 					if (cookie != "" && cookie != '0' && cookie != 0 && cookie != null && cookie != "invalid"){
 						
 						$.get("rest/login/"+RESOLVE_USERNAME+"/"+cookie, function(userName, status) {
+							userName = userName.replace(/\b\w/g, l => l.toUpperCase());
 							$(".userNameHeader").html(userName);
 							$.holdReady(false); //set document ready
 						});

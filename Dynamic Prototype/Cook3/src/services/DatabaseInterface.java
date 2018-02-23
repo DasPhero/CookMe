@@ -3,6 +3,7 @@ package services;
 import static services.Constant.TYPE_CATEGORY;
 import static services.Constant.TYPE_PERSON_LOGIN;
 import static services.Constant.TYPE_RECIPE;
+import static services.Constant.TYPE_FAVOURITES;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -75,6 +76,8 @@ public class DatabaseInterface {
 					response.addUserName(rs.getString("username"));
 				} else if (type == TYPE_CATEGORY) { //categories
 					response.addCategoryName(rs.getString("categoryname"));
+				} else if (type == TYPE_FAVOURITES) {
+					response.setFavourites(rs.getString("favourites"));
 				}
 				response.addId(rs.getInt("id"));
 				result = true;

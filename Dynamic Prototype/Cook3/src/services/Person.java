@@ -8,6 +8,7 @@ public class Person {
 	private String sAnswer;
 	private int id;
 	private String cookie;
+	private String favourites;
 
 	public Person() {
 		super();
@@ -92,5 +93,13 @@ public class Person {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getFavourites() {
+		return favourites;
+	}
+
+	public void setFavourites(String favourites) {
+		this.favourites = favourites;
 	}
 }

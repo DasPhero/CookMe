@@ -14,7 +14,8 @@ public class DatabaseResponse {
 	private List<String> nutritionFacts;
 	private List<String> ingredients;
 	private List<Integer> categoryId;
-
+	private Integer recipeId;
+	
 	// all
 	private List<Integer> id;
 
@@ -24,6 +25,8 @@ public class DatabaseResponse {
 	private List<Integer> sQuestion;
 	private List<String> sAnswer;
 	private List<String> cookie;
+	private String favourites;
+	
 	
 	// category == 3
 	private List<String> categoryName;
@@ -44,6 +47,7 @@ public class DatabaseResponse {
 		this.sQuestion = new ArrayList<Integer>();
 		this.sAnswer = new ArrayList<String>();
 		this.cookie = new ArrayList<String>();
+		this.favourites = "";
 		
 		this.categoryName = new ArrayList<String>();
 	}
@@ -90,6 +94,13 @@ public class DatabaseResponse {
 		return list;
 	}
 	
+	public String toFavouritesString() {
+		return this.favourites;
+	}
+
+	public Integer toRecipeId() {
+		return this.id.get(0);
+	}
 	
 	public void addNutritionFacts(String nutritionFacts) {
 		this.nutritionFacts.add(nutritionFacts);
@@ -263,4 +274,22 @@ public class DatabaseResponse {
 	public void addId(int id) {
 		this.id.add(id);
 	}
+
+	public String getFavourites() {
+		return favourites;
+	}
+
+	public void setFavourites(String favourites) {
+		this.favourites = favourites;
+	}
+
+	public Integer getRecipeId() {
+		return recipeId;
+	}
+
+	public void setRecipeId(Integer recipeId) {
+		this.recipeId = recipeId;
+	}
+
+
 }

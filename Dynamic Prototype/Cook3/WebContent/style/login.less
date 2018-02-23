@@ -1,6 +1,8 @@
-//body{
- //   background-color: @mainDark;
-//}
+@import "./colors.less";
+@import "./elevations.less";
+@import "./buttons.less";
+@import "./textInput.less";
+
 .loginMain{
     width: 100vw;
     height: 100vh;
@@ -9,7 +11,16 @@
     flex-direction: column;
     & .upDiv, & .downDiv{
         flex-basis: 20%;
-        width: 100%;
+        width: 100vw;
+
+        & h1{
+            font-family: 'Playball';
+            font-size: 12vh;
+            letter-spacing: 2px;
+            color: @fontColorDark;
+            padding-top: 20px;
+            text-align: center;
+        }
     }
  & .loginWindow{
         flex-basis: 60%;
@@ -23,16 +34,21 @@
             background-color: @mainNormal;
             padding: 3% 2%;
             & input{   
-                font-size: 6vmin;             
+                font-size: 6vh;             
                 flex-basis: 40%;
                 padding:  2% 2%;
                 margin: 2% 5%;
             }
             & button {
-                font-size: 6vmin;
+                font-size: 4vh;
+                padding: 5px;
+                margin: 0 auto;
+                display: block;
+                width: 200px;
+                min-width: 60px;
+                max-width: 300px;
                 flex-basis: 20%;
                 background-color: darkcyan;
-                margin: 2% 3%;
             }
         }
         & .leftDiv, &.rightDiv{

@@ -136,6 +136,10 @@
   height: 100%;
   width: 100%;
 }
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover {
+  background-color: #008f00;
+}
 .mainWindow .recipeView .accountBar .goToStartButton,
 .mainWindow .profilePage .accountBar .goToStartButton {
   flex-basis: 10%;
@@ -272,6 +276,7 @@
 .mainWindow .recipeView .recipeExplanation .commentSection .commentCreator button[name="sendCommentButton"],
 .mainWindow .profilePage .recipeExplanation .commentSection .commentCreator button[name="sendCommentButton"] {
   flex-basis: 15%;
+  margin: 10px 0;
 }
 .mainWindow .recipeView .recipeExplanation .commentSection .comments,
 .mainWindow .profilePage .recipeExplanation .commentSection .comments {
@@ -448,7 +453,16 @@ input[type="text"]:focus {
 .loginMain .upDiv,
 .loginMain .downDiv {
   flex-basis: 20%;
-  width: 100%;
+  width: 100vw;
+}
+.loginMain .upDiv h1,
+.loginMain .downDiv h1 {
+  font-family: 'Playball';
+  font-size: 12vh;
+  letter-spacing: 2px;
+  color: black;
+  padding-top: 20px;
+  text-align: center;
 }
 .loginMain .loginWindow {
   flex-basis: 60%;
@@ -463,16 +477,21 @@ input[type="text"]:focus {
   padding: 3% 2%;
 }
 .loginMain .loginWindow .login input {
-  font-size: 6vmin;
+  font-size: 6vh;
   flex-basis: 40%;
   padding: 2% 2%;
   margin: 2% 5%;
 }
 .loginMain .loginWindow .login button {
-  font-size: 6vmin;
+  font-size: 4vh;
+  padding: 5px;
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+  min-width: 60px;
+  max-width: 300px;
   flex-basis: 20%;
   background-color: darkcyan;
-  margin: 2% 3%;
 }
 .loginMain .loginWindow .leftDiv,
 .loginMain .loginWindow.rightDiv {
@@ -757,6 +776,10 @@ input[type="text"]:focus {
   height: 100%;
   width: 100%;
 }
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover {
+  background-color: #008f00;
+}
 .mainWindow .recipeView .accountBar .goToStartButton,
 .mainWindow .profilePage .accountBar .goToStartButton {
   flex-basis: 10%;
@@ -893,6 +916,7 @@ input[type="text"]:focus {
 .mainWindow .recipeView .recipeExplanation .commentSection .commentCreator button[name="sendCommentButton"],
 .mainWindow .profilePage .recipeExplanation .commentSection .commentCreator button[name="sendCommentButton"] {
   flex-basis: 15%;
+  margin: 10px 0;
 }
 .mainWindow .recipeView .recipeExplanation .commentSection .comments,
 .mainWindow .profilePage .recipeExplanation .commentSection .comments {

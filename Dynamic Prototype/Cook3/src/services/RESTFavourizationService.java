@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/favourization")
 @Produces(MediaType.APPLICATION_JSON)
-public class FavourizationService extends DatabaseInterface {
+public class RESTFavourizationService extends DatabaseAdapter {
 
 	@GET
 	@Path("/favourizedItems/{cookie}")

@@ -9,7 +9,4 @@ public class Constant {
 	public static int TYPE_CATEGORY = 2;
 	public static int TYPE_FAVOURITES = 4;
 	public static int TYPE_RECIPE_ID = 5;
-
-	public static int RESOLVE_USERNAME = -3;
-
 }

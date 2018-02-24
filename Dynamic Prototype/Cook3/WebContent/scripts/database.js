@@ -2,7 +2,6 @@ $.holdReady(true); //disable document == ready
 
 const GET_NAV_TITLES = "-1";
 const GET_CATEGORIES = "-2";
-const RESOLVE_USERNAME = "-3";
 
 $.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 	obj = JSON.parse(data);
@@ -44,7 +43,7 @@ function getTitles() {
 					var cookie = cookies.split("=")[1];
 					if (cookie != "" && cookie != '0' && cookie != 0 && cookie != null && cookie != "invalid"){
 						
-						$.get("rest/login/"+RESOLVE_USERNAME+"/"+cookie, function(userName, status) {
+						$.get("rest/login/username/"+cookie, function(userName, status) {
 							userName = userName.replace(/\b\w/g, l => l.toUpperCase());
 							$(".userNameHeader").html(userName);
 							$.holdReady(false); //set document ready

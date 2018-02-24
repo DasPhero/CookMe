@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DatabaseInterface {
+public class DatabaseAdapter {
 
 	private final String USER = "cookme";
 	private final String PASS = "12345";

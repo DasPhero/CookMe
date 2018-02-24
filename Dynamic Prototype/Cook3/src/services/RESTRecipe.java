@@ -23,20 +23,19 @@ import static services.Constant.GET_CATEGORIES;
 import static services.Constant.TYPE_CATEGORY;
 import static services.Constant.TYPE_RECIPE;
 
-
 @Path("/recipe")
 @Produces(MediaType.APPLICATION_JSON)
-public class RESTRecipe extends DatabaseInterface {
+public class RESTRecipe extends DatabaseAdapter {
 
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getRecipe(@PathParam("id") int id) {
-		
-		System.out.println("id: "+ id);
+
+		System.out.println("id: " + id);
 		String where = "id = " + id;
 		String select = "id,title,ingredients,rauthor,description,category,nutritionfacts";
-		String database="cookme.recipe";
+		String database = "cookme.recipe";
 		int type = TYPE_RECIPE;
 		if (id == GET_NAV_TITLES) {
 			where = "id = id";
@@ -45,55 +44,54 @@ public class RESTRecipe extends DatabaseInterface {
 		if (id == GET_CATEGORIES) {
 			where = "id = id";
 			select = "id,categoryname";
-			database= "cookme.categories";
+			database = "cookme.categories";
 			type = TYPE_CATEGORY;
 		}
-		 DatabaseResponse responce =select(type,database, select, where);
-		 if (responce == null) {
-			 return "empty";
-		 }
-		 //for (String title : responce.getTitle()) {
-		//	System.out.println("----------"+ title);
-		//}
-		 JsonArray recipesJson = new JsonArray();
-		 if (id == GET_CATEGORIES) {
-			 List<RecipeCategory> list= responce.toRecipeCategoryList();
-			 if (list.isEmpty()) {
-				 System.out.println("Kategorie nicht vorhanden:");
-				 return "empty";
-			 }
-			 			
-			 for (RecipeCategory recipeCategory : list) {
-				 System.out.println("name:" + recipeCategory.getCategoryName() + "+++++++++++++2");
-				 JsonObject rJson = new JsonObject();
-				 rJson.addProperty("name", recipeCategory.getCategoryName());
-				 rJson.addProperty("id", recipeCategory.getId());
-				 recipesJson.add(rJson);
-			}
-		 }else {
-		 
-		 List<Recipe> list= responce.toRecipeList();
-		 if (list.isEmpty()) {
-			 System.out.println("Rezept nicht vorhanden:");
-			 return "empty";
-		 }
-		 
-		
-		 for (Recipe recipe : list) {
-			 System.out.println("title:" + recipe.getTitle() + "+++++++++++++2");
-			 JsonObject rJson = new JsonObject();
-			 rJson.addProperty("title", recipe.getTitle());
-			 rJson.addProperty("id", recipe.getId());
-			 rJson.addProperty("category", recipe.getCategoryId());
-			 if(id != GET_NAV_TITLES) {
-				 rJson.addProperty("description", recipe.getDescription());
-				 rJson.addProperty("ingredients", recipe.getIngredients());
-				 rJson.addProperty("nutritionfacts", recipe.getNutritionFacts());
-			 }
-			 recipesJson.add(rJson);
+		DatabaseResponse responce = select(type, database, select, where);
+		if (responce == null) {
+			return "empty";
 		}
-		 }
-		 System.out.println(recipesJson.toString());
+		// for (String title : responce.getTitle()) {
+		// System.out.println("----------"+ title);
+		// }
+		JsonArray recipesJson = new JsonArray();
+		if (id == GET_CATEGORIES) {
+			List<RecipeCategory> list = responce.toRecipeCategoryList();
+			if (list.isEmpty()) {
+				System.out.println("Kategorie nicht vorhanden:");
+				return "empty";
+			}
+
+			for (RecipeCategory recipeCategory : list) {
+				System.out.println("name:" + recipeCategory.getCategoryName() + "+++++++++++++2");
+				JsonObject rJson = new JsonObject();
+				rJson.addProperty("name", recipeCategory.getCategoryName());
+				rJson.addProperty("id", recipeCategory.getId());
+				recipesJson.add(rJson);
+			}
+		} else {
+
+			List<Recipe> list = responce.toRecipeList();
+			if (list.isEmpty()) {
+				System.out.println("Rezept nicht vorhanden:");
+				return "empty";
+			}
+
+			for (Recipe recipe : list) {
+				System.out.println("title:" + recipe.getTitle() + "+++++++++++++2");
+				JsonObject rJson = new JsonObject();
+				rJson.addProperty("title", recipe.getTitle());
+				rJson.addProperty("id", recipe.getId());
+				rJson.addProperty("category", recipe.getCategoryId());
+				if (id != GET_NAV_TITLES) {
+					rJson.addProperty("description", recipe.getDescription());
+					rJson.addProperty("ingredients", recipe.getIngredients());
+					rJson.addProperty("nutritionfacts", recipe.getNutritionFacts());
+				}
+				recipesJson.add(rJson);
+			}
+		}
+		System.out.println(recipesJson.toString());
 
 		return recipesJson.toString();
 	}
@@ -114,10 +112,11 @@ public class RESTRecipe extends DatabaseInterface {
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertRecipe(@FormParam("title") String title, @FormParam("ingredients") String ingredients, @FormParam("description") String description, @FormParam("category") String category) {
+	public String insertRecipe(@FormParam("title") String title, @FormParam("ingredients") String ingredients,
+			@FormParam("description") String description, @FormParam("category") String category) {
 		System.out.println("POST----------");
 		String insert = " `recipe` ( `title`,`description`,`ingredients`,`category`) ";
-		String values = "'"+ title +"', '"+ description +"','"+ ingredients + "',"+ category + "";
+		String values = "'" + title + "', '" + description + "','" + ingredients + "'," + category + "";
 		if (!insert(TYPE_RECIPE, insert, values)) {
 			// dbs.insert(t);
 			return "Error wrong username or password";

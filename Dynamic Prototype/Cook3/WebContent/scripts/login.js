@@ -5,8 +5,7 @@ $(document).ready(function() {
 			password : $("#password").val()
 		}, function(data, status) {
 			if(data.id != -1){
-				$.get("rest/login/"+data.id+"/0", function(data2, status) {
-
+				$.get("rest/login/cookie/"+data.id, function(data2, status) {
 					$.ajax({ 
 						type: "PUT",
 					    contentType: "application/x-www-form-urlencoded",
@@ -36,7 +35,7 @@ function ckeckLogIn() {
 		var cookie = cookies.split("=")[1];
 		if (cookie != "" && cookie != '0' && cookie != 0 && cookie != null && cookie != "invalid"){
 			
-			$.get("rest/login/"+RESOLVE_USERNAME+"/"+cookie, function(userName, status) {
+			$.get("rest/login/username/"+cookie, function(userName, status) {
 				if (userName != ""){
 					window.location.assign('profile.html');
 				}else{

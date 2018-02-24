@@ -26,20 +26,31 @@ updateFavourites = (cookieValue) => {
 	);
 }
 
-modifiyFavourites = (favouritesData, cookieValue) => {
+modifiyFavourites = (favouritesData, cookieValue, itemIsExistant) => {
 	let selectedRecipe = $(".h1Wrapper h1").text();
 	if(!selectedRecipe){ return; }
 	$.get("rest/favourization/recipeId/" + selectedRecipe,
-		  function(recipeId){ addRecipeIdToFavouritesArray(recipeId, favouritesData, cookieValue) } 
+		  function(recipeId){ 
+			let recipeIdInt = parseInt(recipeId);
+			let itemIsExistant = favouritesData.indexOf(recipeIdInt) !== -1;
+			if(itemIsExistant){
+				removeRecipeFromFavouritesArray(recipeIdInt, favouritesData, cookieValue);
+			}
+			else {
+				addRecipeIdToFavouritesArray(recipeIdInt, favouritesData, cookieValue) } 
+			}
 		)
 }
 
 addRecipeIdToFavouritesArray = (recipeId, favouritesData, cookieValue) => {
-	let recipeIdInt = parseInt(recipeId);
-	if(favouritesData.indexOf(recipeIdInt) == -1){
-		favouritesData.push(recipeIdInt);
-		commitFavourites(favouritesData, cookieValue);
-	}
+	favouritesData.push(recipeId);
+	commitFavourites(favouritesData, cookieValue);
+}
+
+removeRecipeFromFavouritesArray = (recipeId, favouritesData, cookieValue) => {
+	let recipePosition = favouritesData.indexOf(recipeId);
+	favouritesData.splice(recipePosition, 1);
+	commitFavourites(favouritesData, cookieValue);
 }
 
 commitFavourites = (favouritesData, cookieValue) => {

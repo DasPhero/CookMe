@@ -44,6 +44,17 @@ button:active{
     }
 }
 
+[name="removeFromFavourites"]{
+    background-color: @buttonRemoveFromFavourites;
+
+    &:hover{
+        background-color: @buttonRemoveFromFavourites + 20%;
+    }
+    &:active{
+        background-color: @buttonRemoveFromFavourites + 10%;
+    }
+}
+
 [name="exportButton"]{
     background-color: @buttonExport;
 

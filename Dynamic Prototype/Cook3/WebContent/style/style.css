@@ -182,8 +182,8 @@
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
   font-family: 'Playball';
 }
-.mainWindow .recipeView .recipeExplanation .recipeNameHeader button[name="addToFavourites"],
-.mainWindow .profilePage .recipeExplanation .recipeNameHeader button[name="addToFavourites"] {
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
+.mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
   flex-basis: 20%;
   height: 50px;
 }
@@ -384,6 +384,15 @@ button:active {
 }
 [name="addToFavourites"]:active {
   background-color: #ff960a;
+}
+[name="removeFromFavourites"] {
+  background-color: #B71C1C;
+}
+[name="removeFromFavourites"]:hover {
+  background-color: #cb3030;
+}
+[name="removeFromFavourites"]:active {
+  background-color: #c12626;
 }
 [name="exportButton"] {
   background-color: rebeccapurple;
@@ -822,8 +831,8 @@ input[type="text"]:focus {
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
   font-family: 'Playball';
 }
-.mainWindow .recipeView .recipeExplanation .recipeNameHeader button[name="addToFavourites"],
-.mainWindow .profilePage .recipeExplanation .recipeNameHeader button[name="addToFavourites"] {
+.mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
+.mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
   flex-basis: 20%;
   height: 50px;
 }

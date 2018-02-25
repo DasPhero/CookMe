@@ -97,6 +97,8 @@ function getRecipe(titleM2,object){
 			$(".ingredientList").html(ingredientsSource);
 			$(".nutritionalFacts").html(foodFactSource);
 
+			$(".recipeImage").attr("src","http://192.168.3.3/pictures/"+id+".jpg");
+			
 			let recipeId = JSON.parse(recipe[0].id);
 			checkIfItemAlreadyIsFavourized(recipeId);
 		}

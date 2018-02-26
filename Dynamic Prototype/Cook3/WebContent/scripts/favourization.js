@@ -4,7 +4,7 @@ addToFavourites = () => {
 	if(!cookie){
 		goToLoginPage();
 	}
-	updateFavourites(cookieValue);
+	updateFavourites(cookie);
 }
 
 getAndValidateCookie = () => {
@@ -70,6 +70,7 @@ commitFavourites = (favouritesData, cookieValue) => {
 	let data = { "cookie": cookieValue, "favourites": newString };
 
 	$.post("rest/favourization", data)
+	toggleFavourizationButtonState();
 }
 
 checkIfItemAlreadyIsFavourized = (recipeId) => {
@@ -90,7 +91,7 @@ checkIfItemAlreadyIsFavourized = (recipeId) => {
 			changeButtonToAddButton();
 		}
 	 }
-	)
+	);
 }
 
 changeButtonToRemoveButton = () => {

@@ -31,8 +31,6 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Path("/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getRecipe(@PathParam("id") int id) {
-
-		System.out.println("id: " + id);
 		String where = "id = " + id;
 		String select = "id,title,ingredients,rauthor,description,category,nutritionfacts";
 		String database = "cookme.recipe";
@@ -63,7 +61,6 @@ public class RESTRecipe extends DatabaseAdapter {
 			}
 
 			for (RecipeCategory recipeCategory : list) {
-				System.out.println("name:" + recipeCategory.getCategoryName() + "+++++++++++++2");
 				JsonObject rJson = new JsonObject();
 				rJson.addProperty("name", recipeCategory.getCategoryName());
 				rJson.addProperty("id", recipeCategory.getId());
@@ -78,7 +75,6 @@ public class RESTRecipe extends DatabaseAdapter {
 			}
 
 			for (Recipe recipe : list) {
-				System.out.println("title:" + recipe.getTitle() + "+++++++++++++2");
 				JsonObject rJson = new JsonObject();
 				rJson.addProperty("title", recipe.getTitle());
 				rJson.addProperty("id", recipe.getId());
@@ -91,8 +87,6 @@ public class RESTRecipe extends DatabaseAdapter {
 				recipesJson.add(rJson);
 			}
 		}
-		System.out.println(recipesJson.toString());
-
 		return recipesJson.toString();
 	}
 
@@ -101,9 +95,7 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updatePerson(@FormParam("id") int id, @FormParam("username") String userName) {
-		System.out.println(id);
 		if (!update(1, "cookme.person", "username", "username = 'patrick'")) {
-			System.out.println("Error!!!!!");
 			return "Das Objekt ist nicht Vorhanden in der DB.";
 		} else
 			return "Success";
@@ -114,7 +106,6 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertRecipe(@FormParam("title") String title, @FormParam("ingredients") String ingredients,
 			@FormParam("description") String description, @FormParam("category") String category) {
-		System.out.println("POST----------");
 		String insert = " `recipe` ( `title`,`description`,`ingredients`,`category`) ";
 		String values = "'" + title + "', '" + description + "','" + ingredients + "'," + category + "";
 		if (!insert(TYPE_RECIPE, insert, values)) {

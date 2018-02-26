@@ -88,10 +88,18 @@ function getRecipe(titleM2,object){
 				+ "</span class=\"recipeItem\">" +item[1] + "</span>"
 				+ "</div>";
 			});
+
 			
-			nutritionFacts.forEach(function(fact) {
-				foodFactSource += "<div>" + fact + "</div>";
-			});
+			foodFactSource = " <div class=\"nutrionInformation\">Kalorien: </div> \
+             <div class=\"calInformation nutrionInformation\">"+ nutritionFacts.cal +"</div>  \
+             <div class=\"nutrionInformation\">Fett: </div>  \
+             <div class=\"fatInformation nutrionInformation\">"+ nutritionFacts.fat +" </div> \
+             <div class=\"nutrionInformation\">Kohlenhydrate: </div> \
+             <div class=\"carbInformation nutrionInformation\">"+ nutritionFacts.carbs +"</div> \
+             <div class=\"nutrionInformation\">Eiweiß: </div> \
+             <div class=\"proteinInformation nutrionInformation\">"+ nutritionFacts.protein +"</div> \
+             <div class=\"nutrionInformation\">Salz: </div> \
+             <div class=\"saltInformation nutrionInformation\">"+ nutritionFacts.salt +"</div> ";
 			
 			$(".recipeSteps h2").next("ul").html(stepSource);
 			$(".ingredientList").html(ingredientsSource);

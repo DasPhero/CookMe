@@ -45,7 +45,6 @@ public class RESTPerson extends DatabaseAdapter {
 		}
 		Person t = list.get(0);
 		String cookie = t.getCookie();
-		System.out.println(cookie);
 		return cookie;
 	}
 
@@ -61,7 +60,6 @@ public class RESTPerson extends DatabaseAdapter {
 		}
 		Person t = response.toPersonList().get(0);
 		String userName = t.getUserName();
-		System.out.println(userName);
 		return userName;
 	}
 
@@ -70,8 +68,6 @@ public class RESTPerson extends DatabaseAdapter {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateCookie(@FormParam("id") int id, @FormParam("cookie") String cookie) {
-		System.out.println("id: " + id);
-		System.out.println(" cookie: " + cookie);
 		if (!update(TYPE_PERSON_LOGIN, " `person`", "`cookie` = '" + cookie + "' ", "`id` = " + id + "")) {
 			System.out.println("Error!!!!!");
 			return "Das Objekt ist nicht Vorhanden in der DB.";

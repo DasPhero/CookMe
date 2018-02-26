@@ -31,14 +31,11 @@ public class DatabaseAdapter {
 
 			// Execute SQL query
 			stmt = conn.createStatement();
-			String sql;
-			sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
-			System.out.println(sql);
+			String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
+			//System.out.println(sql);
 			ResultSet rs = stmt.executeQuery(sql);
 
-			System.out.println("+++++++++++++++++++");
 			// Extract data from result set
-
 			while (rs.next()) {
 				if (type == TYPE_RECIPE) {// recipe
 					response.addTitle(rs.getString("title"));
@@ -54,7 +51,6 @@ public class DatabaseAdapter {
 						response.addAuthor(0);
 						response.addNutritionFacts("");
 					}
-					
 				} else if (type == TYPE_PERSON_LOGIN){ // person login
 					if (select == "id,password,username,squestion,sanswer") {
 						response.addSAnswer(rs.getString("sanswer"));
@@ -81,7 +77,6 @@ public class DatabaseAdapter {
 				}
 				response.addId(rs.getInt("id"));
 				result = true;
-				System.out.println("test!");
 			}
 			// Clean-up environment
 			rs.close();
@@ -111,7 +106,6 @@ public class DatabaseAdapter {
 		if (!result) {
 			return null;
 		}
-		System.out.println("return!");
 		return response;
 	}
 
@@ -129,13 +123,10 @@ public class DatabaseAdapter {
 
 			// Execute SQL query
 			stmt = conn.createStatement();
-			String sql;
-			sql = "UPDATE "+ database + " SET "+ update + " WHERE " +where+ " ;";
-			//String s = "Test2";
+			String sql = "UPDATE "+ database + " SET "+ update + " WHERE " +where+ " ;";
 			//sql = "INSERT INTO `recipe` (`title`,`description`,`ingredients`,`category`) VALUES ( '"+ s +"','Beschreibungstext','Zutaten',2);";
-			System.out.println(sql);
-			int rs = stmt.executeUpdate(sql);
-			System.out.println("result: " +rs);
+			//System.out.println(sql);
+			stmt.executeUpdate(sql);
 			// Clean-up environment
 			stmt.close();
 			conn.close();
@@ -158,8 +149,7 @@ public class DatabaseAdapter {
 			} catch (SQLException se) {
 				se.printStackTrace();
 			} // end finally try
-		} // end try
-		System.out.println("return!");		
+		} // end try	
 		return true;
 	}
 
@@ -185,49 +175,11 @@ public class DatabaseAdapter {
 
 			// Execute SQL query
 			stmt = conn.createStatement();
-			String sql;
-			sql = "INSERT INTO  " + insert + " VALUES( " + values + " );";
+			String sql = "INSERT INTO  " + insert + " VALUES( " + values + " );";
 			//String s = "Test2";
 			//sql = "INSERT INTO `recipe` (`title`,`description`,`ingredients`,`category`) VALUES ( '"+ s +"','Beschreibungstext','Zutaten',2);";
-			System.out.println(sql);
-			int rs = stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql);
 
-			System.out.println("++++++++++++++++++" + rs);
-			// Extract data from result set
-
-			//while (rs.next()) {
-				/*if (type == TYPE_RECIPE) {// recipe
-					response.addTitle(rs.getString("title"));
-					response.addCategoryId(rs.getInt("category"));
-					if (select == "id,title,ingrements,rauthor,description,category") {
-						response.addDescription(rs.getString("description"));
-						response.addIngrements(rs.getString("ingrements"));
-						response.addAuthor(rs.getInt("rauthor"));
-					}else {
-						response.addDescription("");
-						response.addIngrements("");
-						response.addAuthor(0);
-					}
-					
-				} else if (type == TYPE_PERSON_LOGIN){ // person login
-					if (select == "id,password,username,squestion,sanswer") {
-						response.addSAnswer(rs.getString("sanswer"));
-						response.addSQuestion(rs.getInt("squestion"));
-					}else {
-						response.addSAnswer("");
-						response.addSQuestion(0);
-					}
-					response.addUserName(rs.getString("username"));
-					response.addPassword(rs.getString("password"));
-				} else if (type == TYPE_CATEGORY) { //categories
-					response.addCategoryName(rs.getString("categoryname"));
-				}
-				response.addId(rs.getInt("id"));
-				result = true;
-				System.out.println("test!");*/
-			//}
-			// Clean-up environment
-			//rs.close();
 			stmt.close();
 			conn.close();
 		} catch (SQLException se) {
@@ -253,9 +205,7 @@ public class DatabaseAdapter {
 
 		if (!result) {
 			return false;
-		}
-		System.out.println("return!");
-		
+		}		
 		return true;
 	}
 	

@@ -13,7 +13,7 @@ $(document).ready(function() {
 					    data: {id: data.id, cookie:data2},
 					    success:function(response){
 					        document.cookie = "uuid="+ data2;
-					        window.location.href = "http://localhost:8080/Cook2/profile.html";            
+					        window.location.assign('profile.html');            
 					    },
 					    error: function(){
 					    	alert("Cookie konnte nicht in der Datenbank gespeichert werden");

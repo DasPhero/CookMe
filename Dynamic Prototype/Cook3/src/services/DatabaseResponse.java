@@ -7,12 +7,32 @@ public class DatabaseResponse {
 
 	private int type;
 
+	/*
+	 * SELECT recipeitems.id,fk_recipe,recipeitems.value,u.name,i.name FROM `recipeitems`  
+join unit u on u.id = fk_unit
+join item i on i.id = fk_item
+WHERE `fk_recipe` = 1
+	 */
+	
+	/*
+	 * recipeitems.id,fk_recipe,recipeitems.value,u.name as unit,i.name as item FROM `recipeitems`  
+join unit u on u.id = fk_unit
+join item i on i.id = fk_item
+	 */
+	
 	// recipe == 0
 	private List<String> title;
 	private List<Integer> author;
 	private List<String> description;
 	private List<String> nutritionFacts;
-	private List<String> ingredients;
+	private List<String> ingredientsItem;
+	private List<Integer> ingredientsValue;
+	private List<String> ingredientsUnit;
+
+	private List<List<String>> ingredientsItemList;
+	private List<List<Integer>> ingredientsValueList;
+	private List<List<String>> ingredientsUnitList;
+	
 	private List<Integer> categoryId;
 	private Integer recipeId;
 	
@@ -39,7 +59,14 @@ public class DatabaseResponse {
 		this.author = new ArrayList<Integer>();
 		this.description = new ArrayList<String>();
 		this.nutritionFacts = new ArrayList<String>();
-		this.ingredients = new ArrayList<String>();
+		this.ingredientsItem = new ArrayList<String>();
+		this.ingredientsUnit = new ArrayList<String>();
+		this.ingredientsValue = new ArrayList<Integer>();
+		
+		this.ingredientsItemList = new ArrayList<List<String>>();
+		this.ingredientsUnitList = new ArrayList<List<String>>();
+		this.ingredientsValueList = new ArrayList<List<Integer>>();
+		
 		this.categoryId = new ArrayList<Integer>();
 
 		this.userName = new ArrayList<String>();
@@ -75,7 +102,11 @@ public class DatabaseResponse {
 			r.setId(this.id.get(i));
 			r.setAuthor(this.author.get(i));
 			r.setDescription(this.description.get(i));
-			r.setIngredients(this.ingredients.get(i));
+			if(0 != this.ingredientsItemList.size()) {
+				r.setIngredientsItem(this.ingredientsItemList.get(i));
+				r.setIngredientsUnit(this.ingredientsUnitList.get(i));
+				r.setIngredientsValue(this.ingredientsValueList.get(i));
+			}
 			r.setNutritionFacts(this.nutritionFacts.get(i));
 			r.setCategoryId(this.categoryId.get(i));
 			list.add(r);
@@ -101,7 +132,79 @@ public class DatabaseResponse {
 	public Integer toRecipeId() {
 		return this.id.get(0);
 	}
+
+	public void addIngredientsItemList(List<String> itemList) {
+		this.ingredientsItemList.add(itemList);
+	}
 	
+	public List<List<String>> getIngredientsItemList() {
+		return ingredientsItemList;
+	}
+
+	public void setIngredientsItemList(List<List<String>> ingredientsItemList) {
+		this.ingredientsItemList = ingredientsItemList;
+	}
+
+	public void addIngredientsValueList(List<Integer> valueList) {
+		this.ingredientsValueList.add(valueList);
+	}
+	
+	public List<List<Integer>> getIngredientsValueList() {
+		return ingredientsValueList;
+	}
+
+	public void setIngredientsValueList(List<List<Integer>> ingredientsValueList) {
+		this.ingredientsValueList = ingredientsValueList;
+	}
+
+	public void addIngredientsUnitList(List<String> unitList) {
+		this.ingredientsUnitList.add(unitList);
+	}
+	
+	public List<List<String>> getIngredientsUnitList() {
+		return ingredientsUnitList;
+	}
+
+	public void setIngredientsUnitList(List<List<String>> ingredientsUnitList) {
+		this.ingredientsUnitList = ingredientsUnitList;
+	}
+
+	public void addIngredientsItem(String item) {
+		this.ingredientsItem.add(item);
+	}
+	
+	public List<String> getIngredientsItem() {
+		return ingredientsItem;
+	}
+
+	public void setIngredientsItem(List<String> ingredientsItem) {
+		this.ingredientsItem = ingredientsItem;
+	}
+
+	public void addIngredientsValue(int value) {
+		this.ingredientsValue.add(value);
+	}
+	
+	public List<Integer> getIngredientsValue() {
+		return ingredientsValue;
+	}
+
+	public void setIngredientsValue(List<Integer> ingredientsValue) {
+		this.ingredientsValue = ingredientsValue;
+	}
+
+	public void addIngredientsUnit(String unit) {
+		this.ingredientsUnit.add(unit);
+	}
+	
+	public List<String> getIngredientsUnit() {
+		return ingredientsUnit;
+	}
+
+	public void setIngredientsUnit(List<String> ingredientsUnit) {
+		this.ingredientsUnit = ingredientsUnit;
+	}
+
 	public void addNutritionFacts(String nutritionFacts) {
 		this.nutritionFacts.add(nutritionFacts);
 	}
@@ -203,18 +306,6 @@ public class DatabaseResponse {
 		this.description.add(description);
 	}
 
-	public List<String> getIngredients() {
-		return ingredients;
-	}
-
-	public void setIngredients(List<String> ingredients) {
-		this.ingredients = ingredients;
-	}
-
-	public void addIngredients(String ingredients) {
-		this.ingredients.add(ingredients);
-	}
-
 	public List<String> getUserName() {
 		return userName;
 	}
@@ -290,6 +381,4 @@ public class DatabaseResponse {
 	public void setRecipeId(Integer recipeId) {
 		this.recipeId = recipeId;
 	}
-
-
 }

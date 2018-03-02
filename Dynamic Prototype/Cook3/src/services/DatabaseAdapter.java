@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DatabaseAdapter {
 
@@ -17,6 +18,65 @@ public class DatabaseAdapter {
 	private final String PASS = "12345";
 	private final String DB_URL = "jdbc:mysql://192.168.3.3:3307/cookme";
 
+	private DatabaseResponse getIngredients(String select, String where) {
+		DatabaseResponse response = new DatabaseResponse();
+		Statement stmt = null;
+		Connection conn = null;
+		boolean result = false;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// Open a connection
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			// Execute SQL query
+			stmt = conn.createStatement();
+			String sql = "SELECT " + select + " WHERE " + where + ";";
+			System.out.println(sql);
+			ResultSet rs = stmt.executeQuery(sql);
+
+			// Extract data from result set
+			while (rs.next()) {
+				//response.addi(rs.getString("title"));
+				response.addIngredientsItem(rs.getString("item"));
+				response.addIngredientsValue(rs.getInt("value"));
+				response.addIngredientsUnit(rs.getString("unit"));
+				result = true;
+			}
+			// Clean-up environment
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+
+		if (!result) {
+			return null;
+		}
+		return response;
+
+	}
+	
+	
 	public DatabaseResponse select(int type, String database, String select, String where) {
 		DatabaseResponse response = new DatabaseResponse();
 		Statement stmt = null;
@@ -32,22 +92,36 @@ public class DatabaseAdapter {
 			// Execute SQL query
 			stmt = conn.createStatement();
 			String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
-			//System.out.println(sql);
+			System.out.println(sql);
 			ResultSet rs = stmt.executeQuery(sql);
 
 			// Extract data from result set
 			while (rs.next()) {
+				response.addId(rs.getInt("id"));
 				if (type == TYPE_RECIPE) {// recipe
 					response.addTitle(rs.getString("title"));
 					response.addCategoryId(rs.getInt("category"));
 					if (select == "id,title,ingredients,rauthor,description,category,nutritionfacts") {
 						response.addDescription(rs.getString("description"));
-						response.addIngredients(rs.getString("ingredients"));
+						DatabaseResponse ingredientsResponse = getIngredients("recipeitems.id,fk_recipe,recipeitems.value,u.name as unit,i.name as item FROM `recipeitems` " + 
+								"join unit u on u.id = fk_unit join item i on i.id = fk_item",  "fk_recipe="+rs.getInt("id"));
+						if (null != ingredientsResponse ) {
+							response.addIngredientsItemList(ingredientsResponse.getIngredientsItem());
+							response.addIngredientsUnitList(ingredientsResponse.getIngredientsUnit());
+							response.addIngredientsValueList(ingredientsResponse.getIngredientsValue());
+						}else {
+							response.addIngredientsItemList( new ArrayList<String>() );
+							response.addIngredientsUnitList( new ArrayList<String>() );
+							response.addIngredientsValueList( new ArrayList<Integer>() );
+						}
+						
 						response.addNutritionFacts(rs.getString("nutritionfacts"));
 						response.addAuthor(rs.getInt("rauthor"));
 					}else {
 						response.addDescription("");
-						response.addIngredients("");
+						response.addIngredientsItem("");
+						response.addIngredientsUnit("");
+						response.addIngredientsValue(0);
 						response.addAuthor(0);
 						response.addNutritionFacts("");
 					}
@@ -75,7 +149,7 @@ public class DatabaseAdapter {
 				} else if (type == TYPE_FAVOURITES) {
 					response.setFavourites(rs.getString("favourites"));
 				}
-				response.addId(rs.getInt("id"));
+				
 				result = true;
 			}
 			// Clean-up environment

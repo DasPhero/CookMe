@@ -67,12 +67,14 @@ function getRecipe(titleM2,object){
 	$.get("rest/recipe/" + id,// -1 = get all recipes
 	function(responseData) {
 		if (responseData.length > 1){
+			alert("!!!"+responseData);
 			recipe = JSON.parse(responseData); //parse to JSON
-
+		
 			var stepSource="";
 			var ingredientsSource="";
 			var foodFactSource="";
-
+			
+			
 			var description =  JSON.parse(recipe[0]["description"]);
 			var ingredients =  JSON.parse(recipe[0]["ingredients"]);
 			var nutritionFacts =  JSON.parse(recipe[0]["nutritionfacts"]);
@@ -81,11 +83,14 @@ function getRecipe(titleM2,object){
 				stepSource += "<li>" + step + "</li>";
 			});
 			
-			ingredients.forEach(function(item) {
-				ingredientsSource += 
-				"<div class=\"ingredientItem\">"
-				+ "<span class=\"itemAmount\">" + item[0]+ "</span>"
-				+ "</span class=\"recipeItem\">" +item[1] + "</span>"
+			ingredients.forEach(function(ingredient) {
+				ingredientsSource += "<div class=\"ingredientItem\">";
+				if(0 != ingredient["value"]){
+					ingredientsSource+= "<span class=\"recipeValue\">" + ingredient["value"]+ "</span>";
+				}
+				
+				ingredientsSource+= "</span class=\"recipeUnit\"> " +ingredient["unit"] + "</span>"
+				+ "</span class=\"recipeItem\"> " +ingredient["item"] + "</span>"
 				+ "</div>";
 			});
 

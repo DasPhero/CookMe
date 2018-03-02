@@ -81,13 +81,32 @@ public class RESTRecipe extends DatabaseAdapter {
 				rJson.addProperty("category", recipe.getCategoryId());
 				if (id != GET_NAV_TITLES) {
 					rJson.addProperty("description", recipe.getDescription());
-					rJson.addProperty("ingredients", recipe.getIngredients());
+					rJson.addProperty("ingredients", convertJSON(recipe));
 					rJson.addProperty("nutritionfacts", recipe.getNutritionFacts());
 				}
 				recipesJson.add(rJson);
 			}
 		}
+		System.out.println(recipesJson.toString());
 		return recipesJson.toString();
+	}
+	
+	private String convertJSON(Recipe recipe) {
+		String json="[";
+		for (int i = 0; i < recipe.getIngredientsItem().size() ; i++) {
+			json+="{\"item\":\"";
+			json+= recipe.getIngredientsItem().get(i);
+			json+="\",\"unit\":\"";
+			json+= recipe.getIngredientsUnit().get(i);
+			json+="\",\"value\":";
+			json+= recipe.getIngredientsValue().get(i);
+			json+="}";
+			if (i + 1 < recipe.getIngredientsItem().size()) {
+				json+=",";
+			}
+		}
+		json+="]";
+		return json;
 	}
 
 	@PUT

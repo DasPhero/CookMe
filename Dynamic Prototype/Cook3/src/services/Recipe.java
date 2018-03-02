@@ -1,11 +1,16 @@
 package services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Recipe{
 
 	private String title;
 	private int author;
 	private String description;
-	private String ingredients;
+	private List<String> ingredientsItem;
+	private List<Integer> ingredientsValue;
+	private List<String> ingredientsUnit;
 	private String nutritionFacts;
 	private int id;
 	private int categoryId;
@@ -14,7 +19,9 @@ public class Recipe{
 		this.title = "";
 		this.author = 0;
 		this.description = "";
-		this.ingredients = "";
+		this.ingredientsItem = new ArrayList<String>();
+		this.ingredientsValue = new ArrayList<Integer>();
+		this.ingredientsUnit = new ArrayList<String>();
 		this.id = 0;
 		this.categoryId=0;
 		this.nutritionFacts = "";
@@ -24,11 +31,47 @@ public class Recipe{
 		String text= "Titel: "+ title;
 		text = text + "\nAuthor: " + author;
 		text = text + "\nBeschreibung: " + description;
-		text = text + "\nZutaten: " + ingredients;
+		//text = text + "\nZutaten: " + ingredients;
 		text = text + "\nID: " + id;
 		text = text + "\nKategorie ID: " + categoryId;
 		text = text + "\nNährwertangaben: " + nutritionFacts;
 		return text;
+	}
+
+	public void addIngredientsItem(String item) {
+		this.ingredientsItem.add(item);
+	}
+	
+	public List<String> getIngredientsItem() {
+		return ingredientsItem;
+	}
+
+	public void setIngredientsItem(List<String> ingredientsItem) {
+		this.ingredientsItem = ingredientsItem;
+	}
+
+	public void addIngredientsValue(int value) {
+		this.ingredientsValue.add(value);
+	}
+	
+	public List<Integer> getIngredientsValue() {
+		return ingredientsValue;
+	}
+
+	public void setIngredientsValue(List<Integer> ingredientsValue) {
+		this.ingredientsValue = ingredientsValue;
+	}
+
+	public void addIngredientsUnit(String unit) {
+		this.ingredientsUnit.add(unit);
+	}
+	
+	public List<String> getIngredientsUnit() {
+		return ingredientsUnit;
+	}
+
+	public void setIngredientsUnit(List<String> ingredientsUnit) {
+		this.ingredientsUnit = ingredientsUnit;
 	}
 
 	public String getNutritionFacts() {
@@ -69,14 +112,6 @@ public class Recipe{
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getIngredients() {
-		return ingredients;
-	}
-
-	public void setIngredients(String ingredients) {
-		this.ingredients = ingredients;
 	}
 
 	public int getId() {

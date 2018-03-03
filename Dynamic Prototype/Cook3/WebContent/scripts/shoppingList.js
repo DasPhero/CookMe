@@ -2,23 +2,63 @@ tickAlreadySelectedItems = () => {
     let cookie = getAndValidateCookie();
 
 	if(cookie){
-        getSelectedItems(cookie);
+        let shoppingList = tickSelectedCheckBoxes(cookie);
 	}
 }
 
-getSelectedItems = (cookie) => {
+tickSelectedCheckBoxes = (cookie) => {
     $.get("rest/shoppingList/selectedItems/" + cookie,
-	    function(shoppingListArray){ 
-            updateCheckBoxes(JSON.parse(shoppingListArray)); 
+    function(shoppingList){ 
+            let shoppingListArray = JSON.parse(shoppingList);
+            getSelectedItems(shoppingListArray);
         }
 	);
 }
 
-updateCheckBoxes = (shoppingListArray) => {
-    shoppingListArray.forEach(listItem => {
+getSelectedItems = (shoppingListItems) => {
+    shoppingListItems.forEach(listItem => {
         let listEntry = $("input." + listItem)[0];
         if(listEntry){
             listEntry.checked = true;
         }
     });
+}
+
+updateSelectedItems = (checkBox) => {
+    let cookie = getAndValidateCookie();
+    let selectedId = $(checkBox)[0].classList[1];
+    console.log(selectedId);
+	if(cookie){
+        $.get("rest/shoppingList/selectedItems/" + cookie,
+        function(shoppingList){
+            console.log(shoppingList);
+            let shoppingListArray = JSON.parse(shoppingList);
+            console.log(shoppingListArray);
+            prepareShoppingList(cookie, shoppingListArray, selectedId);
+        }
+    );
+}
+}
+
+prepareShoppingList = (cookie, shoppingList, selectedId) => {
+    console.log("asdasd");
+    let indexOfSelectedId = shoppingList.indexOf(selectedId)
+    let idIsAlreadySelected = indexOfSelectedId !== -1;
+    
+    if(idIsAlreadySelected){
+        console.log("asdasdtrue");
+        shoppingList.splice(indexOfSelectedId, 1);
+    }
+    else{
+        console.log("asdasdfalse");
+        shoppingList.push(selectedId);
+    }
+    commitNewList(cookie, shoppingList);
+}
+
+commitNewList = (cookie, updatedList) => {
+    let newList =  "[" + updatedList.toString() + "]";
+    let data = { "cookie": cookie, "selectedrecipes": newList };
+    console.log(data);
+    $.post("rest/shoppingList/", data);
 }

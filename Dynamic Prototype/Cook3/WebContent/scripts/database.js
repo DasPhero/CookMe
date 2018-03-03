@@ -27,7 +27,7 @@ function getTitles() {
 					recipes.forEach(function(recipe) {
 						if ($(category).attr('id') == "r"+ recipe["category"]) {
 							recipeListSource +=
-							"<li><input type=\"checkbox\" class=\"checkbox "
+							"<li><input type=\"checkbox\" onchange=\"updateSelectedItems(this)\" class=\"checkbox "
 							+ recipe["id"]
 							+ "\"/> <span class=\"listEntry\" id=\"recipe"
 							+ recipe["id"]

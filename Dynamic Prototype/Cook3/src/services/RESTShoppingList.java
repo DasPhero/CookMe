@@ -1,8 +1,11 @@
 package services;
 
-import static services.Constant.*;
+import static services.Constant.TYPE_SELECTION;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -19,17 +22,16 @@ public class RESTShoppingList extends DatabaseAdapter {
 		String selection = "`selectedrecipes`,`id`";
 		String context = "cookie=\"" + cookie + "\"";
 		String selectedRecipes = select(TYPE_SELECTION,"cookme.person", selection, context).toSelectionString();
-		System.out.println(selectedRecipes);
 		return selectedRecipes;
 	}
 	
-	@GET
-	@Path("/recipeId/{recipeName}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public Integer getCurrentRecipeId(@PathParam("recipeName") String recipeName){
-		String selection = "`id`";
-		String context = "title=\"" + recipeName + "\"";
-		Integer id = select(TYPE_RECIPE_ID,"cookme.recipe", selection, context).toRecipeId();
-		return id;
+	@POST
+	@Consumes("application/x-www-form-urlencoded")
+	public void updateFavourites( @FormParam("cookie") String cookie, @FormParam("selectedrecipes") String selection ){
+		String updateInformation = "selectedrecipes=\"" + selection +"\"";
+		String context = "cookie=\"" + cookie + "\"";
+		Boolean done = update(TYPE_SELECTION,"cookme.person", updateInformation, context);
+		if(done) { System.out.println("Selected recipes successfully updated."); }
+		else { System.out.println("Failed updating selected recipes! cookie: " + cookie + " selectedrecipes: " + selection); };
 	}
 }

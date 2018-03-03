@@ -41,16 +41,13 @@ updateSelectedItems = (checkBox) => {
 }
 
 prepareShoppingList = (cookie, shoppingList, selectedId) => {
-    console.log("asdasd");
     let indexOfSelectedId = shoppingList.indexOf(selectedId)
     let idIsAlreadySelected = indexOfSelectedId !== -1;
     
     if(idIsAlreadySelected){
-        console.log("asdasdtrue");
         shoppingList.splice(indexOfSelectedId, 1);
     }
     else{
-        console.log("asdasdfalse");
         shoppingList.push(selectedId);
     }
     commitNewList(cookie, shoppingList);
@@ -59,6 +56,5 @@ prepareShoppingList = (cookie, shoppingList, selectedId) => {
 commitNewList = (cookie, updatedList) => {
     let newList =  "[" + updatedList.toString() + "]";
     let data = { "cookie": cookie, "selectedrecipes": newList };
-    console.log(data);
     $.post("rest/shoppingList/", data);
 }

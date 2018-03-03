@@ -6,19 +6,6 @@ import java.util.List;
 public class DatabaseResponse {
 
 	private int type;
-
-	/*
-	 * SELECT recipeitems.id,fk_recipe,recipeitems.value,u.name,i.name FROM `recipeitems`  
-join unit u on u.id = fk_unit
-join item i on i.id = fk_item
-WHERE `fk_recipe` = 1
-	 */
-	
-	/*
-	 * recipeitems.id,fk_recipe,recipeitems.value,u.name as unit,i.name as item FROM `recipeitems`  
-join unit u on u.id = fk_unit
-join item i on i.id = fk_item
-	 */
 	
 	// recipe == 0
 	private List<String> title;

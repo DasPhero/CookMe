@@ -32,7 +32,7 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getRecipe(@PathParam("id") int id) {
 		String where = "id = " + id;
-		String select = "id,title,ingredients,rauthor,description,category,nutritionfacts";
+		String select = "id,title,rauthor,description,category,nutritionfacts";
 		String database = "cookme.recipe";
 		int type = TYPE_RECIPE;
 		if (id == GET_NAV_TITLES) {
@@ -125,7 +125,7 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertRecipe(@FormParam("title") String title, @FormParam("ingredients") String ingredients,
 			@FormParam("description") String description, @FormParam("category") String category) {
-		String insert = " `recipe` ( `title`,`description`,`ingredients`,`category`) ";
+		String insert = " `recipe` ( `title`,`description`,`category`) ";
 		String values = "'" + title + "', '" + description + "','" + ingredients + "'," + category + "";
 		if (!insert(TYPE_RECIPE, insert, values)) {
 			// dbs.insert(t);

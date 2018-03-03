@@ -27,7 +27,7 @@ function getTitles() {
 					recipes.forEach(function(recipe) {
 						if ($(category).attr('id') == "r"+ recipe["category"]) {
 							recipeListSource +=
-							"<li><input type=\"checkbox\" id=\"checkbox"
+							"<li><input type=\"checkbox\" class=\"checkbox "
 							+ recipe["id"]
 							+ "\"/> <span class=\"listEntry\" id=\"recipe"
 							+ recipe["id"]
@@ -38,6 +38,7 @@ function getTitles() {
 					});
 					$(category).next(" ul").html(recipeListSource);
 				});
+				tickAlreadySelectedItems();
 				var cookies = document.cookie;
 				if( cookies != ""){
 					var cookie = cookies.split("=")[1];

@@ -52,4 +52,23 @@ function ckeckLogIn() {
 	}else{
 		window.location.assign('login.html');
 	}
-}	
+}
+
+getAndValidateCookie = () => {
+	let activeCookies = document.cookie;
+	let relevantCookieIndex = activeCookies.indexOf("uuid=");
+
+	if(relevantCookieIndex == -1){
+		return false;
+	}
+
+	const cookieLength = 20;
+	const keyNameLength = 5;
+	let cookieValue = activeCookies.substr(relevantCookieIndex + keyNameLength, cookieLength);
+
+	if(cookieValue === "invalid"){
+		return false;
+	}
+
+	return cookieValue;
+}

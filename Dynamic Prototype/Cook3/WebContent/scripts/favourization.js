@@ -7,25 +7,6 @@ addToFavourites = () => {
 	updateFavourites(cookie);
 }
 
-getAndValidateCookie = () => {
-	let activeCookies = document.cookie;
-	let relevantCookieIndex = activeCookies.indexOf("uuid=");
-
-	if(relevantCookieIndex == -1){
-		return false;
-	}
-
-	const cookieLength = 20;
-	const keyNameLength = 5;
-	let cookieValue = activeCookies.substr(relevantCookieIndex + keyNameLength, cookieLength);
-
-	if(cookieValue === "invalid"){
-		return false;
-	}
-
-	return cookieValue;
-}
-
 goToLoginPage = () => {
 	window.location.assign('login.html');
 }
@@ -81,13 +62,10 @@ checkIfItemAlreadyIsFavourized = (recipeId) => {
 	}
 	$.get("rest/favourization/favourizedItems/" + cookie,
 	function(favouritesArray){ 
-		console.log("asd" + recipeId, favouritesArray);
 		if(favouritesArray.indexOf(recipeId) !== -1){
-			console.log("in");
 			changeButtonToRemoveButton();
 		}
 		else{
-			console.log("out");
 			changeButtonToAddButton();
 		}
 	 }

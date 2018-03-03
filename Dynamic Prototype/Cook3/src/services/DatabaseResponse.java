@@ -46,8 +46,17 @@ join item i on i.id = fk_item
 	private List<String> sAnswer;
 	private List<String> cookie;
 	private String favourites;
+	private String selection;
 	
 	
+	public String getSelection() {
+		return selection;
+	}
+
+	public void setSelection(String selection) {
+		this.selection = selection;
+	}
+
 	// category == 3
 	private List<String> categoryName;
 
@@ -75,6 +84,7 @@ join item i on i.id = fk_item
 		this.sAnswer = new ArrayList<String>();
 		this.cookie = new ArrayList<String>();
 		this.favourites = "";
+		this.selection = "";
 		
 		this.categoryName = new ArrayList<String>();
 	}
@@ -127,6 +137,10 @@ join item i on i.id = fk_item
 	
 	public String toFavouritesString() {
 		return this.favourites;
+	}
+	
+	public String toSelectionString() {
+		return this.selection;
 	}
 
 	public Integer toRecipeId() {

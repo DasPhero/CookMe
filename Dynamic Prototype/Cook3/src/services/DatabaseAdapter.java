@@ -1,9 +1,6 @@
 package services;
 
-import static services.Constant.TYPE_CATEGORY;
-import static services.Constant.TYPE_PERSON_LOGIN;
-import static services.Constant.TYPE_RECIPE;
-import static services.Constant.TYPE_FAVOURITES;
+import static services.Constant.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -148,6 +145,9 @@ public class DatabaseAdapter {
 					response.addCategoryName(rs.getString("categoryname"));
 				} else if (type == TYPE_FAVOURITES) {
 					response.setFavourites(rs.getString("favourites"));
+				}
+				  else if (type == TYPE_SELECTION) {
+					response.setSelection(rs.getString("selectedrecipes"));
 				}
 				
 				result = true;

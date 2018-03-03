@@ -98,7 +98,7 @@ public class DatabaseAdapter {
 				if (type == TYPE_RECIPE) {// recipe
 					response.addTitle(rs.getString("title"));
 					response.addCategoryId(rs.getInt("category"));
-					if (select == "id,title,ingredients,rauthor,description,category,nutritionfacts") {
+					if (select == "id,title,rauthor,description,category,nutritionfacts") {
 						response.addDescription(rs.getString("description"));
 						DatabaseResponse ingredientsResponse = getIngredients("recipeitems.id,fk_recipe,recipeitems.value,u.name as unit,i.name as item FROM `recipeitems` " + 
 								"join unit u on u.id = fk_unit join item i on i.id = fk_item",  "fk_recipe="+rs.getInt("id"));

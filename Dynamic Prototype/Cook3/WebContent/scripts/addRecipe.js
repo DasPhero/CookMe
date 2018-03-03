@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$("#addRecipe").click(function() {
-		$.post("rest/recipe", {
+		alert("außer Funktion");
+		/*$.post("rest/recipe", {
 			title : $("#title").val(),
 			ingredients : $("#ingredients").val(),
 			description : $("#description").val(),
@@ -15,5 +16,6 @@ $(document).ready(function() {
 				alert("Wrong username or password!");
 			}
 		});
+		*/
 	});
 });

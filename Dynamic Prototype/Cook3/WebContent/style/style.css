@@ -12,12 +12,12 @@
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #c4ff6b;
+  background: #b0e079;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
 }
 ::-webkit-scrollbar-thumb {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
-  background: #28c100;
+  background: #4b8125;
 }
 .mainWindow {
   display: flex;
@@ -25,7 +25,7 @@
 }
 .mainWindow .navBar {
   flex-basis: 20%;
-  background-color: #76ff03;
+  background-color: #CDDC39;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
   color: black;
   font-family: 'Playball';
   font-size: 2.5em;
-  background-color: #32cb00;
+  background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .searchWidget {
@@ -58,7 +58,7 @@
   margin: 5px;
   margin-left: -60px;
   padding-top: 10px;
-  background-color: #3cd50a;
+  background-color: #5f9539;
   flex-basis: 90%;
   overflow-y: auto;
 }
@@ -82,15 +82,15 @@
   font-size: 17px;
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li .listEntry:hover {
-  background-color: #2dc600;
+  background-color: #50862a;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li #activeEntry {
-  background-color: #009400;
+  background-color: #1e5400;
   color: ghostwhite;
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry {
-  background-color: #23bc00;
+  background-color: #467c20;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1221322), 0px 2px 4px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .recipeList ul {
@@ -100,14 +100,14 @@
 .mainWindow .recipeView,
 .mainWindow .profilePage {
   flex-basis: 60%;
-  background-color: #76ff03;
+  background-color: #CDDC39;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .mainWindow .recipeView .accountBar,
 .mainWindow .profilePage .accountBar {
-  background-color: #b0ff57;
+  background-color: #9CCC65;
   display: flex;
   flex-direction: row;
   flex-basis: 5%;
@@ -131,14 +131,14 @@
   font-size: 22px;
   font-weight: bold;
   padding: 10%;
-  background-color: #007b00;
+  background-color: #053b00;
   color: ghostwhite;
   height: 100%;
   width: 100%;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover {
-  background-color: #008f00;
+  background-color: #194f00;
 }
 .mainWindow .recipeView .accountBar .goToStartButton,
 .mainWindow .profilePage .accountBar .goToStartButton {
@@ -152,7 +152,7 @@
   font-size: 22px;
   font-weight: bold;
   padding: 10%;
-  background-color: #007b00;
+  background-color: #053b00;
   color: ghostwhite;
   height: 100%;
   width: 100%;
@@ -161,7 +161,7 @@
 .mainWindow .profilePage .recipeExplanation {
   overflow-y: auto;
   flex-basis: 95%;
-  background-color: #b0ff57;
+  background-color: #9CCC65;
   margin: 5px;
   padding: 5px;
   flex-direction: column;
@@ -297,14 +297,14 @@
 }
 .mainWindow .ingredientsList {
   flex-basis: 20%;
-  background-color: #76ff03;
+  background-color: #CDDC39;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .mainWindow .ingredientsList h1 {
   flex-basis: 5%;
-  background-color: #32cb00;
+  background-color: #558B2F;
   text-align: center;
   padding: 5px;
   font-family: 'Playball';
@@ -319,7 +319,7 @@
   list-style: none;
   overflow-y: auto;
   flex-basis: 90%;
-  background-color: #32cb00;
+  background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .ingredientsList .toBuyList li {
@@ -455,7 +455,7 @@ input[type="text"]:focus {
 .loginMain {
   width: 100vw;
   height: 100vh;
-  background-color: #32cb00;
+  background-color: #558B2F;
   display: flex;
   flex-direction: column;
 }
@@ -482,7 +482,7 @@ input[type="text"]:focus {
   flex-direction: column;
   display: flex;
   flex-basis: 70%;
-  background-color: #76ff03;
+  background-color: #CDDC39;
   padding: 3% 2%;
 }
 .loginMain .loginWindow .login input {
@@ -520,7 +520,7 @@ input[type="text"]:focus {
   height: 100%;
   position: relative;
   flex-direction: column;
-  background-color: #32cb00;
+  background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .profilePage .fridgeView .backgroundContainer span.heading {
@@ -574,7 +574,7 @@ input[type="text"]:focus {
   overflow-y: auto;
   padding: 2px;
   margin: 3px 0;
-  background-color: #3cd50a;
+  background-color: #5f9539;
   padding: 5px;
 }
 .mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView .entryContainer {
@@ -583,7 +583,7 @@ input[type="text"]:focus {
   padding: 5px;
   margin-top: 1px;
   width: 100%;
-  background-color: #99ff26;
+  background-color: #f0ff5c;
   display: flex;
 }
 .mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView .entryContainer .textBlock {
@@ -626,7 +626,7 @@ input[type="text"]:focus {
 }
 .mainWindow .profilePage .recommendationView {
   flex-basis: 45%;
-  background-color: #32cb00;
+  background-color: #558B2F;
   margin: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
@@ -643,7 +643,7 @@ input[type="text"]:focus {
   overflow-y: auto;
 }
 .mainWindow .profilePage .recommendationView .recEntryWrapper .recEntry {
-  background-color: #3cd50a;
+  background-color: #5f9539;
   padding: 5px;
   padding-left: 10px;
   margin: 2px;
@@ -661,12 +661,12 @@ input[type="text"]:focus {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #c4ff6b;
+  background: #b0e079;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
 }
 ::-webkit-scrollbar-thumb {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
-  background: #28c100;
+  background: #4b8125;
 }
 .mainWindow {
   display: flex;
@@ -674,7 +674,7 @@ input[type="text"]:focus {
 }
 .mainWindow .navBar {
   flex-basis: 20%;
-  background-color: #76ff03;
+  background-color: #CDDC39;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -687,7 +687,7 @@ input[type="text"]:focus {
   color: black;
   font-family: 'Playball';
   font-size: 2.5em;
-  background-color: #32cb00;
+  background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .searchWidget {
@@ -707,7 +707,7 @@ input[type="text"]:focus {
   margin: 5px;
   margin-left: -60px;
   padding-top: 10px;
-  background-color: #3cd50a;
+  background-color: #5f9539;
   flex-basis: 90%;
   overflow-y: auto;
 }
@@ -731,15 +731,15 @@ input[type="text"]:focus {
   font-size: 17px;
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li .listEntry:hover {
-  background-color: #2dc600;
+  background-color: #50862a;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li #activeEntry {
-  background-color: #009400;
+  background-color: #1e5400;
   color: ghostwhite;
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry {
-  background-color: #23bc00;
+  background-color: #467c20;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1221322), 0px 2px 4px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .recipeList ul {
@@ -749,14 +749,14 @@ input[type="text"]:focus {
 .mainWindow .recipeView,
 .mainWindow .profilePage {
   flex-basis: 60%;
-  background-color: #76ff03;
+  background-color: #CDDC39;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .mainWindow .recipeView .accountBar,
 .mainWindow .profilePage .accountBar {
-  background-color: #b0ff57;
+  background-color: #9CCC65;
   display: flex;
   flex-direction: row;
   flex-basis: 5%;
@@ -780,14 +780,14 @@ input[type="text"]:focus {
   font-size: 22px;
   font-weight: bold;
   padding: 10%;
-  background-color: #007b00;
+  background-color: #053b00;
   color: ghostwhite;
   height: 100%;
   width: 100%;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover {
-  background-color: #008f00;
+  background-color: #194f00;
 }
 .mainWindow .recipeView .accountBar .goToStartButton,
 .mainWindow .profilePage .accountBar .goToStartButton {
@@ -801,7 +801,7 @@ input[type="text"]:focus {
   font-size: 22px;
   font-weight: bold;
   padding: 10%;
-  background-color: #007b00;
+  background-color: #053b00;
   color: ghostwhite;
   height: 100%;
   width: 100%;
@@ -810,7 +810,7 @@ input[type="text"]:focus {
 .mainWindow .profilePage .recipeExplanation {
   overflow-y: auto;
   flex-basis: 95%;
-  background-color: #b0ff57;
+  background-color: #9CCC65;
   margin: 5px;
   padding: 5px;
   flex-direction: column;
@@ -946,14 +946,14 @@ input[type="text"]:focus {
 }
 .mainWindow .ingredientsList {
   flex-basis: 20%;
-  background-color: #76ff03;
+  background-color: #CDDC39;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .mainWindow .ingredientsList h1 {
   flex-basis: 5%;
-  background-color: #32cb00;
+  background-color: #558B2F;
   text-align: center;
   padding: 5px;
   font-family: 'Playball';
@@ -968,7 +968,7 @@ input[type="text"]:focus {
   list-style: none;
   overflow-y: auto;
   flex-basis: 90%;
-  background-color: #32cb00;
+  background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .ingredientsList .toBuyList li {

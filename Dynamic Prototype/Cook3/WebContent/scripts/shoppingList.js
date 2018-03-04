@@ -10,22 +10,31 @@ getSelectedItems = (cookie) => {
     $.get("rest/shoppingList/selectedItems/" + cookie,
     function(shoppingList){ 
         let shoppingListRecipeArray = JSON.parse(shoppingList);
-        tickSelectedCheckBoxes(shoppingListRecipeArray);
+        tickSelectedCheckBoxes(shoppingListRecipeArray, cookie);
     }
 );
 }
 
-tickSelectedCheckBoxes = (shoppingListRecipes) => {
+tickSelectedCheckBoxes = (shoppingListRecipes, cookie) => {
     shoppingListRecipes.forEach(listItem => {
         let listEntry = $("input." + listItem)[0];
         if(listEntry){
             listEntry.checked = true;
         }
     });
-    createInitialShoppingList(shoppingListRecipes);
+
+    let cachedList = JSON.parse(localStorage.getItem("cachedShoppingList"));
+    if(!cachedList){
+        cachedList = {"cookie": "undefined"};
+    }
+    if(cookie === cachedList.cookie){
+        createHtmlList(cachedList.shoppingList);
+    }else{
+        createInitialShoppingList(shoppingListRecipes, cookie);
+    }
 }
 
-async function createInitialShoppingList(shoppingListRecipes){
+async function createInitialShoppingList(shoppingListRecipes, cookie){
     $(".toBuyList ul").html("<li>Einkaufsliste wird erstellt...</li>");
 
     let ingredientsList = [];
@@ -34,6 +43,9 @@ async function createInitialShoppingList(shoppingListRecipes){
         ingredientsList = ingredientsList.concat(recipeIngredients);
     }
     let compressedList = compressList(ingredientsList);
+    
+    localStorage.setItem("cachedShoppingList", JSON.stringify({ "cookie": cookie, "shoppingList": compressedList }));
+    
     createHtmlList(compressedList);
 }
 

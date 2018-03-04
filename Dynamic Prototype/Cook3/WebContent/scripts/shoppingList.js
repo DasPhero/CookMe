@@ -10,31 +10,22 @@ getSelectedItems = (cookie) => {
     $.get("rest/shoppingList/selectedItems/" + cookie,
     function(shoppingList){ 
         let shoppingListRecipeArray = JSON.parse(shoppingList);
-        tickSelectedCheckBoxes(shoppingListRecipeArray, cookie);
+        tickSelectedCheckBoxes(shoppingListRecipeArray);
     }
 );
 }
 
-tickSelectedCheckBoxes = (shoppingListRecipes, cookie) => {
+tickSelectedCheckBoxes = (shoppingListRecipes) => {
     shoppingListRecipes.forEach(listItem => {
         let listEntry = $("input." + listItem)[0];
         if(listEntry){
             listEntry.checked = true;
         }
     });
-
-    let cachedList = JSON.parse(localStorage.getItem("cachedShoppingList"));
-    if(!cachedList){
-        cachedList = {"cookie": "undefined"};
-    }
-    if(cookie === cachedList.cookie){
-        createHtmlList(cachedList.shoppingList);
-    }else{
-        createInitialShoppingList(shoppingListRecipes, cookie);
-    }
+    createInitialShoppingList(shoppingListRecipes);
 }
 
-async function createInitialShoppingList(shoppingListRecipes, cookie){
+async function createInitialShoppingList(shoppingListRecipes){
     $(".toBuyList ul").html("<li>Einkaufsliste wird erstellt...</li>");
 
     let ingredientsList = [];
@@ -43,8 +34,6 @@ async function createInitialShoppingList(shoppingListRecipes, cookie){
         ingredientsList = ingredientsList.concat(recipeIngredients);
     }
     let compressedList = compressList(ingredientsList);
-    
-    localStorage.setItem("cachedShoppingList", JSON.stringify({ "cookie": cookie, "shoppingList": compressedList }));
     
     createHtmlList(compressedList);
 }
@@ -107,13 +96,10 @@ itemsAreEqual = (itemA, itemB) => {
 updateSelectedItems = (checkBox) => {
     let cookie = getAndValidateCookie();
     let selectedId = $(checkBox)[0].classList[1];
-    console.log(selectedId);
 	if(cookie){
         $.get("rest/shoppingList/selectedItems/" + cookie,
         function(shoppingList){
-            console.log(shoppingList);
             let shoppingListArray = JSON.parse(shoppingList);
-            console.log(shoppingListArray);
             prepareShoppingList(cookie, shoppingListArray, selectedId);
         }
     );
@@ -121,17 +107,26 @@ updateSelectedItems = (checkBox) => {
 }
 
 prepareShoppingList = (cookie, shoppingList, selectedId) => {
-    let indexOfSelectedId = shoppingList.indexOf(selectedId)
-    let idIsAlreadySelected = indexOfSelectedId !== -1;
-    
+    let recipeIndex = indexOfSelectedId(shoppingList, selectedId);
+    let idIsAlreadySelected = (recipeIndex != -1);
     if(idIsAlreadySelected){
-        shoppingList.splice(indexOfSelectedId, 1);
+        shoppingList.splice(recipeIndex, 1);
     }
     else{
         shoppingList.push(selectedId);
     }
     commitNewList(cookie, shoppingList);
 }
+
+indexOfSelectedId = (array, item) => {
+    let index = 0;
+    for(let i = 0; i < array.length; i++){
+        if(array[i] == item){
+            return i;
+        }
+    };
+    return -1;
+} 
 
 commitNewList = (cookie, updatedList) => {
     let newList =  "[" + updatedList.toString() + "]";

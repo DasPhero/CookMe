@@ -22,4 +22,20 @@
     <servlet-name>REST-Servlet</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
+    <filter>
+  	<filter-name>SearchFilter</filter-name>
+  	<filter-class>Search</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>SearchFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+  	<filter-name>ProfanityFilter</filter-name>
+  	<filter-class>Profanity</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>ProfanityFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping> 
 </web-app>

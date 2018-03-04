@@ -34,7 +34,8 @@ async function createInitialShoppingList(shoppingListRecipes){
         ingredientsList = ingredientsList.concat(recipeIngredients);
     }
     let compressedList = compressList(ingredientsList);
-    
+    localStorage.setItem("shoppingList", JSON.stringify(compressedList));
+
     createHtmlList(compressedList);
 }
 
@@ -96,25 +97,28 @@ itemsAreEqual = (itemA, itemB) => {
 updateSelectedItems = (checkBox) => {
     let cookie = getAndValidateCookie();
     let selectedId = $(checkBox)[0].classList[1];
+    let checkBoxToggledOn = $(checkBox)[0].checked == true;
 	if(cookie){
         $.get("rest/shoppingList/selectedItems/" + cookie,
         function(shoppingList){
             let shoppingListArray = JSON.parse(shoppingList);
-            prepareShoppingList(cookie, shoppingListArray, selectedId);
+            prepareShoppingList(cookie, shoppingListArray, selectedId, checkBoxToggledOn);
         }
-    );
-}
+        );
+    }
 }
 
-prepareShoppingList = (cookie, shoppingList, selectedId) => {
+prepareShoppingList = (cookie, shoppingList, selectedId, checkBoxToggledOn) => {
     let recipeIndex = indexOfSelectedId(shoppingList, selectedId);
     let idIsAlreadySelected = (recipeIndex != -1);
-    if(idIsAlreadySelected){
+    if(idIsAlreadySelected && !checkBoxToggledOn){
         shoppingList.splice(recipeIndex, 1);
     }
-    else{
+    else if(checkBoxToggledOn){
         shoppingList.push(selectedId);
     }
+    let addItem = !idIsAlreadySelected && checkBoxToggledOn;
+    updateShoppingListIncrementally(selectedId, addItem);
     commitNewList(cookie, shoppingList);
 }
 
@@ -127,6 +131,42 @@ indexOfSelectedId = (array, item) => {
     };
     return -1;
 } 
+
+updateShoppingListIncrementally = (recipeId, addItem) => {
+    $.get("rest/recipe/" + recipeId,
+    (recipe) => {
+        let parsedRecipe = JSON.parse(recipe)[0];
+        let recipeIngredients = JSON.parse(parsedRecipe.ingredients);
+        let currentList = JSON.parse(localStorage.getItem("shoppingList"));
+
+        if(addItem){
+            currentList = currentList.concat(recipeIngredients);
+            let compressedList = compressList(currentList);
+            localStorage.setItem("shoppingList", JSON.stringify(compressedList));
+            createHtmlList(compressedList);
+        }
+        else{
+            let reducedList = removeItemsFromList(currentList, recipeIngredients);
+            localStorage.setItem("shoppingList", JSON.stringify(reducedList));
+            createHtmlList(reducedList);
+        }
+    });
+}
+
+removeItemsFromList = (sourceArray, itemsToRemove) => {
+    itemsToRemove.forEach(ingredient => {
+        let itemIndex = getIndexOfObject(sourceArray, ingredient);
+        if(itemIndex != -1){
+            sourceArray[itemIndex].value -= ingredient.value;
+            if(sourceArray[itemIndex].value == 0){
+                sourceArray.splice(itemIndex, 1);
+            }
+        }
+    });
+    return sourceArray;
+}
+
+
 
 commitNewList = (cookie, updatedList) => {
     let newList =  "[" + updatedList.toString() + "]";

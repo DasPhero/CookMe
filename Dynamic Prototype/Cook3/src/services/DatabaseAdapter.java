@@ -148,6 +148,10 @@ public class DatabaseAdapter {
 				}
 				  else if (type == TYPE_SELECTION) {
 					response.setSelection(rs.getString("selectedrecipes"));
+				} else if (type == TYPE_INGREDIENT) {
+					
+					response.addIngredientsItem(rs.getString("name"));
+					response.addIngredientsValue(rs.getInt("id"));
 				}
 				
 				result = true;

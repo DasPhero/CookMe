@@ -6,14 +6,12 @@ $.get("rest/ingredientList/"+GET_ALL_INGREDIENTS, function(data, status) { //get
 	obj = JSON.parse(data);
 	let itemSource = "";
 	obj.forEach(function(element) {
-		itemSource += "<div class=\"entryContainer\" id=\"item" + element["id"] + "\">"+
-							"<span class=\"textBlock\">" + element["name"] + "</span>" +
-							"<button name=\"deleteListItem\">" +
-									"<span class=\"deleteSymbol\">X</span>" +
-							"</button>" +
+		itemSource += "<div class=\"fridgeItem\">" +
+							"<input type=\"checkbox\" class=\"fridgeCheckbox\" id=\"item" + element["id"] + "\">"+
+							"<span class=\"fridgeDescription\">" + element["name"] + "</span>" +
 						"</div>";
 	});
 
-	$(".fridgeListView ").html(itemSource);//override static code
+	$(".fridgeList ").html(itemSource);//override static code
 	$.holdReady(false);		
 });

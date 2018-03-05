@@ -72,7 +72,7 @@ createHtmlList = (ingredientList) => {
         let unit = listElement.unit;
         let name = listElement.item;
 
-        listCode += `<li>${amount} ${unit} ${name}</li>`
+        listCode += `<li>${amount} ${unit} ${name}</li>`;
     });
     $(".toBuyList ul").html(listCode);
 }

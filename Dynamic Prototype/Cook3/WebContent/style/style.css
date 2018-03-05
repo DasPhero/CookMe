@@ -37,7 +37,7 @@
   margin: 5px;
   color: black;
   font-family: 'Playball';
-  font-size: 2.5em;
+  font-size: 3.5vh;
   background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
@@ -116,21 +116,23 @@
 }
 .mainWindow .recipeView .accountBar .userNameHeader,
 .mainWindow .profilePage .accountBar .userNameHeader {
-  flex-basis: 90%;
-  padding: 5px;
+  flex-basis: 85%;
+  padding: 3px 5px 5px 5px;
+  font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton,
 .mainWindow .profilePage .accountBar .goToProfileButton {
-  flex-basis: 10%;
+  flex-basis: 15%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+  font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper {
+  letter-spacing: 2px;
+  font-family: 'Playball';
+  padding-top: 1px;
   text-align: center;
   cursor: pointer;
-  font-size: 22px;
-  font-weight: bold;
-  padding: 10%;
   background-color: #053b00;
   color: ghostwhite;
   height: 100%;
@@ -308,7 +310,7 @@
   text-align: center;
   padding: 5px;
   font-family: 'Playball';
-  font-size: 2em;
+  font-size: 3.5vh;
   letter-spacing: 2px;
   margin: 5px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
@@ -512,117 +514,41 @@ input[type="text"]:focus {
 }
 .mainWindow .profilePage .fridgeView {
   flex-basis: 50%;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer {
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  height: 100%;
-  position: relative;
-  flex-direction: column;
   background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+  margin: 10px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
-.mainWindow .profilePage .fridgeView .backgroundContainer span.heading {
+.mainWindow .profilePage .fridgeView h4 {
+  flex-basis: 15%;
   font-family: 'Playball';
   font-weight: bold;
   font-size: 26px;
   letter-spacing: 4px;
-  margin-top: -3px;
-  padding-bottom: 3px;
-  padding-left: 3px;
-  color: black;
+  padding: 5px;
+  margin-left: 5px;
 }
-.mainWindow .profilePage .fridgeView .backgroundContainer input {
-  flex-basis: 10%;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer input:focus {
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.23279318), 0px 8px 24px rgba(0, 0, 0, 0.23);
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer input:focus:hover {
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.23279318), 0px 8px 24px rgba(0, 0, 0, 0.23);
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer input:hover {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.18852878), 0px 5px 16px rgba(0, 0, 0, 0.23);
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeSearchWidget {
-  flex-basis: 10%;
-  display: flex;
-  flex-direction: row;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeSearchWidget input {
-  margin-right: 5px;
-  flex-basis: 95%;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeSearchWidget button {
-  flex-basis: 5%;
-  color: ghostwhite;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
-  min-width: 95px;
-  max-width: 95px;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeSearchWidget button:hover {
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.23279318), 0px 8px 24px rgba(0, 0, 0, 0.23);
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeSearchWidget button:active {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView {
-  flex-basis: 80%;
-  height: 100%;
+.mainWindow .profilePage .fridgeView .fridgeList {
+  flex-basis: 85%;
   overflow-y: auto;
-  padding: 2px;
-  margin: 3px 0;
+  padding: 2px 0;
+  user-select: none;
+}
+.mainWindow .profilePage .fridgeView .fridgeList .fridgeItem {
+  padding: 2px 5px;
   background-color: #5f9539;
-  padding: 5px;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView .entryContainer {
-  font-size: 15px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
-  padding: 5px;
-  margin-top: 1px;
-  width: 100%;
-  background-color: #f0ff5c;
-  display: flex;
+  width: 32.9%;
+  display: inline-block;
+  cursor: pointer;
 }
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView .entryContainer .textBlock {
-  flex-basis: 99%;
-  padding: 3px 0 0 2px;
-  word-break: break-all;
+.mainWindow .profilePage .fridgeView .fridgeList .fridgeItem:hover {
+  background-color: #5a9034;
 }
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView .entryContainer button {
-  margin: auto;
-  flex-basis: 1%;
-  opacity: 0.5;
-  min-width: 25px;
-  height: 25px;
-  font-size: 11px;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView .entryContainer button:hover,
-.mainWindow .profilePage .fridgeView .backgroundContainer .fridgeListView .entryContainer button:active {
-  opacity: 0.8;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .wordAdder {
-  flex-basis: 10%;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .wordAdder input {
-  margin-right: 5px;
-  flex-basis: 95%;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .wordAdder button {
-  font-size: 14px;
-  flex-basis: 5%;
-  color: ghostwhite;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
-  min-width: 115px;
-  max-width: 115px;
-}
-.mainWindow .profilePage .fridgeView .backgroundContainer .wordAdder button:hover {
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.23279318), 0px 8px 24px rgba(0, 0, 0, 0.23);
+.mainWindow .profilePage .fridgeView .fridgeList .fridgeItem .fridgeDescription {
+  cursor: pointer;
 }
 .mainWindow .profilePage .recommendationView {
   flex-basis: 45%;
@@ -686,7 +612,7 @@ input[type="text"]:focus {
   margin: 5px;
   color: black;
   font-family: 'Playball';
-  font-size: 2.5em;
+  font-size: 3.5vh;
   background-color: #558B2F;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
@@ -765,21 +691,23 @@ input[type="text"]:focus {
 }
 .mainWindow .recipeView .accountBar .userNameHeader,
 .mainWindow .profilePage .accountBar .userNameHeader {
-  flex-basis: 90%;
-  padding: 5px;
+  flex-basis: 85%;
+  padding: 3px 5px 5px 5px;
+  font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton,
 .mainWindow .profilePage .accountBar .goToProfileButton {
-  flex-basis: 10%;
+  flex-basis: 15%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+  font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper {
+  letter-spacing: 2px;
+  font-family: 'Playball';
+  padding-top: 1px;
   text-align: center;
   cursor: pointer;
-  font-size: 22px;
-  font-weight: bold;
-  padding: 10%;
   background-color: #053b00;
   color: ghostwhite;
   height: 100%;
@@ -957,7 +885,7 @@ input[type="text"]:focus {
   text-align: center;
   padding: 5px;
   font-family: 'Playball';
-  font-size: 2em;
+  font-size: 3.5vh;
   letter-spacing: 2px;
   margin: 5px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);

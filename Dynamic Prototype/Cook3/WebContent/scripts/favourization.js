@@ -17,7 +17,7 @@ updateFavourites = (cookieValue) => {
 	);
 }
 
-modifiyFavourites = (favouritesData, cookieValue, itemIsExistant) => {
+modifiyFavourites = (favouritesData, cookieValue) => {
 	let selectedRecipe = $(".h1Wrapper h1").text();
 	if(!selectedRecipe){ return; }
 	$.get("rest/favourization/recipeId/" + selectedRecipe,

@@ -22,93 +22,355 @@
             <div class="searchWidget">
                 <input type="text" placeholder="Rezept suchen..." class="searchListTextBox" />
                 <button name="clearSearchField">Clear</button>
-            </div>
-            <div class="recipeList">
+              </div>
+              <div class="recipeList">
                 <ul class="listWrapper">                                   
                 </ul>
+              </div>
             </div>
-        </div>
-
-        <div class="profilePage">
-            <div class="accountBar">
+            
+            <div class="profilePage">
+              <div class="accountBar">
                 <h1 class="userNameHeader"></h1>
                 <div class="goToProfileButton">
-                    <div class="symbolWrapper" onclick="window.location.assign('index.html')">
-                        Rezepte
-                    </div>
+                  <div class="symbolWrapper" onclick="window.location.assign('index.html')">
+                    Rezepte
+                  </div>
                 </div>
+                
+              </div>
+              <div class="fridgeView">
+                <h4>Vorhandene Zutaten?</h4>
+                <div class="fridgeList">
 
-            </div>
-            <div class="fridgeView">
-
-                <div class="backgroundContainer">
-                    <span class="heading">Resteverwertung</span>
-                       <div class="fridgeSearchWidget">
-                         <input type="text" placeholder="Suche" id="fridgeSearch" />
-                         <button name="searchWidgetButton" class="searchButton">Clear</button>
-                       </div>
-                       <div class="fridgeListView">
-                       <div class="entryContainer">
-                         <span class="textBlock">Apfel</span>
-                         <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                       </div>
-                       <div class="entryContainer">
-                        <span class="textBlock">Birne</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Nudeln</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Kartoffeln</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Bohnen</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Bananen</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Kohl</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Hähnchen</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Brot</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Joghurt</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Schokolade</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-                      <div class="entryContainer">
-                        <span class="textBlock">Mehl</span>
-                        <button name="deleteListItem"><span class="deleteSymbol">X</span></button>
-                      </div>
-
-                       </div>
-                       <div class="wordAdder">
-                         <input type="text" id="fsinput" placeholder="Lebensmittelname eingeben..." />
-                         <button id="fsButton" name="wordAdderButton">Hinzufügen</button>
-                       </div>
-                     </div>
-
-            </div>
-
-            <div class="recommendationView">
-                <h4>Ihre Empfehlungen anhand der vorhandenen Lebensmittel:</h4>
-                <div class="recEntryWrapper">
+                  <div class="fridgeItem">
+                  <input type="checkbox" class="fridgeCheckbox" />
+                  <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Aprikosenkonfitüre</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                  
+                  <div class="fridgeItem">
+                    <input type="checkbox" class="fridgeCheckbox" />
+                    <span class="fridgeDescription">Mehl</span>
+                  </div>
+                </div>
+              </div>
+                
+                <div class="recommendationView">
+                  <h4>Ihre Empfehlungen anhand der vorhandenen Lebensmittel:</h4>
+                  <div class="recEntryWrapper">
                     <div class="recEntry">Eier</div>
                     <div class="recEntry">Kartoffeln</div>
                     <div class="recEntry">Milch</div>

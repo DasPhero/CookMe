@@ -27,6 +27,7 @@ tickSelectedCheckBoxes = (shoppingListRecipes) => {
 
 async function createInitialShoppingList(shoppingListRecipes){
     $(".toBuyList ul").html("<li>Einkaufsliste wird erstellt...</li>");
+    localStorage.setItem("shoppingList", "[]");
 
     let ingredientsList = [];
     for (const recipeId of shoppingListRecipes) {
@@ -75,6 +76,7 @@ createHtmlList = (ingredientList) => {
         listCode += `<li>${amount} ${unit} ${name}</li>`;
     });
     $(".toBuyList ul").html(listCode);
+    return listCode;
 }
 
 getIndexOfObject = (arrayOfObjects, objectToFind) => {

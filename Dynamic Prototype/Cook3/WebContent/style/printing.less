@@ -1,0 +1,29 @@
+@import "./colors.less";
+@import "./elevations.less";
+@import "./buttons.less";
+@import "./textInput.less";
+
+body .printWindow{
+    overflow: auto;
+    margin: 0 10%;
+    font-size: 30px;
+    & .headerContainer{
+        & h1{
+            padding: 10px 0 20px 0;
+            text-decoration:underline; 
+            text-align: center;
+            font-family: 'Playball';
+            font-weight: bold;
+            font-size: 40px;
+            letter-spacing: 4px;
+        }
+    }
+
+    & .groceryListWrapper{
+        & ul{
+            & li{
+                text-align: center;
+            }
+        }
+    }
+}

@@ -87,6 +87,11 @@
                 font-family: 'Playball';
                 text-align: center;
             }
+
+            & ul {
+                -webkit-padding-start: 10px;
+            }
+
             
             .listWrapper ul > li{
                 padding-top: 1px;
@@ -135,13 +140,13 @@
             margin: 5px;
 
             & .userNameHeader{
-                flex-basis: 85%;
+                flex-basis: 80%;
                 padding: 3px 5px 5px 5px;  
                 font-size: 3.5vh; 
             }
 
-            & .goToProfileButton{
-                flex-basis: 15%;
+            & .goToProfileButton, & .logoutButton{
+                flex-basis: 20%;
                 box-shadow: @elevation2;
                 font-size: 3.5vh;
                 & .symbolWrapper{

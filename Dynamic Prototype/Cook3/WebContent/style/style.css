@@ -56,7 +56,7 @@
 .mainWindow .navBar .recipeList {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
   margin: 5px;
-  margin-left: -60px;
+  margin-left: 5px;
   padding-top: 10px;
   background-color: #5f9539;
   flex-basis: 90%;
@@ -186,6 +186,7 @@
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
+  visibility: hidden;
   flex-basis: 20%;
   height: 50px;
 }
@@ -222,13 +223,6 @@
   display: flex;
   flex-direction: column;
 }
-.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition img,
-.mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition img {
-  float: left;
-  width: 50%;
-  margin: 5px;
-  height: 50%;
-}
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition h2,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition h2 {
   padding-bottom: 5px;
@@ -236,6 +230,7 @@
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts {
+  padding-bottom: 5px;
   padding-left: 5px;
   display: flex;
   flex-wrap: wrap;
@@ -633,7 +628,7 @@ body .printWindow .groceryListWrapper ul li {
 .mainWindow .navBar .recipeList {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
   margin: 5px;
-  margin-left: -60px;
+  margin-left: 5px;
   padding-top: 10px;
   background-color: #5f9539;
   flex-basis: 90%;
@@ -763,6 +758,7 @@ body .printWindow .groceryListWrapper ul li {
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
+  visibility: hidden;
   flex-basis: 20%;
   height: 50px;
 }
@@ -799,13 +795,6 @@ body .printWindow .groceryListWrapper ul li {
   display: flex;
   flex-direction: column;
 }
-.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition img,
-.mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition img {
-  float: left;
-  width: 50%;
-  margin: 5px;
-  height: 50%;
-}
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition h2,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition h2 {
   padding-bottom: 5px;
@@ -813,6 +802,7 @@ body .printWindow .groceryListWrapper ul li {
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts {
+  padding-bottom: 5px;
   padding-left: 5px;
   display: flex;
   flex-wrap: wrap;

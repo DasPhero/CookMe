@@ -1,6 +1,7 @@
 tickAlreadySelectedItems = () => {
+    localStorage.setItem("shoppingList", "[]");
+    
     let cookie = getAndValidateCookie();
-
 	if(cookie){
         getSelectedItems(cookie);
 	}
@@ -27,7 +28,6 @@ tickSelectedCheckBoxes = (shoppingListRecipes) => {
 
 async function createInitialShoppingList(shoppingListRecipes){
     $(".toBuyList ul").html("<li>Einkaufsliste wird erstellt...</li>");
-    localStorage.setItem("shoppingList", "[]");
 
     let ingredientsList = [];
     for (const recipeId of shoppingListRecipes) {

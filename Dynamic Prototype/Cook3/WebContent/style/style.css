@@ -521,9 +521,10 @@ input[type="text"]:focus {
   user-select: none;
 }
 .mainWindow .profilePage .fridgeView .fridgeList .fridgeItem {
+  margin-right: 3px;
   padding: 2px 5px;
   background-color: #5f9539;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
   width: 32.9%;
   display: inline-block;
   cursor: pointer;

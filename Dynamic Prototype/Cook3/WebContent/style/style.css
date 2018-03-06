@@ -56,7 +56,7 @@
 .mainWindow .navBar .recipeList {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
   margin: 5px;
-  margin-left: -60px;
+  margin-left: 5px;
   padding-top: 10px;
   background-color: #5f9539;
   flex-basis: 90%;
@@ -70,6 +70,9 @@
   margin-top: 4px;
   font-family: 'Playball';
   text-align: center;
+}
+.mainWindow .navBar .recipeList ul {
+  -webkit-padding-start: 10px;
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li {
   padding-top: 1px;
@@ -116,18 +119,22 @@
 }
 .mainWindow .recipeView .accountBar .userNameHeader,
 .mainWindow .profilePage .accountBar .userNameHeader {
-  flex-basis: 85%;
+  flex-basis: 80%;
   padding: 3px 5px 5px 5px;
   font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton,
-.mainWindow .profilePage .accountBar .goToProfileButton {
-  flex-basis: 15%;
+.mainWindow .profilePage .accountBar .goToProfileButton,
+.mainWindow .recipeView .accountBar .logoutButton,
+.mainWindow .profilePage .accountBar .logoutButton {
+  flex-basis: 20%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
   font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper,
-.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper {
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapper,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper {
   letter-spacing: 2px;
   font-family: 'Playball';
   padding-top: 1px;
@@ -139,7 +146,9 @@
   width: 100%;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
-.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover {
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapper:hover,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper:hover {
   background-color: #194f00;
 }
 .mainWindow .recipeView .accountBar .goToStartButton,
@@ -186,6 +195,7 @@
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
+  visibility: hidden;
   flex-basis: 20%;
   height: 50px;
 }
@@ -222,13 +232,6 @@
   display: flex;
   flex-direction: column;
 }
-.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition img,
-.mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition img {
-  float: left;
-  width: 50%;
-  margin: 5px;
-  height: 50%;
-}
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition h2,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition h2 {
   padding-bottom: 5px;
@@ -236,6 +239,7 @@
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts {
+  padding-bottom: 5px;
   padding-left: 5px;
   display: flex;
   flex-wrap: wrap;
@@ -521,9 +525,10 @@ input[type="text"]:focus {
   user-select: none;
 }
 .mainWindow .profilePage .fridgeView .fridgeList .fridgeItem {
+  margin-right: 3px;
   padding: 2px 5px;
   background-color: #5f9539;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
   width: 32.9%;
   display: inline-block;
   cursor: pointer;
@@ -632,7 +637,7 @@ body .printWindow .groceryListWrapper ul li {
 .mainWindow .navBar .recipeList {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
   margin: 5px;
-  margin-left: -60px;
+  margin-left: 5px;
   padding-top: 10px;
   background-color: #5f9539;
   flex-basis: 90%;
@@ -646,6 +651,9 @@ body .printWindow .groceryListWrapper ul li {
   margin-top: 4px;
   font-family: 'Playball';
   text-align: center;
+}
+.mainWindow .navBar .recipeList ul {
+  -webkit-padding-start: 10px;
 }
 .mainWindow .navBar .recipeList .listWrapper ul > li {
   padding-top: 1px;
@@ -692,18 +700,22 @@ body .printWindow .groceryListWrapper ul li {
 }
 .mainWindow .recipeView .accountBar .userNameHeader,
 .mainWindow .profilePage .accountBar .userNameHeader {
-  flex-basis: 85%;
+  flex-basis: 80%;
   padding: 3px 5px 5px 5px;
   font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton,
-.mainWindow .profilePage .accountBar .goToProfileButton {
-  flex-basis: 15%;
+.mainWindow .profilePage .accountBar .goToProfileButton,
+.mainWindow .recipeView .accountBar .logoutButton,
+.mainWindow .profilePage .accountBar .logoutButton {
+  flex-basis: 20%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
   font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper,
-.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper {
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapper,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper {
   letter-spacing: 2px;
   font-family: 'Playball';
   padding-top: 1px;
@@ -715,7 +727,9 @@ body .printWindow .groceryListWrapper ul li {
   width: 100%;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
-.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover {
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapper:hover,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper:hover {
   background-color: #194f00;
 }
 .mainWindow .recipeView .accountBar .goToStartButton,
@@ -762,6 +776,7 @@ body .printWindow .groceryListWrapper ul li {
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
+  visibility: hidden;
   flex-basis: 20%;
   height: 50px;
 }
@@ -798,13 +813,6 @@ body .printWindow .groceryListWrapper ul li {
   display: flex;
   flex-direction: column;
 }
-.mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition img,
-.mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition img {
-  float: left;
-  width: 50%;
-  margin: 5px;
-  height: 50%;
-}
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition h2,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition h2 {
   padding-bottom: 5px;
@@ -812,6 +820,7 @@ body .printWindow .groceryListWrapper ul li {
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText .nutrition .nutritionalFacts {
+  padding-bottom: 5px;
   padding-left: 5px;
   display: flex;
   flex-wrap: wrap;

@@ -107,9 +107,9 @@ function getRecipe(titleM2,object){
 			$(".recipeSteps h2").next("ul").html(stepSource);
 			$(".ingredientList").html(ingredientsSource);
 			$(".nutritionalFacts").html(foodFactSource);
-
-			$(".recipeImage").attr("src","http://192.168.3.3/pictures/"+id+".jpg");
 			
+			$("[name='addToFavourites']").css("visibility", "visible");
+
 			let recipeId = JSON.parse(recipe[0].id);
 			checkIfItemAlreadyIsFavourized(recipeId);
 		}

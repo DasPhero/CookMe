@@ -3,8 +3,10 @@ package services;
 import static services.Constant.TYPE_INGREDIENT;
 import static services.Constant.GET_ALL_INGREDIENTS;
 
-
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -44,4 +46,16 @@ public class RESTIngredients extends DatabaseAdapter {
 		json+="]";
 		return json;
 	}
+	
+	@PUT
+	// @Path("/{customerMail}/{customerPassword}")
+	@Consumes("application/x-www-form-urlencoded")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getRecipes(@FormParam("select") String select) {
+		System.out.println(select);
+		
+		
+		return "Success";
+	}
+
 }

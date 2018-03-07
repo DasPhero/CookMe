@@ -19,8 +19,7 @@ $(document).ready(function() {
 		  let checkboxIsChecked = $(this).find("input").attr('checked');
 		  let color = checkboxIsChecked? "#3C7216" : "#5f9539";
 		  $(this).css('background-color',color);
-		  return false;
-		  
+		  return false;		  
 		}
 	});
 });	

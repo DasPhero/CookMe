@@ -10,7 +10,8 @@ ConnectToWebSocket = () => {
 	
 	if(pageIsIndexPage){
 		let socket = new WebSocketClient();
-		socket.connect();
+        socket.connect();
+        setTimeout(() => socket.send("boi"), 500); 
 	}
 		
 }

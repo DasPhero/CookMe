@@ -1,6 +1,8 @@
 package services;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -12,9 +14,12 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/endpoint")
 public class WebSocketEndpoint {
     
+	private static Map<String, Session> sMap = new HashMap<String, Session>();
+	
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println("onOpen::" + session.getId());        
+        System.out.println("onOpen::" + session.getId()); 
+        sMap.put(session.getId(), session);
     }
     @OnClose
     public void onClose(Session session) {
@@ -26,7 +31,16 @@ public class WebSocketEndpoint {
         System.out.println("onMessage::From=" + session.getId() + " Message=" + message);
         
         try {
-            session.getBasicRemote().sendText("Hello Client " + session.getId() + "!");
+            for (String key : sMap.keySet()) {
+                
+                Session s = sMap.get(key); 
+                
+                if (s.isOpen()) {
+                    s.getBasicRemote().sendText(message);
+                } else {
+                    sMap.remove(key);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

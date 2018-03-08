@@ -23,6 +23,7 @@ public class WebSocketEndpoint {
     }
     @OnClose
     public void onClose(Session session) {
+    	sMap.remove(session.getId());
         System.out.println("onClose::" +  session.getId());
     }
     
@@ -32,14 +33,8 @@ public class WebSocketEndpoint {
         
         try {
             for (String key : sMap.keySet()) {
-                
                 Session s = sMap.get(key); 
-                
-                if (s.isOpen()) {
-                    s.getBasicRemote().sendText(message);
-                } else {
-                    sMap.remove(key);
-                }
+                s.getBasicRemote().sendText(message);
             }
         } catch (IOException e) {
             e.printStackTrace();

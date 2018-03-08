@@ -5,6 +5,7 @@
   font-family: Roboto, Arial, Helvetica, sans-serif;
   float: none;
   overflow: hidden;
+  user-select: none;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -620,6 +621,7 @@ body .printWindow .groceryListWrapper ul li {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   float: none;
   overflow: hidden;
+  user-select: none;
 }
 ::-webkit-scrollbar {
   width: 5px;

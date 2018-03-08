@@ -83,6 +83,7 @@ styleOnLogin = () => {
 }
 
 function getRecipe(titleM2,object){
+	$(".commentInput").unbind("keyup");
 	var id = object.substr(6);	
 	console.log(id);
 	localStorage.setItem("currentRecipeId", id);
@@ -139,6 +140,12 @@ function getRecipe(titleM2,object){
 			let recipeId = JSON.parse(recipe[0].id);
 			checkIfItemAlreadyIsFavourized(recipeId);
 			loadExistingComments();
+			$(".commentInput").keyup(function(event) {
+				console.log("keyupenter");
+				event.preventDefault();
+				if (event.keyCode === 13) { $("[name='sendCommentButton']").click() }
+				}
+			);
 		}
 	});
 }

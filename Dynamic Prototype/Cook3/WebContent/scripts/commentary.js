@@ -1,7 +1,19 @@
 loadExistingComments = () => {
-
+	$(".comments").html("");
 }
 
+createComment = (username, commentText) => {
+    let commentCode = $(".comments").html();
+    let newComment = 
+     `<div class='comment'>\
+        <h4>${username}</h4>\
+        <p>${commentText}</p>\
+    </div>`;
+
+    commentCode = newComment + commentCode;
+    $(".comments").html(commentCode);
+    $(".commentInput")[0].value = "";
+}
 
 ConnectToWebSocket = (callback) => {
     let domain = window.location.href;
@@ -18,15 +30,36 @@ ConnectToWebSocket = (callback) => {
 }
 
 processIncomingBroadcast = (data) => {
-	console.log(data);
+    console.log("boi");
+    let currentRecipeId = window.localStorage.getItem("currentRecipeId");
+    data = JSON.parse(data);
+
+    console.log("blob", data.id, currentRecipeId, data.id == currentRecipeId);
+    if(data.id == currentRecipeId){
+        console.log("blub");
+        let commentCode = $(".comments").html();
+        let newComment = 
+         `<div class='comment'>\
+            <h4>${data.user}</h4>\
+            <p>${data.comment}</p>\
+        </div>`;
+    
+        commentCode = newComment + commentCode;
+        $(".comments").html(commentCode);
+        $(".commentInput")[0].value = "";
+    }
 }
 
 let webSocketConnection = ConnectToWebSocket(processIncomingBroadcast);
 
 sendComment = () => {
+	if($(".commentInput")[0].value == ""){
+		return;
+    }
+    
     let commentInformation = constructBroadcastPayload();
     let stringifiedInformation = JSON.stringify(commentInformation);
-    
+
     //saveCommentToDatabase(commentInformation);
     broadcastComment(stringifiedInformation);
 }
@@ -38,17 +71,36 @@ broadcastComment = (stringifiedInformation) =>{
 constructBroadcastPayload = () => {
     let username = $(".userNameHeader")[0].textContent;
     let message = $(".commentInput")[0].value;
+    let escapedComment = escapeHtml(message);
+
     let currentRecipeId = window.localStorage.getItem("currentRecipeId");
     let currentTime = new Date().getTime();
-    
+
     let payload = {
         "id": currentRecipeId,
         "user": username,
-        "comment": message,
+        "comment": escapedComment,
         "time": currentTime
     };
     return payload;
 }
+
+let entityMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;',
+    '`': '&#x60;',
+    '=': '&#x3D;'
+  };
+  
+  function escapeHtml (string) {
+    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+      return entityMap[s];
+    });
+  }
 
 saveCommentToDatabase = (data) => {
     $.post("rest/commentary", data);

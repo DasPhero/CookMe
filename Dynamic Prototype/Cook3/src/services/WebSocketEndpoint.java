@@ -30,7 +30,7 @@ public class WebSocketEndpoint {
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println("onMessage::From=" + session.getId() + " Message=" + message);
-        
+
         try {
             for (String key : sMap.keySet()) {
                 Session s = sMap.get(key); 

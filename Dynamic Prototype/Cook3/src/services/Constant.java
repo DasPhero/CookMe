@@ -13,4 +13,5 @@ public class Constant {
 	public static int TYPE_SELECTION = 6;
 	public static int TYPE_INGREDIENT = 7;
 	public static int TYPE_ITEM = 8;
+	public static int TYPE_COMMENT = 9;
 }

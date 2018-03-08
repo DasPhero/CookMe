@@ -2,7 +2,7 @@ class WebSocketClient {
     
     constructor(callback) {
         this.webSocket = null;
-        this.externFunction = callback;
+        this.externalFunction = callback;
     }
     
     getServerUrl() {
@@ -21,7 +21,7 @@ class WebSocketClient {
                 console.log('onopen::' + JSON.stringify(event, null, 4));
             }
             
-            this.webSocket.onmessage = (event) => this.externFunction(event.data);
+            this.webSocket.onmessage = (event) => { console.log("booooi"); this.externalFunction(event.data); };
 
             this.webSocket.onclose = function(event) {
                 console.log('onclose::' + JSON.stringify(event, null, 4));                

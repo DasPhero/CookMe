@@ -76,19 +76,71 @@ public class DatabaseAdapter {
 	
 	private Boolean checkSQL(String select, String where) {
 		if (select.contains(";") || where.contains(";")) {
-			System.out.println("Achtung Angriff");
+			System.out.println("Achtung Angriff14");
 			return false;
 		}
 		if (select.toLowerCase().contains("drop") || where.toLowerCase().contains("drop")) {
-			System.out.println("Achtung Angriff");
+			System.out.println("Achtung Angriff13");
 			return false;
 		}
 		if (select.toLowerCase().contains("delete") || where.toLowerCase().contains("delete")) {
-			System.out.println("Achtung Angriff");
+			System.out.println("Achtung Angriff12");
+			return false;
+		}
+		if (select.toLowerCase().contains("remove") || where.toLowerCase().contains("remove")) {
+			System.out.println("Achtung Angriff12");
 			return false;
 		}
 		if (select.toLowerCase().contains("insert") || where.toLowerCase().contains("insert")) {
-			System.out.println("Achtung Angriff");
+			System.out.println("Achtung Angriff11");
+			return false;
+		}
+		if (select.toLowerCase().contains("union") || where.toLowerCase().contains("union")) {
+			System.out.println("Achtung Angriff10");
+			return false;
+		}
+		if (select.toLowerCase().contains("//") || where.toLowerCase().contains("//")) {
+			System.out.println("Achtung Angriff9");
+			return false;
+		}
+		if (select.toLowerCase().contains("--") || where.toLowerCase().contains("--")) {
+			System.out.println("Achtung Angriff8");
+			return false;
+		}
+		if (select.toLowerCase().contains("version") || where.toLowerCase().contains("version")) {
+			System.out.println("Achtung Angriff7");
+			return false;
+		}
+		if (select.toLowerCase().contains("database") || where.toLowerCase().contains("database")) {
+			System.out.println("Achtung Angriff6");
+			return false;
+		}
+		if (select.toLowerCase().contains("user()") || where.toLowerCase().contains("user()")) {
+			System.out.println("Achtung Angriff user");
+			return false;
+		}
+		if (select.toLowerCase().contains("1=1") || where.toLowerCase().contains("1=1")) {
+			System.out.println("Achtung Angriff and");
+			return false;
+		}
+		if (select.toLowerCase().contains("file") || where.toLowerCase().contains("file")) {
+			System.out.println("Achtung Angriff5");
+			return false;
+		}
+		if (select.toLowerCase().contains("benchmark") || where.toLowerCase().contains("benchmark")) {
+			System.out.println("Achtung Angriff4");
+			return false;
+		}
+		if (select.toLowerCase().contains("concat") || where.toLowerCase().contains("concat")) {
+			System.out.println("Achtung Angriff3");
+			return false;
+		}
+		if (select.toLowerCase().contains("schema") || where.toLowerCase().contains("schema")) {
+			System.out.println("Achtung Angriff2");
+			return false;
+		}
+		if (select.toLowerCase().contains("hex()") || where.toLowerCase().contains("hex()")) {
+			System.out.println("Achtung Angriff 1 ");
 			return false;
 		}
 		return true;

@@ -190,7 +190,7 @@
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader .h1Wrapper {
-  flex-basis: 80%;
+  flex-basis: 100%;
   text-align: center;
   font-size: 26px;
   letter-spacing: 6px;
@@ -198,13 +198,18 @@
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper h1,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
   font-family: 'Playball';
+  font-size: 4em;
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
   display: none;
   visibility: hidden;
-  flex-basis: 20%;
+  flex-basis: 0%;
   height: 50px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails,
+.mainWindow .profilePage .recipeExplanation .recipeDetails {
+  display: none;
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText {
@@ -800,7 +805,7 @@ body .printWindow .groceryListWrapper ul li {
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader .h1Wrapper {
-  flex-basis: 80%;
+  flex-basis: 100%;
   text-align: center;
   font-size: 26px;
   letter-spacing: 6px;
@@ -808,13 +813,18 @@ body .printWindow .groceryListWrapper ul li {
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader .h1Wrapper h1,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader .h1Wrapper h1 {
   font-family: 'Playball';
+  font-size: 4em;
 }
 .mainWindow .recipeView .recipeExplanation .recipeNameHeader button,
 .mainWindow .profilePage .recipeExplanation .recipeNameHeader button {
   display: none;
   visibility: hidden;
-  flex-basis: 20%;
+  flex-basis: 0%;
   height: 50px;
+}
+.mainWindow .recipeView .recipeExplanation .recipeDetails,
+.mainWindow .profilePage .recipeExplanation .recipeDetails {
+  display: none;
 }
 .mainWindow .recipeView .recipeExplanation .recipeDetails .recipeText,
 .mainWindow .profilePage .recipeExplanation .recipeDetails .recipeText {

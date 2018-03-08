@@ -53,10 +53,7 @@ function setCookie(){ //set cookie and get ingredients item list
 			$.get("rest/login/username/"+cookie, function(userName, status) {
 				userName = userName.replace(/\b\w/g, l => l.toUpperCase());
 				$(".userNameHeader").html(userName);
-				$("[name='sendCommentButton']").prop("disabled", false);
-				$("[name='addToFavourites']").css("visibility", "visible").prop("disabled", false);
-				$(".commentInput").attr("placeholder", "Kommentar verfassen...");
-				$(".symbolWrapperIndex").text("Profil");
+				styleOnLogin();
 				if (pathName.includes("profile")){
 					getIngredientsList();
 				}else{
@@ -79,14 +76,21 @@ function setCookie(){ //set cookie and get ingredients item list
 	}
 }
 
+styleOnLogin = () => {
+	$("[name='sendCommentButton']").prop("disabled", false);
+	$("[name='addToFavourites']").css("visibility", "visible").prop("disabled", false);
+	$(".commentInput").attr("placeholder", "Kommentar verfassen...");
+	$(".symbolWrapperIndex").text("Profil");
+}
+
 function getRecipe(titleM2,object){
 	var id = object.substr(6);	
 	localStorage.setItem("currentRecipeId", id);
-
+	
 	$(".h1Wrapper h1").html(titleM2);
 	$(".recipeSteps h2").next("ul").html("Rezept wird geladen");
 	$(".recipeSteps h2").next("ul").html("<div>Zutatenliste wird geladen</div>");
-	$(".commentSection").css("visibility", "visible");
+	styleOnSelectingRecipe();
 
 	$.get("rest/recipe/" + id,// -1 = get all recipes
 	function(responseData) {
@@ -131,7 +135,6 @@ function getRecipe(titleM2,object){
 			$(".ingredientList").html(ingredientsSource);
 			$(".nutritionalFacts").html(foodFactSource);
 			
-			$("[name='addToFavourites']").css("display", "initial");
 
 			let recipeId = JSON.parse(recipe[0].id);
 			checkIfItemAlreadyIsFavourized(recipeId);
@@ -140,4 +143,12 @@ function getRecipe(titleM2,object){
 	});
 }
 
-
+styleOnSelectingRecipe = () => {
+	$(".h1Wrapper").css("flex-basis", "80%");
+	$(".h1Wrapper h1").css("font-size", "2em");
+	$(".recipeNameHeader button").css("flex-basis", "20%");
+	$(".subheader").css("display", "none");
+	$(".recipeDetails").css("display", "initial");
+	$(".commentSection").css("visibility", "visible");
+	$("[name='addToFavourites']").css("display", "initial");
+}

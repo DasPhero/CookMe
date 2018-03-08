@@ -27,7 +27,7 @@ function getTitles() {
 					recipes.forEach(function(recipe) {
 						if ($(category).attr('id') == "r"+ recipe["category"]) {
 							recipeListSource +=
-							"<li><input type=\"checkbox\" onchange=\"updateSelectedItems(this)\" class=\"checkbox "
+							"<li><input type=\"checkbox\" onchange=\"updateSelectedItems(this)\" class=\"checkbox"
 							+ recipe["id"]
 							+ "\"/> <span class=\"listEntry\" id=\"recipe"
 							+ recipe["id"]
@@ -85,6 +85,7 @@ styleOnLogin = () => {
 
 function getRecipe(titleM2,object){
 	var id = object.substr(6);	
+	console.log(id);
 	localStorage.setItem("currentRecipeId", id);
 	
 	$(".h1Wrapper h1").html(titleM2);

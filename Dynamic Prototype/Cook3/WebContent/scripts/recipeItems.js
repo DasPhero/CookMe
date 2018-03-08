@@ -52,7 +52,7 @@ function setRecipeListItem(response){
 	obj = JSON.parse(response);
 	let recipeSource = "";
 	obj.forEach(function(recipe) {
-		recipeSource+="<div class=\"recEntry\" id=\"searchRecipe"+ recipe["id"]+"\">"+recipe["title"] +":  "+ recipe["count"]+ " Zutaten enthalten </div>";
+		recipeSource+="<div class=\"recEntry\" id=\"searchRecipe"+ recipe["id"]+"\" onclick=\"window.location.assign('index.html?id="+ recipe["id"] + "');\">"+recipe["title"] +":  "+ recipe["count"]+ " Zutaten enthalten </div>";
 	});
 	$(".recEntryWrapper").html(recipeSource);
 }

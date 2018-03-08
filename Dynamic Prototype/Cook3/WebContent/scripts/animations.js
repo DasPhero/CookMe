@@ -11,8 +11,20 @@ $(document).ready(function() {
 
 	$.fn.toggleCheckbox = function() {
 		this.attr('checked', !this.attr('checked'));
-	  }
-	  
+		}
+
+	function checkURLRecipeID (){
+		let url1 = new URL(window.location.href);
+		let urlID = "123456" + url1.searchParams.get("id");
+		if (urlID == "123456null"){
+			return;
+		}
+		let recipeName= $("#recipe"+url1.searchParams.get("id")).text();
+		getRecipe(recipeName,urlID);
+	}
+
+	checkURLRecipeID();
+
 	$(".fridgeItem").click(function (e) {    
 	  if (e.target.tagName != 'INPUT') {
 		  $(this).find("input").toggleCheckbox();

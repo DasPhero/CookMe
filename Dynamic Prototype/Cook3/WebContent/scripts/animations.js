@@ -18,8 +18,9 @@ $(document).ready(function() {
 		  $(this).find("input").toggleCheckbox();
 		  let checkboxIsChecked = $(this).find("input").attr('checked');
 		  let color = checkboxIsChecked? "#3C7216" : "#5f9539";
-		  $(this).css('background-color',color);
-		  return false;		  
+			$(this).css('background-color',color);
+			listsRecipesForSelectedIngredients();
+		  return false; 
 		}
 	});
 });	

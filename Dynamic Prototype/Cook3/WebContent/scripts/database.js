@@ -54,6 +54,7 @@ function setCookie(){ //set cookie and get ingredients item list
 				userName = userName.replace(/\b\w/g, l => l.toUpperCase());
 				$(".userNameHeader").html(userName);
 				$("[name='sendCommentButton']").prop("disabled", false);
+				$("[name='addToFavourites']").css("visibility", "visible").prop("disabled", false);
 				$(".commentInput").attr("placeholder", "Kommentar verfassen...");
 				$(".symbolWrapperIndex").text("Profil");
 				if (pathName.includes("profile")){
@@ -85,6 +86,7 @@ function getRecipe(titleM2,object){
 	$(".h1Wrapper h1").html(titleM2);
 	$(".recipeSteps h2").next("ul").html("Rezept wird geladen");
 	$(".recipeSteps h2").next("ul").html("<div>Zutatenliste wird geladen</div>");
+	$(".commentSection").css("visibility", "visible");
 
 	$.get("rest/recipe/" + id,// -1 = get all recipes
 	function(responseData) {
@@ -129,7 +131,7 @@ function getRecipe(titleM2,object){
 			$(".ingredientList").html(ingredientsSource);
 			$(".nutritionalFacts").html(foodFactSource);
 			
-			$("[name='addToFavourites']").css("visibility", "visible");
+			$("[name='addToFavourites']").css("display", "initial");
 
 			let recipeId = JSON.parse(recipe[0].id);
 			checkIfItemAlreadyIsFavourized(recipeId);

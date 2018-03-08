@@ -27,7 +27,7 @@ function getTitles() {
 					recipes.forEach(function(recipe) {
 						if ($(category).attr('id') == "r"+ recipe["category"]) {
 							recipeListSource +=
-							"<li><input type=\"checkbox\" onchange=\"updateSelectedItems(this)\" class=\"checkbox"
+							"<li><input type=\"checkbox\" onchange=\"updateSelectedItems(this)\" class=\"checkbox "
 							+ recipe["id"]
 							+ "\"/> <span class=\"listEntry\" id=\"recipe"
 							+ recipe["id"]
@@ -38,9 +38,8 @@ function getTitles() {
 					});
 					$(category).next(" ul").html(recipeListSource);
 				});
-				ConnectToWebSocket();
 				tickAlreadySelectedItems();
-				setCookie();				//set cookie and get ingredients item list
+				setCookie();			//set cookie and get ingredients item list
 			});
 }
 

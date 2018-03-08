@@ -1,6 +1,7 @@
 package services;
 
 import static services.Constant.TYPE_INGREDIENT;
+import static services.Constant.TYPE_ITEM;
 import static services.Constant.GET_ALL_INGREDIENTS;
 
 import javax.ws.rs.Consumes;
@@ -51,11 +52,26 @@ public class RESTIngredients extends DatabaseAdapter {
 	// @Path("/{customerMail}/{customerPassword}")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getRecipes(@FormParam("select") String select) {
-		System.out.println(select);
+	public String getRecipes(@FormParam("where") String where) {
+		System.out.println(where);
+		String whereSQL = where + " GROUP by fk_recipe order by count desc";
+		DatabaseResponse response = select(TYPE_ITEM, " recipeitems JOIN recipe rec on rec.id = fk_recipe", "rec.title as title,fk_recipe as id, COUNT(*) as count", whereSQL);
 		
+		if (null == response) {
+			return "";
+		}
+		String json="[";
+		for (int i = 0; i < response.getItemCount().size(); i++) {
+			json+="{\"title\":\"" + response.getTitle().get(i);
+			json+="\",\"count\":" + response.getItemCount().get(i);
+			json+=",\"id\":" + response.getId().get(i);
+			json+="}";
+			if (i+1 < response.getItemCount().size()) {
+				json+=",";
+			}
+		}
+		json+="]";
 		
-		return "Success";
+		return json;
 	}
-
 }

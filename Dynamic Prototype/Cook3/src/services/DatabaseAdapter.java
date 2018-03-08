@@ -173,8 +173,11 @@ public class DatabaseAdapter {
 				}
 				  else if (type == TYPE_SELECTION) {
 					response.setSelection(rs.getString("selectedrecipes"));
+				  }
+				  else if (type == TYPE_ITEM) {
+					response.addTitle(rs.getString("title"));
+					response.addItemCount(rs.getInt("count"));
 				} else if (type == TYPE_INGREDIENT) {
-					
 					response.addIngredientsItem(rs.getString("name"));
 					response.addIngredientsValue(rs.getInt("id"));
 				}

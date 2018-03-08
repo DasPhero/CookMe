@@ -19,32 +19,42 @@ $.get("rest/ingredientList/"+GET_ALL_INGREDIENTS, function(data, status) { //get
 $(document).ready(function() {
 
 listsRecipesForSelectedIngredients = () => {
-	console.log("clicked");
-	let selectSQL = "";
+	let whereSQL = "";
 	$(".fridgeItem").each( function( index ) {
 		if ($(this).find(".fridgeCheckbox").is(':checked')){
 			let id=$(this).find(".fridgeCheckbox").attr("id");
-			selectSQL += "recipeitems.fk_item = " + id.slice(4) +" ||";
+			whereSQL += "recipeitems.fk_item = " + id.slice(4) +" ||";
 		}
 	});
-	if (selectSQL.length > 2){
-		selectSQL = selectSQL.slice(0,selectSQL.length -2);
+	if (whereSQL.length > 2){
+		whereSQL = whereSQL.slice(0,whereSQL.length -2);
 	}
-	selectSQL+="";
-	console.log(selectSQL);
+	whereSQL+="";
 	$.ajax({ 
 		type: "PUT",
 		contentType: "application/x-www-form-urlencoded",
 		url: "rest/ingredientList",
-		data: {select: selectSQL},
+		data: {	where: whereSQL},
 		success:function(response){
-			console.log("ok");
+			if (response != ""){
+				setRecipeListItem(response);
+			}else{
+				$(".recEntryWrapper").html("<div class=\"recEntry\">Keine Rezepte gefunden. Wähle weitere Zutaten aus, damit Rezepte angezeigt werden.</div>");
+			}
 		},
 		error: function(){
 			console.log("Error");
 		}
 	});	
 };
-	
+
+function setRecipeListItem(response){
+	obj = JSON.parse(response);
+	let recipeSource = "";
+	obj.forEach(function(recipe) {
+		recipeSource+="<div class=\"recEntry\" id=\"searchRecipe"+ recipe["id"]+"\">"+recipe["title"] +":  "+ recipe["count"]+ " Zutaten enthalten </div>";
+	});
+	$(".recEntryWrapper").html(recipeSource);
+}
 	
 });	

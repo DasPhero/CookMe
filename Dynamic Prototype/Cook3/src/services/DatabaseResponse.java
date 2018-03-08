@@ -35,6 +35,10 @@ public class DatabaseResponse {
 	private String favourites;
 	private String selection;
 	
+	//item
+	private List<Integer> itemCount;
+	// + title
+	
 	
 	public String getSelection() {
 		return selection;
@@ -73,6 +77,8 @@ public class DatabaseResponse {
 		this.favourites = "";
 		this.selection = "";
 		
+		this.itemCount = new ArrayList<Integer>();
+
 		this.categoryName = new ArrayList<String>();
 	}
 
@@ -132,6 +138,18 @@ public class DatabaseResponse {
 
 	public Integer toRecipeId() {
 		return this.id.get(0);
+	}
+
+	public void addItemCount(int item) {
+		this.itemCount.add(item);
+	}
+	
+	public List<Integer> getItemCount() {
+		return itemCount;
+	}
+
+	public void setItemCount(List<Integer> itemCount) {
+		this.itemCount = itemCount;
 	}
 
 	public void addIngredientsItemList(List<String> itemList) {

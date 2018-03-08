@@ -47,6 +47,9 @@ function getTitles() {
 						$.get("rest/login/username/"+cookie, function(userName, status) {
 							userName = userName.replace(/\b\w/g, l => l.toUpperCase());
 							$(".userNameHeader").html(userName);
+							$("[name='sendCommentButton']").prop("disabled", false);
+							$(".commentInput").attr("placeholder", "Kommentar verfassen...");
+							$(".symbolWrapperIndex").text("Profil");
 							$.holdReady(false); //set document ready
 						});
 					}else{
@@ -56,10 +59,12 @@ function getTitles() {
 				}
 				$.holdReady(false); //set document ready
 			});
+			ConnectToWebSocket();
 }
 
 function getRecipe(titleM2,object){
 	var id = object.substr(6);	
+	localStorage.setItem("currentRecipeId", id);
 
 	$(".h1Wrapper h1").html(titleM2);
 	$(".recipeSteps h2").next("ul").html("Rezept wird geladen");
@@ -112,6 +117,7 @@ function getRecipe(titleM2,object){
 
 			let recipeId = JSON.parse(recipe[0].id);
 			checkIfItemAlreadyIsFavourized(recipeId);
+			loadExistingComments();
 		}
 	});
 }

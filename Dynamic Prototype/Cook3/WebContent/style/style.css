@@ -134,7 +134,11 @@
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper,
 .mainWindow .recipeView .accountBar .logoutButton .symbolWrapper,
-.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper {
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper,
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapperIndex,
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapperIndex,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapperIndex,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapperIndex {
   letter-spacing: 2px;
   font-family: 'Playball';
   padding-top: 1px;
@@ -148,7 +152,11 @@
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover,
 .mainWindow .recipeView .accountBar .logoutButton .symbolWrapper:hover,
-.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper:hover {
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper:hover,
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapperIndex:hover,
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapperIndex:hover,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapperIndex:hover,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapperIndex:hover {
   background-color: #194f00;
 }
 .mainWindow .recipeView .accountBar .goToStartButton,
@@ -350,7 +358,7 @@ button {
   font-weight: bold;
   outline: none;
 }
-button:hover {
+button:hover:not(:disabled) {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.18852878), 0px 5px 16px rgba(0, 0, 0, 0.23);
 }
 button:active {
@@ -396,7 +404,10 @@ button:active {
 [name="sendCommentButton"] {
   background-color: #023877;
 }
-[name="sendCommentButton"]:hover {
+[name="sendCommentButton"]:disabled {
+  background-color: grey;
+}
+[name="sendCommentButton"]:hover:not(:disabled) {
   background-color: #164c8b;
 }
 [name="sendCommentButton"]:active {
@@ -715,7 +726,11 @@ body .printWindow .groceryListWrapper ul li {
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper,
 .mainWindow .recipeView .accountBar .logoutButton .symbolWrapper,
-.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper {
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper,
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapperIndex,
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapperIndex,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapperIndex,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapperIndex {
   letter-spacing: 2px;
   font-family: 'Playball';
   padding-top: 1px;
@@ -729,7 +744,11 @@ body .printWindow .groceryListWrapper ul li {
 .mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapper:hover,
 .mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapper:hover,
 .mainWindow .recipeView .accountBar .logoutButton .symbolWrapper:hover,
-.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper:hover {
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapper:hover,
+.mainWindow .recipeView .accountBar .goToProfileButton .symbolWrapperIndex:hover,
+.mainWindow .profilePage .accountBar .goToProfileButton .symbolWrapperIndex:hover,
+.mainWindow .recipeView .accountBar .logoutButton .symbolWrapperIndex:hover,
+.mainWindow .profilePage .accountBar .logoutButton .symbolWrapperIndex:hover {
   background-color: #194f00;
 }
 .mainWindow .recipeView .accountBar .goToStartButton,

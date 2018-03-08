@@ -13,7 +13,7 @@ button{
     outline: none;
 }
 
-button:hover{
+button:hover:not(:disabled){
     box-shadow: @elevation5;
 }
 
@@ -69,7 +69,10 @@ button:active{
 [name="sendCommentButton"]{
     background-color: @buttonSendComment;
 
-    &:hover{
+    &:disabled{
+        background-color: grey;
+    }
+    &:hover:not(:disabled){
         background-color: @buttonSendComment + 20%;
     }
     &:active{

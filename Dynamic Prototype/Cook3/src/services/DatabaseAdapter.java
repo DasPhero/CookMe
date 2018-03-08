@@ -74,6 +74,26 @@ public class DatabaseAdapter {
 	}
 	
 	
+	private Boolean checkSQL(String select, String where) {
+		if (select.contains(";") || where.contains(";")) {
+			System.out.println("Achtung Angriff");
+			return false;
+		}
+		if (select.toLowerCase().contains("drop") || where.toLowerCase().contains("drop")) {
+			System.out.println("Achtung Angriff");
+			return false;
+		}
+		if (select.toLowerCase().contains("delete") || where.toLowerCase().contains("delete")) {
+			System.out.println("Achtung Angriff");
+			return false;
+		}
+		if (select.toLowerCase().contains("insert") || where.toLowerCase().contains("insert")) {
+			System.out.println("Achtung Angriff");
+			return false;
+		}
+		return true;
+	}
+	
 	public DatabaseResponse select(int type, String database, String select, String where) {
 		DatabaseResponse response = new DatabaseResponse();
 		Statement stmt = null;
@@ -86,6 +106,11 @@ public class DatabaseAdapter {
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
+			if (!checkSQL(select, where)) {
+				System.out.println("SQL Injection!");
+				return null;
+			}
+			
 			// Execute SQL query
 			stmt = conn.createStatement();
 			String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
@@ -199,6 +224,11 @@ public class DatabaseAdapter {
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
+			if (!checkSQL(update, where)) {
+				System.out.println("SQL Injection!");
+				return false;
+			}
+			
 			// Execute SQL query
 			stmt = conn.createStatement();
 			String sql = "UPDATE "+ database + " SET "+ update + " WHERE " +where+ " ;";
@@ -251,6 +281,10 @@ public class DatabaseAdapter {
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
+			if (!checkSQL(insert, values)) {
+				System.out.println("SQL Injection!");
+				return false;
+			}
 			// Execute SQL query
 			stmt = conn.createStatement();
 			String sql = "INSERT INTO  " + insert + " VALUES( " + values + " );";

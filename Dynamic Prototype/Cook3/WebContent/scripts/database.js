@@ -38,28 +38,44 @@ function getTitles() {
 					});
 					$(category).next(" ul").html(recipeListSource);
 				});
+				ConnectToWebSocket();
 				tickAlreadySelectedItems();
-				var cookies = document.cookie;
-				if( cookies != ""){
-					var cookie = cookies.split("=")[1];
-					if (cookie != "" && cookie != '0' && cookie != 0 && cookie != null && cookie != "invalid"){
-						
-						$.get("rest/login/username/"+cookie, function(userName, status) {
-							userName = userName.replace(/\b\w/g, l => l.toUpperCase());
-							$(".userNameHeader").html(userName);
-							$("[name='sendCommentButton']").prop("disabled", false);
-							$(".commentInput").attr("placeholder", "Kommentar verfassen...");
-							$(".symbolWrapperIndex").text("Profil");
-							$.holdReady(false); //set document ready
-						});
-					}else{
-						$.holdReady(false); //set document ready
-					}
-					
-				}
-				$.holdReady(false); //set document ready
+				setCookie();				//set cookie and get ingredients item list
 			});
-			ConnectToWebSocket();
+}
+
+function setCookie(){ //set cookie and get ingredients item list
+	let pathName = window.location.pathname;
+	var cookies = document.cookie;
+	if( cookies != ""){
+		var cookie = cookies.split("=")[1];
+		if (cookie != "" && cookie != '0' && cookie != 0 && cookie != null && cookie != "invalid"){
+			$.get("rest/login/username/"+cookie, function(userName, status) {
+				userName = userName.replace(/\b\w/g, l => l.toUpperCase());
+				$(".userNameHeader").html(userName);
+				$("[name='sendCommentButton']").prop("disabled", false);
+				$(".commentInput").attr("placeholder", "Kommentar verfassen...");
+				$(".symbolWrapperIndex").text("Profil");
+				if (pathName.includes("profile")){
+					getIngredientsList();
+				}else{
+					$.holdReady(false); //set document ready
+				}
+			});
+		}else{
+			if (pathName.includes("profile")){
+				getIngredientsList();
+			}else{
+				$.holdReady(false); //set document ready
+			}
+		}
+	}else{
+		if (pathName.includes("profile")){
+			getIngredientsList();
+		}else{
+			$.holdReady(false); //set document ready
+		}
+	}
 }
 
 function getRecipe(titleM2,object){

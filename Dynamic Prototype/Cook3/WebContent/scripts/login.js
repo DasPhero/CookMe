@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(".loginDataInput").keyup(function(event) {
+	$(".loginDataInput").keyup(function(event) { //click at enter
 		event.preventDefault();
 		if (event.keyCode === 13) {document.getElementById("loginButton").click();}});
 	$("#loginButton").click(function() {

@@ -31,7 +31,7 @@ function getTitles() {
 							+ recipe["id"]
 							+ "\"/> <span class=\"listEntry\" id=\"recipe"
 							+ recipe["id"]
-							+ "\">"
+							+ "\" onclick='markAsActive(this)'>"
 							+ recipe["title"]
 							+ "</span></li>";
 						}
@@ -95,8 +95,7 @@ styleOnLogin = () => {
 
 function getRecipe(titleM2,object){
 	$(".commentInput").unbind("keyup");
-	var id = object.substr(6);	
-	console.log(id);
+	var id = object.substr(6);
 	localStorage.setItem("currentRecipeId", id);
 	
 	$(".h1Wrapper h1").html(titleM2);

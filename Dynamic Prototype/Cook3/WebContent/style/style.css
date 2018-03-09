@@ -87,13 +87,25 @@
   background-color: #50862a;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
 }
-.mainWindow .navBar .recipeList .listWrapper ul > li #activeEntry {
-  background-color: #1e5400;
-  color: ghostwhite;
-}
 .mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry {
-  background-color: #467c20;
+  background-color: #4b8125;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1221322), 0px 2px 4px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry:hover {
+  background-color: #467c20;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry.active {
+  background-color: #32680c;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"] ~ .active {
+  background-color: #376d11;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"] ~ .active:hover {
+  background-color: #346a0e;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .recipeList ul {
   list-style: none;
@@ -703,13 +715,25 @@ body .printWindow .groceryListWrapper ul li {
   background-color: #50862a;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
 }
-.mainWindow .navBar .recipeList .listWrapper ul > li #activeEntry {
-  background-color: #1e5400;
-  color: ghostwhite;
-}
 .mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry {
-  background-color: #467c20;
+  background-color: #4b8125;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1221322), 0px 2px 4px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry:hover {
+  background-color: #467c20;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"]:checked ~ .listEntry.active {
+  background-color: #32680c;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"] ~ .active {
+  background-color: #376d11;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.13319829), 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .navBar .recipeList .listWrapper ul > li input[type="checkbox"] ~ .active:hover {
+  background-color: #346a0e;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14426439), 0px 3px 8px rgba(0, 0, 0, 0.24);
 }
 .mainWindow .navBar .recipeList ul {
   list-style: none;

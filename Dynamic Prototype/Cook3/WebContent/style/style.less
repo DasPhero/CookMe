@@ -108,13 +108,30 @@
                         }
 
                     }
-                    & #activeEntry{
-                        background-color: @mainDark - 55%;
-                        color: @fontColorLight;
-                    }
                 & input[type="checkbox"]:checked ~ .listEntry{
-                    background-color: @mainDark - 15%;
+                    background-color: @mainDark - 10%;
                     box-shadow: @elevation1;
+
+                    &:hover{
+                        background-color: @mainDark - 15%;
+                        box-shadow: @elevation2;                            
+                    }
+
+                    &.active{
+                        background-color: @mainDark - 35%;
+                        box-shadow: @elevation3;
+                    }
+                }
+
+                & input[type="checkbox"] ~ .active{
+                    background-color: @mainDark - 30%;
+                    box-shadow: @elevation2;
+
+                    &:hover{
+                    background-color: @mainDark - 33%;
+                    box-shadow: @elevation3;
+                        
+                    }
                 }
             }
             

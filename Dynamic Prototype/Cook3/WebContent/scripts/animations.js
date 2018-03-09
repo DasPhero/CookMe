@@ -41,3 +41,8 @@ $(document).ready(function() {
 		}
 	});
 });	
+
+markAsActive = (listEntry) => {
+	$(".listEntry").each((i, entry) => {entry.className = "listEntry"});
+	listEntry.className = "listEntry active";
+}

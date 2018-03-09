@@ -15,7 +15,7 @@ $.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 	$(".listWrapper ").html(categorySource);//override static code
 		
 	getTitles();//get titles of each recipe
-	
+
 });
 
 function getTitles() {
@@ -39,8 +39,19 @@ function getTitles() {
 					$(category).next(" ul").html(recipeListSource);
 				});
 				tickAlreadySelectedItems();
+				hideEmptyCategories();
 				setCookie();			//set cookie and get ingredients item list
 			});
+}
+
+hideEmptyCategories = () => {	
+	$(".rCategory").each((i, category) => {
+		let categoryHeader = $("#" + category.id);
+		let categoryWrapper = categoryHeader.next();
+		if(categoryWrapper[0].innerHTML == ""){
+			categoryHeader.css("display", "none");
+		}
+	});
 }
 
 function setCookie(){ //set cookie and get ingredients item list

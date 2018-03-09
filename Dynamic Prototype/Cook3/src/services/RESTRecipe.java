@@ -71,9 +71,7 @@ public class RESTRecipe extends DatabaseAdapter {
 			if (responce == null) {
 				return "empty";
 			}
-			// for (String title : responce.getTitle()) {
-			// System.out.println("----------"+ title);
-			// }
+			//test
 			JsonArray recipesJson = new JsonArray();
 			if (id == GET_CATEGORIES) {
 				List<RecipeCategory> list = responce.toRecipeCategoryList();

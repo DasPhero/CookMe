@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.PreparedStatement;
 
 public class DatabaseAdapter {
 
@@ -167,6 +168,19 @@ public class DatabaseAdapter {
 			stmt = conn.createStatement();
 			String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
 			System.out.println(sql);
+			
+			/*PreparedStatement st = conn.prepareStatement(
+					"SELECT ? FROM ? "
+					+ "WHERE ? ;"
+				);
+			
+			st.setString(1, select);
+			st.setString(2, database);
+			st.setString(3, where);*/
+			//String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
+			//System.out.println(sql);
+			
+			
 			ResultSet rs = stmt.executeQuery(sql);
 
 			// Extract data from result set

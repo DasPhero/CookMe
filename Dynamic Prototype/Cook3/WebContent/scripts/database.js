@@ -91,6 +91,7 @@ styleOnLogin = () => {
 	$("[name='addToFavourites']").css("visibility", "visible").prop("disabled", false);
 	$(".commentInput").attr("placeholder", "Kommentar verfassen...");
 	$(".symbolWrapperIndex").text("Profil");
+	$(".commentInput").prop("disabled", false);
 }
 
 function getRecipe(titleM2,object){

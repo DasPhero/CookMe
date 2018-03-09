@@ -50,7 +50,8 @@ processIncomingBroadcast = (data) => {
 let webSocketConnection = ConnectToWebSocket(processIncomingBroadcast);
 
 sendComment = () => {
-	if($(".commentInput")[0].value == ""){
+	console.log($(".userNameHeader").text());
+	if($(".commentInput")[0].value == "" || $(".userNameHeader").text() == ""){
 		return;
     }
     

@@ -1,7 +1,12 @@
 $(document).ready(function() {
 	//slider in nav bar (categories)
 	$(".listWrapper li").click(function() {
-		$(this).next('ul').slideToggle();
+		let headerText = $(this).text();
+		let lastCharacter = headerText.slice(-1);
+		
+		$(this).next('ul').slideToggle();		
+		headerText = lastCharacter == "▿"? headerText.replace("▿","▹") : headerText.replace("▹","▿");
+		$(this).text(headerText);
 	});
 	
 	//select single recipe

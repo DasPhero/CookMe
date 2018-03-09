@@ -9,7 +9,7 @@ $.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 	
 	obj.forEach(function(element) {
 		categorySource += "<li class=\"rCategory\" id=\"r"
-				+ element["id"] + "\">" + element["name"]
+				+ element["id"] + "\">" + element["name"] + " ▿"
 				+ "</li><ul class=\"c" + element["id"] + "\"></ul>"; //set class to "c1", "c2" ..
 	});
 	$(".listWrapper ").html(categorySource);//override static code

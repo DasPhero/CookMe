@@ -21,7 +21,7 @@ public class RESTComment extends DatabaseAdapter {
 	public String getCurrentUserSelection(@PathParam("recipeId") Integer recipeId){
 		String selection = "";
 		String context = "";
-		String comments = select(TYPE_COMMENT,"cookme.person", selection,"", context,"").toSelectionString();
+		String comments = select(TYPE_COMMENT,"cookme.person", selection, context).toSelectionString();
 		return comments;
 	}
 	

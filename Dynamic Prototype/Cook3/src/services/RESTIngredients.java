@@ -26,7 +26,7 @@ public class RESTIngredients extends DatabaseAdapter {
 			where = "id = id";
 		}
 		String select = "`id`,`name`";
-		DatabaseResponse response = select(TYPE_INGREDIENT, "cookme.item", select ,"",where,"");
+		DatabaseResponse response = select(TYPE_INGREDIENT, "cookme.item", select, where);
 		if (null == response) {
 			return "[]";
 		}
@@ -55,7 +55,7 @@ public class RESTIngredients extends DatabaseAdapter {
 	public String getRecipes(@FormParam("where") String where) {
 		System.out.println(where);
 		String whereSQL = where + " GROUP by fk_recipe order by count desc";
-		DatabaseResponse response = select(TYPE_ITEM, " recipeitems","rec.title as title,fk_recipe as id " ," recipe rec on rec.id = fk_recipe", whereSQL,"COUNT(*) as count");
+		DatabaseResponse response = select(TYPE_ITEM, " recipeitems JOIN recipe rec on rec.id = fk_recipe", "rec.title as title,fk_recipe as id, COUNT(*) as count", whereSQL);
 		
 		if (null == response) {
 			return "";

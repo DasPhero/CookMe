@@ -28,7 +28,7 @@ public class RESTFavourizationService extends DatabaseAdapter {
 	public String getCurrentUserFavourites(@PathParam("cookie") String cookie){
 		String selection = "`favourites`,`id`";
 		String context = "cookie=\"" + cookie + "\"";
-		String favourites = select(TYPE_FAVOURITES,"cookme.person", selection,"", context,"").toFavouritesString();
+		String favourites = select(TYPE_FAVOURITES,"cookme.person", selection, context).toFavouritesString();
 		return favourites;
 	}
 	
@@ -38,7 +38,7 @@ public class RESTFavourizationService extends DatabaseAdapter {
 	public Integer getCurrentRecipeId(@PathParam("recipeName") String recipeName){
 		String selection = "`id`";
 		String context = "title=\"" + recipeName + "\"";
-		Integer id = select(TYPE_RECIPE_ID,"cookme.recipe", selection,"", context,"").toRecipeId();
+		Integer id = select(TYPE_RECIPE_ID,"cookme.recipe", selection, context).toRecipeId();
 		return id;
 	}
 

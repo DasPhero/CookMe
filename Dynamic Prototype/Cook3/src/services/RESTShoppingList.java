@@ -21,7 +21,7 @@ public class RESTShoppingList extends DatabaseAdapter {
 	public String getCurrentUserSelection(@PathParam("cookie") String cookie){
 		String selection = "`selectedrecipes`,`id`";
 		String context = "cookie=\"" + cookie + "\"";
-		String selectedRecipes = select(TYPE_SELECTION,"cookme.person", selection,"", context,"").toSelectionString();
+		String selectedRecipes = select(TYPE_SELECTION,"cookme.person", selection, context).toSelectionString();
 		return selectedRecipes;
 	}
 	

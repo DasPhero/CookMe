@@ -1,5 +1,15 @@
 const GET_ALL_INGREDIENTS = "-3";
 
+loadSelectedItems = () => {
+	var fridgeContent = window.localStorage.getItem("fridgeContent").split(",");
+	 if(fridgeContent[0] == ""){
+		 return;
+	 }
+	fridgeContent.forEach(item => {
+		let a = $("#" + item).parent().click();
+	});
+}
+
 function getIngredientsList(){
 $.get("rest/ingredientList/"+GET_ALL_INGREDIENTS, function(data, status) { //get items
 	obj = JSON.parse(data);
@@ -16,19 +26,22 @@ $.get("rest/ingredientList/"+GET_ALL_INGREDIENTS, function(data, status) { //get
 });
 }
 
-$(document).ready(function() {
-
 listsRecipesForSelectedIngredients = () => {
 	let whereSQL = "";
+	let activeItems = [];
 	$(".fridgeItem").each( function( index ) {
 		if ($(this).find(".fridgeCheckbox").is(':checked')){
 			let id=$(this).find(".fridgeCheckbox").attr("id");
+			activeItems.push(id);
 			whereSQL += "recipeitems.fk_item = " + id.slice(4) +" ||";
 		}
 	});
+	window.localStorage.setItem("fridgeContent", activeItems);
+	
 	if (whereSQL.length > 2){
 		whereSQL = whereSQL.slice(0,whereSQL.length -2);
 	}
+	
 	whereSQL+="";
 	$.ajax({ 
 		type: "PUT",
@@ -56,5 +69,21 @@ function setRecipeListItem(response){
 	});
 	$(".recEntryWrapper").html(recipeSource);
 }
-	
+
+registerClickHandler = () => {
+	$(".fridgeItem").click(function (e) {    
+		  if (e.target.tagName != 'INPUT') {
+			  $(this).find("input").toggleCheckbox();
+			  let checkboxIsChecked = $(this).find("input").attr('checked');
+			  let color = checkboxIsChecked? "#3C7216" : "#5f9539";
+			  $(this).css('background-color',color);
+			  listsRecipesForSelectedIngredients();
+			  return false; 
+			}
+		});
+}
+
+$(document).ready(function() {
+	registerClickHandler();
+	loadSelectedItems();
 });	

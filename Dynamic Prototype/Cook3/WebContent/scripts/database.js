@@ -156,7 +156,6 @@ function getRecipe(titleM2,object){
 			checkIfItemAlreadyIsFavourized(recipeId);
 			loadExistingComments();
 			$(".commentInput").keyup(function(event) {
-				console.log("keyupenter");
 				event.preventDefault();
 				if (event.keyCode === 13) { $("[name='sendCommentButton']").click() }
 				}

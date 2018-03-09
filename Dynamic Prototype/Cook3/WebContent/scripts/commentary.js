@@ -30,13 +30,10 @@ ConnectToWebSocket = (callback) => {
 }
 
 processIncomingBroadcast = (data) => {
-    console.log("boi");
     let currentRecipeId = window.localStorage.getItem("currentRecipeId");
     data = JSON.parse(data);
 
-    console.log("blob", data.id, currentRecipeId, data.id == currentRecipeId);
     if(data.id == currentRecipeId){
-        console.log("blub");
         let commentCode = $(".comments").html();
         let newComment = 
          `<div class='comment'>\

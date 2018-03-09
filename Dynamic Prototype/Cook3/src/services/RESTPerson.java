@@ -24,7 +24,7 @@ public class RESTPerson extends DatabaseAdapter {
 	@Path("/cookie/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCookie(@PathParam("id") int id) {
-		String where = "id = " + id;
+		/*String where = "id = " + id;
 		String select = "`id`,`username`,`squestion`,`sanswer`,`password`,  LEFT(\r\n"
 				+ "                                   REPLACE(\r\n"
 				+ "                                       REPLACE(\r\n"
@@ -39,12 +39,13 @@ public class RESTPerson extends DatabaseAdapter {
 				+ "                                           ), \"+\", \"\"\r\n"
 				+ "                                       ), \"=\", \"\"\r\n"
 				+ "                                   ), 20\r\n" + "                               )as `cookie`";
-		List<Person> list = select(TYPE_PERSON_LOGIN, "cookme.person", select, where).toPersonList();
+		List<Person> list = select(TYPE_PERSON_LOGIN, "cookme.person", select,"", where).toPersonList();
 		if (list.size() == 0) {
 			return "invalid";
 		}
 		Person t = list.get(0);
-		String cookie = t.getCookie();
+		String cookie = t.getCookie();*/
+		String cookie = "12345678901234567890";
 		return cookie;
 	}
 
@@ -54,7 +55,7 @@ public class RESTPerson extends DatabaseAdapter {
 	public String getUsername(@PathParam("uuid") String uuid) {
 		String where = "cookie = '" + uuid + "'";
 		String select = "`id`,`username`,`cookie`";
-		DatabaseResponse response = select(TYPE_PERSON_LOGIN, "cookme.person", select, where);
+		DatabaseResponse response = select(TYPE_PERSON_LOGIN, "cookme.person", select,"", where,"");
 		if (null == response) {
 			return "";
 		}
@@ -80,7 +81,7 @@ public class RESTPerson extends DatabaseAdapter {
 	// @Produces(MediaType.TEXT_PLAIN)
 	public Person loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		String where = "username = '" + userName + "' && password = '" + password + "'";
-		DatabaseResponse response1 = select(TYPE_PERSON_LOGIN, "cookme.person", "id,password,username", where);
+		DatabaseResponse response1 = select(TYPE_PERSON_LOGIN, "cookme.person", "id,password,username","", where,"");
 		Person t;
 		if (response1 == null) {
 			t = new Person();

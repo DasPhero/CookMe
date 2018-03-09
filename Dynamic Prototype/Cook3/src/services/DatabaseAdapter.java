@@ -147,7 +147,7 @@ public class DatabaseAdapter {
 		return true;
 	}
 	
-	public DatabaseResponse select(int type, String database, String select, String where) {
+	public DatabaseResponse select(int type, String database, String select,String join, String where, String count) {
 		DatabaseResponse response = new DatabaseResponse();
 		Statement stmt = null;
 		Connection conn = null;
@@ -159,29 +159,41 @@ public class DatabaseAdapter {
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-			if (!checkSQL(select, where)) {
+			/*if (!checkSQL(select, where)) {
 				System.out.println("SQL Injection!");
 				return null;
-			}
+			}*/
 			
 			// Execute SQL query
-			stmt = conn.createStatement();
-			String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
-			System.out.println(sql);
+			//stmt = conn.createStatement();
+			//String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
+			//System.out.println(sql);
 			
-			/*PreparedStatement st = conn.prepareStatement(
-					"SELECT ? FROM ? "
-					+ "WHERE ? ;"
-				);
-			
-			st.setString(1, select);
-			st.setString(2, database);
-			st.setString(3, where);*/
+			PreparedStatement st;
+			if (join == "" && count == "") {
+				st = conn.prepareStatement(	"SELECT ? FROM ? WHERE ? ;");
+				st.setString(1, select);
+				st.setString(2, database);
+				st.setString(3, where);
+			}else if (count == "") {
+				st = conn.prepareStatement(	"SELECT ? FROM ? JOIN ? WHERE ? ");
+				st.setString(1, select);
+				st.setString(2, database);
+				st.setString(3, join);
+				st.setString(4, where);
+			}else {
+				st = conn.prepareStatement(	"SELECT ? ,COUNT(*) as count  FROM ? JOIN ? WHERE ? ");
+				st.setString(1, select);
+				st.setString(2, database);
+				st.setString(3, join);
+				st.setString(4, where);
+			}
+			System.out.println(st.toString());
 			//String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
 			//System.out.println(sql);
 			
 			
-			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rs = st.executeQuery();
 
 			// Extract data from result set
 			while (rs.next()) {
@@ -256,6 +268,8 @@ public class DatabaseAdapter {
 			conn.close();
 		} catch (SQLException se) {
 			// Handle errors for JDBC
+			System.out.println("wrong mysql statement");
+			result = false;
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
@@ -281,6 +295,145 @@ public class DatabaseAdapter {
 		return response;
 	}
 
+
+	public DatabaseResponse select2(int type, PreparedStatement st,String select) {
+		DatabaseResponse response = new DatabaseResponse();
+		//Statement stmt = null;
+		//Connection conn = null;
+		boolean result = false;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// Open a connection
+			//conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			/*if (!checkSQL(select, where)) {
+				System.out.println("SQL Injection!");
+				return null;
+			}*/
+			
+			// Execute SQL query
+			//stmt = conn.createStatement();
+			//String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
+			//System.out.println(sql);
+			
+			/*PreparedStatement st;
+			if (join == "" && count == "") {
+				st = conn.prepareStatement(	"SELECT ? FROM ? WHERE ? ;");
+				st.setString(1, select);
+				st.setString(2, database);
+				st.setString(3, where);
+			}else if (count == "") {
+				st = conn.prepareStatement(	"SELECT ? FROM ? JOIN ? WHERE ? ");
+				st.setString(1, select);
+				st.setString(2, database);
+				st.setString(3, join);
+				st.setString(4, where);
+			}else {
+				st = conn.prepareStatement(	"SELECT ? ,COUNT(*) as count  FROM ? JOIN ? WHERE ? ");
+				st.setString(1, select);
+				st.setString(2, database);
+				st.setString(3, join);
+				st.setString(4, where);
+			}
+			System.out.println(st.toString());*/
+			//String sql = "SELECT " + select + " FROM " + database + " WHERE " + where + ";";
+			//System.out.println(sql);
+			
+			
+			ResultSet rs = st.executeQuery();
+
+			// Extract data from result set
+			while (rs.next()) {
+				response.addId(rs.getInt("id"));
+				if (type == TYPE_RECIPE) {// recipe
+					response.addTitle(rs.getString("title"));
+					response.addCategoryId(rs.getInt("category"));
+					if (select == "id,title,rauthor,description,category,nutritionfacts") {
+						response.addDescription(rs.getString("description"));
+						DatabaseResponse ingredientsResponse = getIngredients("recipeitems.id,fk_recipe,recipeitems.value,u.name as unit,i.name as item FROM `recipeitems` " + 
+								"join unit u on u.id = fk_unit join item i on i.id = fk_item",  "fk_recipe="+rs.getInt("id"));
+						if (null != ingredientsResponse ) {
+							response.addIngredientsItemList(ingredientsResponse.getIngredientsItem());
+							response.addIngredientsUnitList(ingredientsResponse.getIngredientsUnit());
+							response.addIngredientsValueList(ingredientsResponse.getIngredientsValue());
+						}else {
+							response.addIngredientsItemList( new ArrayList<String>() );
+							response.addIngredientsUnitList( new ArrayList<String>() );
+							response.addIngredientsValueList( new ArrayList<Integer>() );
+						}
+						
+						response.addNutritionFacts(rs.getString("nutritionfacts"));
+						response.addAuthor(rs.getInt("rauthor"));
+					}else {
+						response.addDescription("");
+						response.addIngredientsItem("");
+						response.addIngredientsUnit("");
+						response.addIngredientsValue(0);
+						response.addAuthor(0);
+						response.addNutritionFacts("");
+					}
+				} else if (type == TYPE_PERSON_LOGIN){ // person login
+					if (select == "id,password,username,squestion,sanswer") {
+						response.addSAnswer(rs.getString("sanswer"));
+						response.addSQuestion(rs.getInt("squestion"));
+					}else {
+						response.addSAnswer("");
+						response.addSQuestion(0);
+					}
+					if (select.contains("cookie")) {
+						response.addCookie(rs.getString("cookie"));
+					}else {
+						response.addCookie("");
+					}
+					if (select == "`id`,`username`,`cookie`") {
+						response.addPassword("");
+					}else {
+						response.addPassword(rs.getString("password"));	
+					}
+					response.addUserName(rs.getString("username"));
+				} else if (type == TYPE_CATEGORY) { //categories
+					response.addCategoryName(rs.getString("categoryname"));
+				} else if (type == TYPE_FAVOURITES) {
+					response.setFavourites(rs.getString("favourites"));
+				}
+				  else if (type == TYPE_SELECTION) {
+					response.setSelection(rs.getString("selectedrecipes"));
+				  }
+				  else if (type == TYPE_ITEM) {
+					response.addTitle(rs.getString("title"));
+					response.addItemCount(rs.getInt("count"));
+				} else if (type == TYPE_INGREDIENT) {
+					response.addIngredientsItem(rs.getString("name"));
+					response.addIngredientsValue(rs.getInt("id"));
+				}
+				
+				result = true;
+			}
+			// Clean-up environment
+			rs.close();
+			//stmt.close();
+			//conn.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			System.out.println("wrong mysql statement");
+			result = false;
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			
+		} // end try
+
+		if (!result) {
+			return null;
+		}
+		return response;
+	}
+	
 	public boolean update(int type, String database, String update, String where) {
 		/// TODO add
 
@@ -293,10 +446,10 @@ public class DatabaseAdapter {
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-			if (!checkSQL(update, where)) {
+			/*if (!checkSQL(update, where)) {
 				System.out.println("SQL Injection!");
 				return false;
-			}
+			}*/
 			
 			// Execute SQL query
 			stmt = conn.createStatement();
@@ -350,10 +503,10 @@ public class DatabaseAdapter {
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-			if (!checkSQL(insert, values)) {
+			/*if (!checkSQL(insert, values)) {
 				System.out.println("SQL Injection!");
 				return false;
-			}
+			}*/
 			// Execute SQL query
 			stmt = conn.createStatement();
 			String sql = "INSERT INTO  " + insert + " VALUES( " + values + " );";

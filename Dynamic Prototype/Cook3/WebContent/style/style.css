@@ -132,7 +132,7 @@
 .mainWindow .recipeView .accountBar .userNameHeader,
 .mainWindow .profilePage .accountBar .userNameHeader {
   flex-basis: 80%;
-  padding: 3px 5px 5px 5px;
+  padding: 3px 5px 5px 6px;
   font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton,
@@ -761,7 +761,7 @@ body .printWindow .groceryListWrapper ul li {
 .mainWindow .recipeView .accountBar .userNameHeader,
 .mainWindow .profilePage .accountBar .userNameHeader {
   flex-basis: 80%;
-  padding: 3px 5px 5px 5px;
+  padding: 3px 5px 5px 6px;
   font-size: 3.5vh;
 }
 .mainWindow .recipeView .accountBar .goToProfileButton,

@@ -3,10 +3,10 @@ $(document).ready(function() {
 	$(".listWrapper > li").click(function() {
 		
 		let headerText = $(this).text();
-		let lastCharacter = headerText.slice(-1);
+		let firstCharacter = headerText.slice(0,1);
 		
 		$(this).next('ul').slideToggle();		
-		headerText = lastCharacter == "▿"? headerText.replace("▿","▹") : headerText.replace("▹","▿");
+		headerText = firstCharacter == "▿"? headerText.replace("▿","▹") : headerText.replace("▹","▿");
 		$(this).text(headerText);
 	});
 	

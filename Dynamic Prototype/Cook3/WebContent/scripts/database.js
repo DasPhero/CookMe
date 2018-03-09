@@ -96,6 +96,11 @@ styleOnLogin = () => {
 function getRecipe(titleM2,object){
 	$(".commentInput").unbind("keyup");
 	var id = object.substr(6);
+	let url1 =window.location.href;
+	if (url1.includes("profile")){
+		window.location.assign("index.html?id="+ id);
+	}
+	
 	localStorage.setItem("currentRecipeId", id);
 	
 	$(".h1Wrapper h1").html(titleM2);

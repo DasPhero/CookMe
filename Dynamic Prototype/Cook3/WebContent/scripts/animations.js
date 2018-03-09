@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	//slider in nav bar (categories)
 	$(".listWrapper > li").click(function() {
+		
 		let headerText = $(this).text();
 		let lastCharacter = headerText.slice(-1);
 		

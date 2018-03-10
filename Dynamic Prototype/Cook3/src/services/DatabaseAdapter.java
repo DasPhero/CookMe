@@ -144,6 +144,10 @@ public class DatabaseAdapter {
 				 else if(type == TYPE_USERID) {
 					response.setUserId(rs.getInt("id"));
 				}
+				 else if(type == TYPE_USERNAME) {
+					 response.setUsername(rs.getString("username"));
+				 }
+				
 
 				result = true;
 			}

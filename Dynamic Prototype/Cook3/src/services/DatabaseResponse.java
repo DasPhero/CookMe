@@ -35,7 +35,16 @@ public class DatabaseResponse {
 	private String favourites;
 	private String selection;
 	private Integer userId;
+	private String username;
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}

@@ -1,6 +1,6 @@
 package services;
 
-import static services.Constant.TYPE_COMMENT;
+import static services.Constant.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,7 +23,8 @@ public class RESTComment extends DatabaseAdapter {
 	@GET
 	@Path("/usernametoid/{username}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Integer getCurrentUserSelection(@PathParam("username") String username){
+	public Integer getUserIdFromName(@PathParam("username") String username){
+		System.out.println(username);
 		Connection conn = null;
 		Integer userId = 0;
 		try {
@@ -36,7 +37,7 @@ public class RESTComment extends DatabaseAdapter {
 			st = conn.prepareStatement(	"SELECT id FROM person WHERE username = ? ;");
 			st.setString(1, username);
 			
-			DatabaseResponse response = select(TYPE_COMMENT, st, "id");
+			DatabaseResponse response = select(TYPE_USERID, st, "id");
 			
 			try {
 				if (conn != null)
@@ -59,8 +60,8 @@ public class RESTComment extends DatabaseAdapter {
 	
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	public void updateComments( @FormParam("id") Integer recipeId, 
-								  @FormParam("user") Integer userId, 
+	public void updateComments(   @FormParam("id") String recipeId, 
+								  @FormParam("user") String userId, 
 								  @FormParam("comment") String comment, 
 								  @FormParam("time") Integer time ){
 		System.out.println("asljdklsa");
@@ -75,10 +76,10 @@ public class RESTComment extends DatabaseAdapter {
 			PreparedStatement st;
 			System.out.println("params" + recipeId + userId + comment + time);
 			st = conn.prepareStatement(	"INSERT INTO comments (author, comment, time, recipe) VALUES (?, ?, ?, ?);");
-			st.setInt(1, userId);
+			st.setInt(1, Integer.parseInt(userId));
 			st.setString(2, comment);
 			st.setInt(3, time);
-			st.setInt(4, recipeId);
+			st.setInt(4, Integer.parseInt(recipeId));
 			
 			responseOK = update(TYPE_COMMENT, st);
 			

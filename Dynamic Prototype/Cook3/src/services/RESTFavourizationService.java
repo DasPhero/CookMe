@@ -109,7 +109,7 @@ public class RESTFavourizationService extends DatabaseAdapter {
 			st.setString(1, favourites);
 			st.setString(2, cookie);
 			
-			responseOK = update(TYPE_COMMENT, st);
+			responseOK = update(TYPE_FAVOURITES, st);
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

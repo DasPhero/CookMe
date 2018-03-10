@@ -50,7 +50,7 @@ commitFavourites = (favouritesData, cookieValue) => {
 	let newString =  "[" + favouritesData.toString() + "]";
 	let data = { "cookie": cookieValue, "favourites": newString };
 
-	$.post("rest/favourization", data)
+	$.post("rest/favourization", data);
 	toggleFavourizationButtonState();
 }
 

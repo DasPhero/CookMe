@@ -21,11 +21,11 @@ import javax.ws.rs.core.MediaType;
 public class RESTComment extends DatabaseAdapter {
 	
 	@GET
-	@Path("/{recipeId}")
+	@Path("/usernametoid/{username}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getCurrentUserSelection(@PathParam("recipeId") Integer recipeId){
-		String userSelection="";
+	public Integer getCurrentUserSelection(@PathParam("username") String username){
 		Connection conn = null;
+		Integer userId = 0;
 		try {
 			// Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
@@ -33,10 +33,10 @@ public class RESTComment extends DatabaseAdapter {
 
 			PreparedStatement st;
 
-			st = conn.prepareStatement(	"SELECT author,comment FROM comments WHERE id = ? ;");
-			st.setInt(1, recipeId);
+			st = conn.prepareStatement(	"SELECT id FROM person WHERE username = ? ;");
+			st.setString(1, username);
 			
-			DatabaseResponse response = select(TYPE_COMMENT, st, "author,comment");
+			DatabaseResponse response = select(TYPE_COMMENT, st, "id");
 			
 			try {
 				if (conn != null)
@@ -47,26 +47,25 @@ public class RESTComment extends DatabaseAdapter {
 			} // end finally try
 			
 			if ( null == response) {
-				return "";
+				return 0;
 			}
-			userSelection = response.toSelectionString();
+			userId = response.getUserId();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}finally {
 		}
-		return userSelection;
+		return userId;
 	}
 	
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	public void updateFavourites( @FormParam("id") Integer id, 
-								  @FormParam("user") String username, 
+	public void updateComments( @FormParam("id") Integer recipeId, 
+								  @FormParam("user") Integer userId, 
 								  @FormParam("comment") String comment, 
 								  @FormParam("time") Integer time ){
-		//String updateInformation = "";
-		//String context = "";
+		System.out.println("asljdklsa");
 		Boolean responseOK = false;
-		//TODO implement code
+
 		Connection conn = null;
 		try {
 			// Register JDBC driver
@@ -74,9 +73,12 @@ public class RESTComment extends DatabaseAdapter {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			PreparedStatement st;
-
-			st = conn.prepareStatement(	"Update set ? FROM comments WHERE id = ? ;");
-			//st.setInt(1, recipeId);
+			System.out.println("params" + recipeId + userId + comment + time);
+			st = conn.prepareStatement(	"INSERT INTO comments (author, comment, time, recipe) VALUES (?, ?, ?, ?);");
+			st.setInt(1, userId);
+			st.setString(2, comment);
+			st.setInt(3, time);
+			st.setInt(4, recipeId);
 			
 			responseOK = update(TYPE_COMMENT, st);
 			
@@ -92,10 +94,9 @@ public class RESTComment extends DatabaseAdapter {
 			e.printStackTrace();
 		}finally {
 		}
+		System.out.println(responseOK);
 		if ( !responseOK) {
 			return;
 		}
-		
-		//update(TYPE_COMMENT,"cookme.person", updateInformation, context);
 	}
 }

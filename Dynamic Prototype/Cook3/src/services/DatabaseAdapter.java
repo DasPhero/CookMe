@@ -141,6 +141,9 @@ public class DatabaseAdapter {
 					response.addIngredientsItem(rs.getString("name"));
 					response.addIngredientsValue(rs.getInt("id"));
 				}
+				 else if(type == TYPE_USERID) {
+					response.setUserId(rs.getInt("id"));
+				}
 
 				result = true;
 			}

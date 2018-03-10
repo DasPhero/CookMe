@@ -34,7 +34,16 @@ public class DatabaseResponse {
 	private List<String> cookie;
 	private String favourites;
 	private String selection;
+	private Integer userId;
 	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer i) {
+		this.userId = i;
+	}
+
 	//item
 	private List<Integer> itemCount;
 	// + title

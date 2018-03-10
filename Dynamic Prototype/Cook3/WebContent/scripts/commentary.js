@@ -57,8 +57,8 @@ sendComment = () => {
     
     let commentInformation = constructBroadcastPayload();
     let stringifiedInformation = JSON.stringify(commentInformation);
-
-    //saveCommentToDatabase(commentInformation);
+    console.log("qwe");
+    saveCommentToDatabase(commentInformation);
     broadcastComment(stringifiedInformation);
 }
 
@@ -101,5 +101,11 @@ let entityMap = {
   }
 
 saveCommentToDatabase = (data) => {
-    $.post("rest/commentary", data);
+    console.log("kop");
+    $.get("rest/commentary/usernametoid/" + data.user,
+        (userId) => {
+            data.user = userId;
+            console.log("asdsad",data);
+            $.post("rest/commentary", data);
+        });
 }

@@ -25,6 +25,7 @@ import static services.Constant.GET_NAV_TITLES;
 import static services.Constant.GET_CATEGORIES;
 
 import static services.Constant.TYPE_CATEGORY;
+import static services.Constant.TYPE_PERSON_LOGIN;
 import static services.Constant.TYPE_RECIPE;
 
 @Path("/recipe")
@@ -58,11 +59,9 @@ public class RESTRecipe extends DatabaseAdapter {
 				st = conn.prepareStatement("SELECT " + select + " FROM categories ;");
 				type = TYPE_CATEGORY;
 			}
-			System.out.println(st.toString());
 			response = select(type, st, select);
 
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "empty";
 
@@ -119,7 +118,6 @@ public class RESTRecipe extends DatabaseAdapter {
 				recipesJson.add(rJson);
 			}
 		}
-		System.out.println(recipesJson.toString());
 		return recipesJson.toString();
 	}
 
@@ -145,8 +143,40 @@ public class RESTRecipe extends DatabaseAdapter {
 	// @Path("/{customerMail}/{customerPassword}")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updatePerson(@FormParam("id") int id, @FormParam("username") String userName) {
-		if (!update(1, "cookme.person", "username", "username = 'patrick'")) {
+	public String updatePerson2(@FormParam("id") int id, @FormParam("username") String userName) {
+		Boolean responseOK = false;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			st = conn.prepareStatement(	"update person set username= ? WHERE id = ? ;");
+			st.setString(1, userName);
+			st.setInt(2, id);
+			
+			responseOK = update(TYPE_PERSON_LOGIN, st);
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				responseOK = false;
+			} // end finally try
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		}
+		if (!responseOK) {
 			return "Das Objekt ist nicht Vorhanden in der DB.";
 		} else
 			return "Success";
@@ -157,13 +187,7 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertRecipe(@FormParam("title") String title, @FormParam("ingredients") String ingredients,
 			@FormParam("description") String description, @FormParam("category") String category) {
-		String insert = " `recipe` ( `title`,`description`,`category`) ";
-		String values = "'" + title + "', '" + description + "','" + ingredients + "'," + category + "";
-		if (!insert(TYPE_RECIPE, insert, values)) {
-			// dbs.insert(t);
-			return "Error wrong username or password";
-		} else
-			return "Login sucessfull";
+			return "not implemented yet";
 	}
 
 	@DELETE

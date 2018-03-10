@@ -63,8 +63,39 @@ public class RESTComment extends DatabaseAdapter {
 								  @FormParam("user") String username, 
 								  @FormParam("comment") String comment, 
 								  @FormParam("time") Integer time ){
-		String updateInformation = "";
-		String context = "";
-		update(TYPE_COMMENT,"cookme.person", updateInformation, context);
+		//String updateInformation = "";
+		//String context = "";
+		Boolean responseOK = false;
+		//TODO implement code
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			st = conn.prepareStatement(	"Update set ? FROM comments WHERE id = ? ;");
+			//st.setInt(1, recipeId);
+			
+			responseOK = update(TYPE_COMMENT, st);
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				responseOK = false;
+			} // end finally try
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+		}
+		if ( !responseOK) {
+			return;
+		}
+		
+		//update(TYPE_COMMENT,"cookme.person", updateInformation, context);
 	}
 }

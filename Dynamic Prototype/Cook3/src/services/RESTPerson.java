@@ -38,8 +38,6 @@ public class RESTPerson extends DatabaseAdapter {
 		for (int i = 0; i < 20; i++)
 			sb.append(AB.charAt(rnd.nextInt(AB.length())));
 		String cookie = sb.toString();
-
-		System.out.println("cookie: " + cookie);
 		return cookie;
 	}
 
@@ -93,7 +91,38 @@ public class RESTPerson extends DatabaseAdapter {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateCookie(@FormParam("id") int id, @FormParam("cookie") String cookie) {
-		if (!update(TYPE_PERSON_LOGIN, " `person`", "`cookie` = '" + cookie + "' ", "`id` = " + id + "")) {
+		Boolean responseOK = false;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			st = conn.prepareStatement(	"update person set cookie = ? WHERE id = ? ;");
+			st.setString(1, cookie);
+			st.setInt(2, id);
+			responseOK = update(TYPE_PERSON_LOGIN, st);
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				responseOK = false;
+			} // end finally try
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		}
+		if (!responseOK) {
 			System.out.println("Error!!!!!");
 			return "Das Objekt ist nicht Vorhanden in der DB.";
 		} else

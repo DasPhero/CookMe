@@ -77,7 +77,7 @@ public class DatabaseAdapter {
 			// Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			System.out.println(st.toString());
+//			System.out.println(st.toString());
 			ResultSet rs = st.executeQuery();
 
 			// Extract data from result set
@@ -165,10 +165,8 @@ public class DatabaseAdapter {
 		return response;
 	}
 
-	public boolean update(int type, String database, String update, String where) {
+	public boolean update(int type, PreparedStatement st) {
 		/// TODO add
-
-		Statement stmt = null;
 		Connection conn = null;
 		try {
 			// Register JDBC driver
@@ -177,20 +175,8 @@ public class DatabaseAdapter {
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-			/*
-			 * if (!checkSQL(update, where)) { System.out.println("SQL Injection!"); return
-			 * false; }
-			 */
-
-			// Execute SQL query
-			stmt = conn.createStatement();
-			String sql = "UPDATE " + database + " SET " + update + " WHERE " + where + " ;";
-			// sql = "INSERT INTO `recipe` (`title`,`description`,`ingredients`,`category`)
-			// VALUES ( '"+ s +"','Beschreibungstext','Zutaten',2);";
-			// System.out.println(sql);
-			stmt.executeUpdate(sql);
+			st.executeUpdate();
 			// Clean-up environment
-			stmt.close();
 			conn.close();
 		} catch (SQLException se) {
 			// Handle errors for JDBC
@@ -199,12 +185,6 @@ public class DatabaseAdapter {
 			// Handle errors for Class.forName
 			e.printStackTrace();
 		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
 			try {
 				if (conn != null)
 					conn.close();

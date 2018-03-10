@@ -1,6 +1,7 @@
 package services;
 
 import static services.Constant.TYPE_RECIPE_ID;
+import static services.Constant.TYPE_COMMENT;
 import static services.Constant.TYPE_FAVOURITES;
 
 import java.io.IOException;
@@ -95,15 +96,38 @@ public class RESTFavourizationService extends DatabaseAdapter {
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	public void updateFavourites(@FormParam("cookie") String cookie, @FormParam("favourites") String favourites) {
-		String updateInformation = "favourites=\"" + favourites + "\"";
-		String context = "cookie=\"" + cookie + "\"";
-		Boolean done = update(TYPE_FAVOURITES, "cookme.person", updateInformation, context);
-		if (done) {
+		Boolean responseOK = false;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			st = conn.prepareStatement(	"update person set favourites = ? WHERE cookie = ? ;");
+			st.setString(1, favourites);
+			st.setString(2, cookie);
+			
+			responseOK = update(TYPE_COMMENT, st);
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				responseOK = false;
+			} // end finally try
+			
+		}
+		if ( responseOK) {
 			System.out.println("Favourites successfully updated.");
 		} else {
 			System.out.println("Failed updating favourites! cookie: " + cookie + " favourites: " + favourites);
 		}
-		;
 	}
 
 	@PUT

@@ -69,7 +69,6 @@ public class RESTIngredients extends DatabaseAdapter {
 			System.out.println("Error+++++++++++++++++++++++++++++++++++++");
 			return "[]";
 		}
-		System.out.println(response.getIngredientsItem().size());
 		for (int i = 0; i < response.getIngredientsValue().size(); i++) {
 			json += "{\"id\":" + response.getIngredientsValue().get(i);
 			json += ",\"name\":\"" + response.getIngredientsItem().get(i);

@@ -1,9 +1,12 @@
 package services;
 
+<<<<<<< HEAD
+=======
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+>>>>>>> SQLEscaping
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -36,9 +39,41 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Path("/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getRecipe(@PathParam("id") int id) {
+<<<<<<< HEAD
+		String where = "id = " + id;
+=======
 		System.out.println("url=" + DB_URL);
+>>>>>>> SQLEscaping
 		String select = "id,title,rauthor,description,category,nutritionfacts";
+		String database = "cookme.recipe";
 		int type = TYPE_RECIPE;
+<<<<<<< HEAD
+		if (id == GET_NAV_TITLES) {
+			where = "id = id";
+			select = "id,title,category";
+		}
+		if (id == GET_CATEGORIES) {
+			where = "id = id";
+			select = "id,categoryname";
+			database = "cookme.categories";
+			type = TYPE_CATEGORY;
+		}
+		DatabaseResponse responce = select(type, database, select, where);
+		if (responce == null) {
+			return "empty";
+		}
+		// for (String title : responce.getTitle()) {
+		// System.out.println("----------"+ title);
+		// }
+		JsonArray recipesJson = new JsonArray();
+		if (id == GET_CATEGORIES) {
+			List<RecipeCategory> list = responce.toRecipeCategoryList();
+			if (list.isEmpty()) {
+				System.out.println("Kategorie nicht vorhanden:");
+				return "empty";
+			}
+
+=======
 		Connection conn = null;
 		DatabaseResponse response = null;
 		// Register JDBC driver
@@ -92,6 +127,7 @@ public class RESTRecipe extends DatabaseAdapter {
 				return "empty";
 			}
 
+>>>>>>> SQLEscaping
 			for (RecipeCategory recipeCategory : list) {
 				JsonObject rJson = new JsonObject();
 				rJson.addProperty("name", recipeCategory.getCategoryName());
@@ -99,7 +135,12 @@ public class RESTRecipe extends DatabaseAdapter {
 				recipesJson.add(rJson);
 			}
 		} else {
+<<<<<<< HEAD
+
+			List<Recipe> list = responce.toRecipeList();
+=======
 			List<Recipe> list = response.toRecipeList();
+>>>>>>> SQLEscaping
 			if (list.isEmpty()) {
 				System.out.println("Rezept nicht vorhanden:");
 				return "empty";
@@ -118,24 +159,28 @@ public class RESTRecipe extends DatabaseAdapter {
 				recipesJson.add(rJson);
 			}
 		}
+<<<<<<< HEAD
+		System.out.println(recipesJson.toString());
+=======
+>>>>>>> SQLEscaping
 		return recipesJson.toString();
 	}
-
+	
 	private String convertJSON(Recipe recipe) {
-		String json = "[";
-		for (int i = 0; i < recipe.getIngredientsItem().size(); i++) {
-			json += "{\"item\":\"";
-			json += recipe.getIngredientsItem().get(i);
-			json += "\",\"unit\":\"";
-			json += recipe.getIngredientsUnit().get(i);
-			json += "\",\"value\":";
-			json += recipe.getIngredientsValue().get(i);
-			json += "}";
+		String json="[";
+		for (int i = 0; i < recipe.getIngredientsItem().size() ; i++) {
+			json+="{\"item\":\"";
+			json+= recipe.getIngredientsItem().get(i);
+			json+="\",\"unit\":\"";
+			json+= recipe.getIngredientsUnit().get(i);
+			json+="\",\"value\":";
+			json+= recipe.getIngredientsValue().get(i);
+			json+="}";
 			if (i + 1 < recipe.getIngredientsItem().size()) {
-				json += ",";
+				json+=",";
 			}
 		}
-		json += "]";
+		json+="]";
 		return json;
 	}
 

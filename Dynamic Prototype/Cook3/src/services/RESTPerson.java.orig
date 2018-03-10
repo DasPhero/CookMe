@@ -30,6 +30,29 @@ public class RESTPerson extends DatabaseAdapter {
 	@Path("/cookie/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCookie(@PathParam("id") int id) {
+<<<<<<< HEAD
+		String where = "id = " + id;
+		String select = "`id`,`username`,`squestion`,`sanswer`,`password`,  LEFT(\r\n"
+				+ "                                   REPLACE(\r\n"
+				+ "                                       REPLACE(\r\n"
+				+ "                                           REPLACE(\r\n"
+				+ "                                               TO_BASE64(\r\n"
+				+ "                                                   UNHEX(\r\n"
+				+ "                                                       MD5(\r\n"
+				+ "                                                           RAND()\r\n"
+				+ "                                                       )\r\n"
+				+ "                                                   )\r\n"
+				+ "                                               ), \"/\", \"\"\r\n"
+				+ "                                           ), \"+\", \"\"\r\n"
+				+ "                                       ), \"=\", \"\"\r\n"
+				+ "                                   ), 20\r\n" + "                               )as `cookie`";
+		List<Person> list = select(TYPE_PERSON_LOGIN, "cookme.person", select, where).toPersonList();
+		if (list.size() == 0) {
+			return "invalid";
+		}
+		Person t = list.get(0);
+		String cookie = t.getCookie();
+=======
 
 		String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 		SecureRandom rnd = new SecureRandom();
@@ -38,6 +61,7 @@ public class RESTPerson extends DatabaseAdapter {
 		for (int i = 0; i < 20; i++)
 			sb.append(AB.charAt(rnd.nextInt(AB.length())));
 		String cookie = sb.toString();
+>>>>>>> SQLEscaping
 		return cookie;
 	}
 
@@ -45,6 +69,11 @@ public class RESTPerson extends DatabaseAdapter {
 	@Path("/username/{uuid}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getUsername(@PathParam("uuid") String uuid) {
+<<<<<<< HEAD
+		String where = "cookie = '" + uuid + "'";
+		String select = "`id`,`username`,`cookie`";
+		DatabaseResponse response = select(TYPE_PERSON_LOGIN, "cookme.person", select, where);
+=======
 		
 		DatabaseResponse response = null;
 		Connection conn = null;
@@ -78,6 +107,7 @@ public class RESTPerson extends DatabaseAdapter {
 				se.printStackTrace();
 			} // end finally try
 		}
+>>>>>>> SQLEscaping
 		if (null == response) {
 			return "";
 		}
@@ -133,6 +163,10 @@ public class RESTPerson extends DatabaseAdapter {
 	@Consumes("application/x-www-form-urlencoded")
 	// @Produces(MediaType.TEXT_PLAIN)
 	public Person loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
+<<<<<<< HEAD
+		String where = "username = '" + userName + "' && password = '" + password + "'";
+		DatabaseResponse response1 = select(TYPE_PERSON_LOGIN, "cookme.person", "id,password,username", where);
+=======
 		DatabaseResponse response = null;
 		Connection conn = null;
 		try {
@@ -167,6 +201,7 @@ public class RESTPerson extends DatabaseAdapter {
 			} // end finally try
 		}
 		
+>>>>>>> SQLEscaping
 		Person t;
 		if (null == response) {
 			t = new Person();

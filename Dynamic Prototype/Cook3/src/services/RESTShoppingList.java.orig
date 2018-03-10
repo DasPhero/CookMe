@@ -25,6 +25,11 @@ public class RESTShoppingList extends DatabaseAdapter {
 	@Path("/selectedItems/{cookie}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCurrentUserSelection(@PathParam("cookie") String cookie){
+<<<<<<< HEAD
+		String selection = "`selectedrecipes`,`id`";
+		String context = "cookie=\"" + cookie + "\"";
+		String selectedRecipes = select(TYPE_SELECTION,"cookme.person", selection, context).toSelectionString();
+=======
 		
 		DatabaseResponse response = null;
 		Connection conn = null;
@@ -62,6 +67,7 @@ public class RESTShoppingList extends DatabaseAdapter {
 			return "";
 		}
 		String selectedRecipes = response.toSelectionString();
+>>>>>>> SQLEscaping
 		return selectedRecipes;
 	}
 	

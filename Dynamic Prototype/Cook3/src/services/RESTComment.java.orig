@@ -24,6 +24,12 @@ public class RESTComment extends DatabaseAdapter {
 	@Path("/{recipeId}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCurrentUserSelection(@PathParam("recipeId") Integer recipeId){
+<<<<<<< HEAD
+		String selection = "";
+		String context = "";
+		String comments = select(TYPE_COMMENT,"cookme.person", selection, context).toSelectionString();
+		return comments;
+=======
 		String userSelection="";
 		Connection conn = null;
 		try {
@@ -55,6 +61,7 @@ public class RESTComment extends DatabaseAdapter {
 		}finally {
 		}
 		return userSelection;
+>>>>>>> SQLEscaping
 	}
 	
 	@POST

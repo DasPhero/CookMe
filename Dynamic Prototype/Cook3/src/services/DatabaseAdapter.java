@@ -83,7 +83,6 @@ public class DatabaseAdapter {
 			// Extract data from result set
 			while (rs.next()) {
 				response.addId(rs.getInt("id"));
-				System.out.println("aqwewq" + type);
 				if (type == TYPE_RECIPE) {// recipe
 					response.addTitle(rs.getString("title"));
 					response.addCategoryId(rs.getInt("category"));
@@ -144,8 +143,11 @@ public class DatabaseAdapter {
 				}
 				 else if(type == TYPE_USERID) {
 					response.setUserId(rs.getInt("id"));
-					System.out.println("asd" + rs.getInt("id"));
 				}
+				 else if(type == TYPE_USERNAME) {
+					 response.setUsername(rs.getString("username"));
+				 }
+				
 
 				result = true;
 			}

@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import services.Person;
 
-import static services.Constant.TYPE_PERSON_LOGIN;
+import static services.Constant.*;
 
 import java.security.SecureRandom;
 import java.sql.Connection;
@@ -55,11 +55,10 @@ public class RESTPerson extends DatabaseAdapter {
 
 			PreparedStatement st;
 
-			String select = "`id`,`username`,`cookie`";
-			st = conn.prepareStatement(	"SELECT "+select+" FROM person WHERE cookie = ? ;");
+			st = conn.prepareStatement(	"SELECT id, username FROM person WHERE cookie = ? ;");
 			st.setString(1, uuid);
 			
-			response = select(TYPE_PERSON_LOGIN, st, select);
+			response = select(TYPE_USERNAME, st, "id,username");
 			
 			try {
 				if (conn != null)
@@ -81,8 +80,7 @@ public class RESTPerson extends DatabaseAdapter {
 		if (null == response) {
 			return "";
 		}
-		Person t = response.toPersonList().get(0);
-		String userName = t.getUserName();
+		String userName = response.getUsername();
 		return userName;
 	}
 

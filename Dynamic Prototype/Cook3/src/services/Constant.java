@@ -15,4 +15,5 @@ public class Constant {
 	public static int TYPE_ITEM = 8;
 	public static int TYPE_COMMENT = 9;
 	public static int TYPE_USERID = 10;
+	public static int TYPE_USERNAME = 11;
 }

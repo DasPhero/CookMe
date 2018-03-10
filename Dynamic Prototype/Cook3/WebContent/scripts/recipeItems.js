@@ -33,14 +33,15 @@ listsRecipesForSelectedIngredients = () => {
 		if ($(this).find(".fridgeCheckbox").is(':checked')){
 			let id=$(this).find(".fridgeCheckbox").attr("id");
 			activeItems.push(id);
-			whereSQL += "recipeitems.fk_item = " + id.slice(4) +" ||";
+//			whereSQL += "recipeitems.fk_item = " + id.slice(4) +" ||";
+			whereSQL += " || " +id.slice(4);
 		}
 	});
 	window.localStorage.setItem("fridgeContent", activeItems);
 	
-	if (whereSQL.length > 2){
-		whereSQL = whereSQL.slice(0,whereSQL.length -2);
-	}
+	//if (whereSQL.length > 2){
+	//	whereSQL = whereSQL.slice(2,whereSQL.length);
+	//}
 	
 	whereSQL+="";
 	$.ajax({ 

@@ -2,6 +2,11 @@ package services;
 
 import static services.Constant.TYPE_SELECTION;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -19,9 +24,43 @@ public class RESTShoppingList extends DatabaseAdapter {
 	@Path("/selectedItems/{cookie}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCurrentUserSelection(@PathParam("cookie") String cookie){
-		String selection = "`selectedrecipes`,`id`";
-		String context = "cookie=\"" + cookie + "\"";
-		String selectedRecipes = select(TYPE_SELECTION,"cookme.person", selection,"", context,"").toSelectionString();
+		
+		DatabaseResponse response = null;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			String select = "`selectedrecipes`,`id`";
+			st = conn.prepareStatement(	"SELECT "+select+" FROM person WHERE cookie = ? ;");
+			st.setString(1, cookie);
+			
+			response = select(TYPE_SELECTION, st, select);
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				response = null;
+			} // end finally try
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		}
+		if (null == response) {
+			return "";
+		}
+		String selectedRecipes = response.toSelectionString();
 		return selectedRecipes;
 	}
 	

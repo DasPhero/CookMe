@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -32,20 +31,15 @@ import static services.Constant.TYPE_RECIPE;
 @Produces(MediaType.APPLICATION_JSON)
 public class RESTRecipe extends DatabaseAdapter {
 
-	private final String USER = "cookme";
-	private final String PASS = "12345";
-	private final String DB_URL = "jdbc:mysql://192.168.3.3:3307/cookme";
-
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getRecipe(@PathParam("id") int id) {
+		System.out.println("url=" + DB_URL);
 		String select = "id,title,rauthor,description,category,nutritionfacts";
 		int type = TYPE_RECIPE;
-
-		Statement stmt = null;
 		Connection conn = null;
-
+		DatabaseResponse response = null;
 		// Register JDBC driver
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -53,62 +47,20 @@ public class RESTRecipe extends DatabaseAdapter {
 
 			PreparedStatement st;
 
-			st = conn.prepareStatement(
-					"SELECT id,title,rauthor,description,category,nutritionfacts FROM cookme.recipe WHERE id = ? ;");
+			st = conn.prepareStatement("SELECT " + select + " FROM recipe WHERE id = ? ;");
 			st.setInt(1, id);
 			if (id == GET_NAV_TITLES) {
-				st = conn.prepareStatement("SELECT id,title,category FROM cookme.recipe ;");
 				select = "id,title,category ";
+				st = conn.prepareStatement("SELECT " + select + " FROM recipe ;");
 			}
 			if (id == GET_CATEGORIES) {
-				st = conn.prepareStatement("SELECT id,categoryname FROM cookme.categories ;");
+				select = "id,categoryname ";
+				st = conn.prepareStatement("SELECT " + select + " FROM categories ;");
 				type = TYPE_CATEGORY;
-				select = "id,category ";
 			}
 			System.out.println(st.toString());
-			// DatabaseResponse responce = select(type, database, select,"", where,"");
-			DatabaseResponse responce = select2(type, st, select);
-			if (responce == null) {
-				return "empty";
-			}
-			//test
-			JsonArray recipesJson = new JsonArray();
-			if (id == GET_CATEGORIES) {
-				List<RecipeCategory> list = responce.toRecipeCategoryList();
-				if (list.isEmpty()) {
-					System.out.println("Kategorie nicht vorhanden:");
-					return "empty";
-				}
+			response = select(type, st, select);
 
-				for (RecipeCategory recipeCategory : list) {
-					JsonObject rJson = new JsonObject();
-					rJson.addProperty("name", recipeCategory.getCategoryName());
-					rJson.addProperty("id", recipeCategory.getId());
-					recipesJson.add(rJson);
-				}
-			} else {
-
-				List<Recipe> list = responce.toRecipeList();
-				if (list.isEmpty()) {
-					System.out.println("Rezept nicht vorhanden:");
-					return "empty";
-				}
-
-				for (Recipe recipe : list) {
-					JsonObject rJson = new JsonObject();
-					rJson.addProperty("title", recipe.getTitle());
-					rJson.addProperty("id", recipe.getId());
-					rJson.addProperty("category", recipe.getCategoryId());
-					if (id != GET_NAV_TITLES) {
-						rJson.addProperty("description", recipe.getDescription());
-						rJson.addProperty("ingredients", convertJSON(recipe));
-						rJson.addProperty("nutritionfacts", recipe.getNutritionFacts());
-					}
-					recipesJson.add(rJson);
-				}
-			}
-			System.out.println(recipesJson.toString());
-			return recipesJson.toString();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,17 +69,58 @@ public class RESTRecipe extends DatabaseAdapter {
 		} finally {
 			// finally block used to close resources
 			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
 				if (conn != null)
 					conn.close();
 			} catch (SQLException se) {
 				se.printStackTrace();
 			} // end finally try
 		} // end try
+
+		if (response == null) {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+			return "empty";
+		}
+		JsonArray recipesJson = new JsonArray();
+		if (id == GET_CATEGORIES) {
+			List<RecipeCategory> list = response.toRecipeCategoryList();
+			if (list.isEmpty()) {
+				System.out.println("Kategorie nicht vorhanden:");
+				return "empty";
+			}
+
+			for (RecipeCategory recipeCategory : list) {
+				JsonObject rJson = new JsonObject();
+				rJson.addProperty("name", recipeCategory.getCategoryName());
+				rJson.addProperty("id", recipeCategory.getId());
+				recipesJson.add(rJson);
+			}
+		} else {
+			List<Recipe> list = response.toRecipeList();
+			if (list.isEmpty()) {
+				System.out.println("Rezept nicht vorhanden:");
+				return "empty";
+			}
+
+			for (Recipe recipe : list) {
+				JsonObject rJson = new JsonObject();
+				rJson.addProperty("title", recipe.getTitle());
+				rJson.addProperty("id", recipe.getId());
+				rJson.addProperty("category", recipe.getCategoryId());
+				if (id != GET_NAV_TITLES) {
+					rJson.addProperty("description", recipe.getDescription());
+					rJson.addProperty("ingredients", convertJSON(recipe));
+					rJson.addProperty("nutritionfacts", recipe.getNutritionFacts());
+				}
+				recipesJson.add(rJson);
+			}
+		}
+		System.out.println(recipesJson.toString());
+		return recipesJson.toString();
 	}
 
 	private String convertJSON(Recipe recipe) {

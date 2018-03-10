@@ -12,8 +12,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import services.Person;
+
 import static services.Constant.TYPE_PERSON_LOGIN;
 
+import java.security.SecureRandom;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @Path("/login")
@@ -24,28 +30,16 @@ public class RESTPerson extends DatabaseAdapter {
 	@Path("/cookie/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCookie(@PathParam("id") int id) {
-		/*String where = "id = " + id;
-		String select = "`id`,`username`,`squestion`,`sanswer`,`password`,  LEFT(\r\n"
-				+ "                                   REPLACE(\r\n"
-				+ "                                       REPLACE(\r\n"
-				+ "                                           REPLACE(\r\n"
-				+ "                                               TO_BASE64(\r\n"
-				+ "                                                   UNHEX(\r\n"
-				+ "                                                       MD5(\r\n"
-				+ "                                                           RAND()\r\n"
-				+ "                                                       )\r\n"
-				+ "                                                   )\r\n"
-				+ "                                               ), \"/\", \"\"\r\n"
-				+ "                                           ), \"+\", \"\"\r\n"
-				+ "                                       ), \"=\", \"\"\r\n"
-				+ "                                   ), 20\r\n" + "                               )as `cookie`";
-		List<Person> list = select(TYPE_PERSON_LOGIN, "cookme.person", select,"", where).toPersonList();
-		if (list.size() == 0) {
-			return "invalid";
-		}
-		Person t = list.get(0);
-		String cookie = t.getCookie();*/
-		String cookie = "12345678901234567890";
+
+		String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		SecureRandom rnd = new SecureRandom();
+
+		StringBuilder sb = new StringBuilder(20);
+		for (int i = 0; i < 20; i++)
+			sb.append(AB.charAt(rnd.nextInt(AB.length())));
+		String cookie = sb.toString();
+
+		System.out.println("cookie: " + cookie);
 		return cookie;
 	}
 
@@ -53,9 +47,39 @@ public class RESTPerson extends DatabaseAdapter {
 	@Path("/username/{uuid}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getUsername(@PathParam("uuid") String uuid) {
-		String where = "cookie = '" + uuid + "'";
-		String select = "`id`,`username`,`cookie`";
-		DatabaseResponse response = select(TYPE_PERSON_LOGIN, "cookme.person", select,"", where,"");
+		
+		DatabaseResponse response = null;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			String select = "`id`,`username`,`cookie`";
+			st = conn.prepareStatement(	"SELECT "+select+" FROM person WHERE cookie = ? ;");
+			st.setString(1, uuid);
+			
+			response = select(TYPE_PERSON_LOGIN, st, select);
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				response = null;
+			} // end finally try
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		}
 		if (null == response) {
 			return "";
 		}
@@ -80,15 +104,47 @@ public class RESTPerson extends DatabaseAdapter {
 	@Consumes("application/x-www-form-urlencoded")
 	// @Produces(MediaType.TEXT_PLAIN)
 	public Person loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
-		String where = "username = '" + userName + "' && password = '" + password + "'";
-		DatabaseResponse response1 = select(TYPE_PERSON_LOGIN, "cookme.person", "id,password,username","", where,"");
+		DatabaseResponse response = null;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			String select = "id,password,username";
+			st = conn.prepareStatement(	"SELECT "+select+" FROM person WHERE username = ? && password = ? ;");
+			st.setString(1, userName);
+			st.setString(2, password);
+			
+			response = select(TYPE_PERSON_LOGIN, st, select);
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				response = null;
+			} // end finally try
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		}
+		
 		Person t;
-		if (response1 == null) {
+		if (null == response) {
 			t = new Person();
 			t.setId(-1);
 			return t;
 		} else {
-			List<Person> list1 = response1.toPersonList();
+			List<Person> list1 = response.toPersonList();
 			t = list1.get(0);
 			return t;
 		}

@@ -1,9 +1,13 @@
 package services;
 
-import static services.Constant.TYPE_FAVOURITES;
 import static services.Constant.TYPE_RECIPE_ID;
+import static services.Constant.TYPE_FAVOURITES;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,35 +29,86 @@ public class RESTFavourizationService extends DatabaseAdapter {
 	@GET
 	@Path("/favourizedItems/{cookie}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getCurrentUserFavourites(@PathParam("cookie") String cookie){
+	public String getCurrentUserFavourites(@PathParam("cookie") String cookie) {
 		String selection = "`favourites`,`id`";
-		String context = "cookie=\"" + cookie + "\"";
-		String favourites = select(TYPE_FAVOURITES,"cookme.person", selection,"", context,"").toFavouritesString();
+		String favourites ="";
+
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			st = conn.prepareStatement("SELECT "+selection+" FROM person WHERE cookie = ? ;");
+			st.setString(1, cookie);
+
+			DatabaseResponse response = select(TYPE_FAVOURITES, st, selection);
+			if (null == response) {
+				return "";
+			}
+			favourites=response.toFavouritesString();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			return "";
+		} finally {
+
+		}
 		return favourites;
 	}
-	
+
 	@GET
 	@Path("/recipeId/{recipeName}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Integer getCurrentRecipeId(@PathParam("recipeName") String recipeName){
+	public Integer getCurrentRecipeId(@PathParam("recipeName") String recipeName) {
 		String selection = "`id`";
-		String context = "title=\"" + recipeName + "\"";
-		Integer id = select(TYPE_RECIPE_ID,"cookme.recipe", selection,"", context,"").toRecipeId();
+		Integer id = 0; 
+		
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			st = conn.prepareStatement("SELECT "+selection+" FROM recipe WHERE title = ? ;");
+			st.setString(1, recipeName);
+
+			DatabaseResponse response = select(TYPE_RECIPE_ID, st, selection);
+			if (null == response) {
+				return 0;
+			}
+			id= response.toRecipeId();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+		}		
 		return id;
 	}
 
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	public void updateFavourites( @FormParam("cookie") String cookie, @FormParam("favourites") String favourites ){
-		String updateInformation = "favourites=\"" + favourites +"\"";
+	public void updateFavourites(@FormParam("cookie") String cookie, @FormParam("favourites") String favourites) {
+		String updateInformation = "favourites=\"" + favourites + "\"";
 		String context = "cookie=\"" + cookie + "\"";
-		Boolean done = update(TYPE_FAVOURITES,"cookme.person", updateInformation, context);
-		if(done) { System.out.println("Favourites successfully updated."); }
-		else { System.out.println("Failed updating favourites! cookie: " + cookie + " favourites: " + favourites); };
+		Boolean done = update(TYPE_FAVOURITES, "cookme.person", updateInformation, context);
+		if (done) {
+			System.out.println("Favourites successfully updated.");
+		} else {
+			System.out.println("Failed updating favourites! cookie: " + cookie + " favourites: " + favourites);
+		}
+		;
 	}
 
 	@PUT
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	}
 
 }

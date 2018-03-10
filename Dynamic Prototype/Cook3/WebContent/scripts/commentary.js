@@ -101,9 +101,11 @@ let entityMap = {
   }
 
 saveCommentToDatabase = (data) => {
-    console.log("kop");
-    $.get("rest/commentary/usernametoid/" + data.user,
+    console.log("kop", data.user.toLowerCase());
+
+    $.get("rest/commentary/usernametoid/" + data.user.toLowerCase(),
         (userId) => {
+            console.log("loser id",userId);
             data.user = userId;
             console.log("asdsad",data);
             $.post("rest/commentary", data);

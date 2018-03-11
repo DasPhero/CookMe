@@ -94,6 +94,8 @@ public class DatabaseResponse {
 		this.cookie = new ArrayList<String>();
 		this.favourites = "";
 		this.selection = "";
+		this.userId = 0;
+		this.username = "";
 		
 		this.itemCount = new ArrayList<Integer>();
 

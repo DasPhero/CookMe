@@ -1,6 +1,7 @@
 package services;
 
-import static services.Constant.*;
+import static services.Constant.TYPE_COMMENT;
+import static services.Constant.TYPE_USERID;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -63,8 +64,7 @@ public class RESTComment extends DatabaseAdapter {
 	public void updateComments(   @FormParam("id") String recipeId, 
 								  @FormParam("user") String userId, 
 								  @FormParam("comment") String comment, 
-								  @FormParam("time") Integer time ){
-		System.out.println("asljdklsa");
+								  @FormParam("time") Long time ){
 		Boolean responseOK = false;
 
 		Connection conn = null;
@@ -72,16 +72,11 @@ public class RESTComment extends DatabaseAdapter {
 			// Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			PreparedStatement st;
-			System.out.println("params" + recipeId + userId + comment + time);
-			st = conn.prepareStatement(	"INSERT INTO comments (author, comment, time, recipe) VALUES (?, ?, ?, ?);");
-			st.setInt(1, Integer.parseInt(userId));
-			st.setString(2, comment);
-			st.setInt(3, time);
-			st.setInt(4, Integer.parseInt(recipeId));
 			
-			responseOK = update(TYPE_COMMENT, st);
+			String inserts = "comments (author, comment, time, recipe)";
+			String values = userId + ", '" + comment + "', " + time.toString() + ", " + recipeId; 
+			
+			responseOK = insert(TYPE_COMMENT, inserts, values);
 			
 			try {
 				if (conn != null)
@@ -95,7 +90,6 @@ public class RESTComment extends DatabaseAdapter {
 			e.printStackTrace();
 		}finally {
 		}
-		System.out.println(responseOK);
 		if ( !responseOK) {
 			return;
 		}

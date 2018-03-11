@@ -58,7 +58,7 @@ public class RESTPerson extends DatabaseAdapter {
 			st = conn.prepareStatement(	"SELECT id, username FROM person WHERE cookie = ? ;");
 			st.setString(1, uuid);
 			
-			response = select(TYPE_USERNAME, st, "id,username");
+			response = select(TYPE_USERNAME, st, "id, username");
 			
 			try {
 				if (conn != null)

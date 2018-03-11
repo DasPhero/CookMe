@@ -50,14 +50,12 @@ processIncomingBroadcast = (data) => {
 let webSocketConnection = ConnectToWebSocket(processIncomingBroadcast);
 
 sendComment = () => {
-	console.log($(".userNameHeader").text());
 	if($(".commentInput")[0].value == "" || $(".userNameHeader").text() == ""){
 		return;
     }
     
     let commentInformation = constructBroadcastPayload();
     let stringifiedInformation = JSON.stringify(commentInformation);
-    console.log("qwe");
     saveCommentToDatabase(commentInformation);
     broadcastComment(stringifiedInformation);
 }
@@ -101,13 +99,17 @@ let entityMap = {
   }
 
 saveCommentToDatabase = (data) => {
-    console.log("kop", data.user.toLowerCase());
 
     $.get("rest/commentary/usernametoid/" + data.user.toLowerCase(),
         (userId) => {
-            console.log("loser id",userId);
             data.user = userId;
-            console.log("asdsad",data);
-            $.post("rest/commentary", data);
-        });
+            $.ajax({
+                url: "rest/commentary/",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: ( () => {} ),
+                error: ( () => {} )
+              });
+            });
 }

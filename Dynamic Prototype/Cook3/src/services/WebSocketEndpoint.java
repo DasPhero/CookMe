@@ -18,7 +18,8 @@ public class WebSocketEndpoint {
 	
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println("onOpen::" + session.getId()); 
+        System.out.println("onOpen::" + session.getId());
+        session.setMaxIdleTimeout(86400000);
         sMap.put(session.getId(), session);
     }
     @OnClose

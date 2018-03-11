@@ -22,7 +22,6 @@ $.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 		$.get("rest/favourization/favourizedItems/" + cookie,
 				(favourites) => { 
 					let parsedArray = JSON.parse(favourites);
-					console.log(parsedArray, "asd");
 					getTitles(parsedArray);
 				}
 		);		

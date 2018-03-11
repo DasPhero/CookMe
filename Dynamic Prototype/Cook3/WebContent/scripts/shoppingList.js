@@ -65,8 +65,17 @@ compressList = (ingredientsList) => {
     return compressedList;
 }
 
+compare = (a,b) => {
+    if (a.item < b.item)
+      return -1;
+    if (a.item > b.item)
+      return 1;
+    return 0;
+  }
+
 createHtmlList = (ingredientList) => {
     let listCode = "";
+    ingredientList.sort(compare);
     ingredientList.forEach(listElement => {
         let amount = listElement.value;
         amount = amount? amount : "";

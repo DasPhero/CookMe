@@ -37,37 +37,16 @@ public class DatabaseResponse {
 	private Integer userId;
 	private String username;
 	
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer i) {
-		this.userId = i;
-	}
-
+	// category == 3
+	private List<String> categoryName;
+	
+	private ArrayList<String> commentAuthors;
+	private ArrayList<String> commentTexts;
+	private ArrayList<Integer> commentIds;
+	
 	//item
 	private List<Integer> itemCount;
 	// + title
-	
-	
-	public String getSelection() {
-		return selection;
-	}
-
-	public void setSelection(String selection) {
-		this.selection = selection;
-	}
-
-	// category == 3
-	private List<String> categoryName;
 
 	public DatabaseResponse() {
 		this.type = 0;
@@ -96,6 +75,10 @@ public class DatabaseResponse {
 		this.selection = "";
 		this.userId = 0;
 		this.username = "";
+		
+		this.commentAuthors = new ArrayList<String>();
+		this.commentTexts = new ArrayList<String>();
+		this.commentIds = new ArrayList<Integer>();
 		
 		this.itemCount = new ArrayList<Integer>();
 
@@ -146,6 +129,95 @@ public class DatabaseResponse {
 			list.add(r);
 		}
 		return list;
+	}
+	
+	public List<String> toCommentTextList() {
+		List<String> commentList = new ArrayList<String>();
+		for (int index = 0; index < this.id.size(); index++) {			
+			commentList.add(this.commentTexts.get(index));			
+		}
+		
+		return commentList;
+	}
+	
+	public List<String> toCommentAuthorList() {
+		List<String> authorList = new ArrayList<String>();
+		for (int index = 0; index < this.id.size(); index++) {			
+			authorList.add(this.commentAuthors.get(index));			
+		}
+	
+		return authorList;
+	}
+	
+	public List<Integer> toCommentIdsList() {
+		List<Integer> idList = new ArrayList<Integer>();
+		for (int index = 0; index < this.id.size(); index++) {			
+			idList.add(this.commentIds.get(index));			
+		}
+	
+		return idList;
+	}
+	
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer i) {
+		this.userId = i;
+	}
+	
+	
+	public ArrayList<Integer> getCommentIds() {
+		return commentIds;
+	}
+	
+	public void addCommentIds(Integer commentId) {
+		this.commentIds.add(commentId);
+	}
+
+	public void setCommentIds(ArrayList<Integer> commentIds) {
+		this.commentIds = commentIds;
+	}
+
+	public String getSelection() {
+		return selection;
+	}
+
+	public void setSelection(String selection) {
+		this.selection = selection;
+	}
+	
+	public ArrayList<String> getCommentAuthors() {
+		return commentAuthors;
+	}
+	
+	public void setCommentAuthors(ArrayList<String> commentAuthors) {
+		this.commentAuthors = commentAuthors;
+	}
+	
+	public void addCommentAuthors(String author) {
+		this.commentAuthors.add(author);
+	}
+	
+	public ArrayList<String> getCommentTexts() {
+		return commentTexts;
+	}
+	
+	public void setCommentTexts(ArrayList<String> commentTexts) {
+		this.commentTexts = commentTexts;
+	}
+	
+	public void addCommentText(String comment) {
+		this.commentTexts.add(comment);
 	}
 	
 	public String toFavouritesString() {

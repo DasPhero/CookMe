@@ -79,7 +79,6 @@ public class DatabaseAdapter {
 
 //			System.out.println(st.toString());
 			ResultSet rs = st.executeQuery();
-
 			// Extract data from result set
 			while (rs.next()) {
 				response.addId(rs.getInt("id"));
@@ -146,6 +145,11 @@ public class DatabaseAdapter {
 				}
 				 else if(type == TYPE_USERNAME) {
 					 response.setUsername(rs.getString("username"));
+				 }
+				 else if(type == TYPE_COMMENT) {
+					 response.addCommentText(rs.getString("comment"));
+					 response.addCommentIds(rs.getInt("id"));
+					 response.addCommentAuthors(rs.getString("username"));
 				 }
 				
 

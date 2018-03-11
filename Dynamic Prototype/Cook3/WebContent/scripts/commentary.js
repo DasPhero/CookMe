@@ -1,7 +1,15 @@
 loadExistingComments = () => {
-	$(".comments").html("");
+    let recipeId = window.localStorage.getItem("currentRecipeId");
+    $(".comments").html("");
+    $.get("rest/commentary/comments/" + recipeId,
+    (commentList) => {
+    	let commentArray = JSON.parse(commentList);
+    	commentArray.forEach(comment => {
+            createComment(comment.author, comment.comment);
+        });
+    })
 }
-
+    
 createComment = (username, commentText) => {
     let commentCode = $(".comments").html();
     let newComment = 

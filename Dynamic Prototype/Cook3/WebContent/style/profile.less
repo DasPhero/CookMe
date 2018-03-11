@@ -68,14 +68,20 @@
         }
         
         & .recEntryWrapper{
-            height: 90%;
+            padding: 0 5px;
+            height: 80%;
             overflow-y: auto;
             & .recEntry{
+                cursor: pointer;
                 background-color: @mainDark + 10%;
                 padding: 5px;
                 padding-left: 10px;
                 margin: 2px;
                 box-shadow: @elevation0;
+                &:hover{
+                    background-color: @mainDark - 5%;
+                    box-shadow: @elevation1;
+                }
             }
         }
     }

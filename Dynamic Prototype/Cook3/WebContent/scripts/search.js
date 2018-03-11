@@ -3,8 +3,13 @@ $(document).ready(function() {
 		event.preventDefault();
 		if (event.keyCode === 13) {searchRecipe();
 	}});
+	
+	$(".searchListTextBox").on('change keydown paste input', () => {
+		searchRecipe();
+	});
 });
 function searchRecipe(){
+	showAllRecipesInNav();
 	let searchString = $(".searchListTextBox").val();
 	
 	searchString = searchString.replace(" ","");
@@ -14,7 +19,9 @@ function searchRecipe(){
 	}
 	
 	let cArray =[];
+	let numberOfCategories = 0;
 	$(".rCategory").each(function(i, category) {
+		++numberOfCategories;
 		cArray.push($(category).attr("id"));
 	});
 	$(".listEntry").each(function(i, title) {
@@ -31,6 +38,10 @@ function searchRecipe(){
 	cArray.forEach(function(element) {
 		$("#" + element).hide();
 	});
+
+	if(cArray.length == numberOfCategories){
+		$("#searchNotification").show();
+	}
 }
 
 function showAllRecipesInNav(){
@@ -40,4 +51,6 @@ function showAllRecipesInNav(){
 	$(".listEntry").each(function(i, title) {
 		$(title).parent().show();
 	});
+	$("#searchNotification").hide();
+	hideEmptyCategories();
 }

@@ -12,6 +12,7 @@ $.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 				+ element["id"] + "\">"+ "▿" + element["name"]
 				+ "</li><ul class=\"c" + element["id"] + "\"></ul>"; //set class to "c1", "c2" ..
 	});
+	categorySource += "<li id='searchNotification' hidden>Keine Rezepte gefunden</li>"
 	$(".listWrapper ").html(categorySource);//override static code
 		
 	getTitles();//get titles of each recipe

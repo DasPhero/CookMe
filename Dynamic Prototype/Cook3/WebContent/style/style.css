@@ -584,15 +584,21 @@ input[type="text"]:focus {
   margin-left: 5px;
 }
 .mainWindow .profilePage .recommendationView .recEntryWrapper {
-  height: 90%;
+  padding: 0 5px;
+  height: 80%;
   overflow-y: auto;
 }
 .mainWindow .profilePage .recommendationView .recEntryWrapper .recEntry {
+  cursor: pointer;
   background-color: #5f9539;
   padding: 5px;
   padding-left: 10px;
   margin: 2px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1110661), 0px 1px 3px rgba(0, 0, 0, 0.24);
+}
+.mainWindow .profilePage .recommendationView .recEntryWrapper .recEntry:hover {
+  background-color: #50862a;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1221322), 0px 2px 4px rgba(0, 0, 0, 0.24);
 }
 body .printWindow {
   overflow: auto;

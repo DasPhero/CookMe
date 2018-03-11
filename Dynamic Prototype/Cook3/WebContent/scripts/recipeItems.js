@@ -1,7 +1,12 @@
 const GET_ALL_INGREDIENTS = "-3";
 
 loadSelectedItems = () => {
-	var fridgeContent = window.localStorage.getItem("fridgeContent").split(",");
+	try{
+		var fridgeContent = window.localStorage.getItem("fridgeContent").split(",");		
+	}
+	catch(e){
+		return;
+	}
 	 if(fridgeContent[0] == ""){
 		 return;
 	 }

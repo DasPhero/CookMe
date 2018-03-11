@@ -5,7 +5,8 @@ loadExistingComments = () => {
     (commentList) => {
     	let commentArray = JSON.parse(commentList);
     	commentArray.forEach(comment => {
-            createComment(comment.author, comment.comment);
+    		let capitalizedAuthor = comment.author.replace(/\b\w/g, l => l.toUpperCase());
+            createComment(capitalizedAuthor, comment.comment);
         });
     })
 }

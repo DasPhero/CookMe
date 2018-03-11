@@ -15,34 +15,62 @@ $.get("rest/recipe/"+GET_CATEGORIES, function(data, status) { //get categories
 	categorySource += "<li id='searchNotification' hidden>Keine Rezepte gefunden</li>"
 	$(".listWrapper ").html(categorySource);//override static code
 		
-	getTitles();//get titles of each recipe
-
+	let cookie = getAndValidateCookie();
+	if(!cookie){
+		getTitles();
+	}else{
+		$.get("rest/favourization/favourizedItems/" + cookie,
+				(favourites) => { 
+					let parsedArray = JSON.parse(favourites);
+					console.log(parsedArray, "asd");
+					getTitles(parsedArray);
+				}
+		);		
+	}
 });
 
-function getTitles() {
+function getTitles(favouriteArray = []) {
 	$.get("rest/recipe/"+GET_NAV_TITLES,// -1 = get all recipes
 			function(data2, status) {
 				recipes = JSON.parse(data2); //parse to JSON
 				$(".rCategory").each(function(i, category) {
 					let recipeListSource = "";
+					let url = window.location.href;
 					recipes.forEach(function(recipe) {
-						if ($(category).attr('id') == "r"+ recipe["category"]) {
-							recipeListSource +=
-							"<li><input type=\"checkbox\" onchange=\"updateSelectedItems(this)\" class=\"checkbox "
-							+ recipe["id"]
-							+ "\"/> <span class=\"listEntry\" id=\"recipe"
-							+ recipe["id"]
-							+ "\" onclick='markAsActive(this)'>"
-							+ recipe["title"]
-							+ "</span></li>";
+						if(url.includes("profile")){
+							if ($(category).attr('id') == "r"+ recipe["category"] && (favouriteArray.indexOf(recipe.id) != -1)){
+								recipeListSource = createListItemForRecipe(recipe, recipeListSource);
+							}							
+						}
+						else{
+							if ($(category).attr('id') == "r"+ recipe["category"]){
+								recipeListSource = createListItemForRecipe(recipe, recipeListSource);
+							}
 						}
 					});
 					$(category).next(" ul").html(recipeListSource);
+					let noFavouritesSelected = favouriteArray.length == 0 && url.includes("profile"); 
+					if(noFavouritesSelected){
+						$(".listWrapper").html("<li style='font-family: inherit; font-size: 16px;'>Keine Rezepte favorisiert</li>");
+					}
 				});
 				tickAlreadySelectedItems();
 				hideEmptyCategories();
 				setCookie();			//set cookie and get ingredients item list
 			});
+}
+
+createListItemForRecipe = (recipe, recipeSource) => {
+	recipeSource +=
+		"<li><input type=\"checkbox\" onchange=\"updateSelectedItems(this)\" class=\"checkbox "
+		+ recipe["id"]
+	+ "\"/> <span class=\"listEntry\" id=\"recipe"
+	+ recipe["id"]
+	+ "\" onclick='markAsActive(this)'>"
+	+ recipe["title"]
+	+ "</span></li>";
+	
+	return recipeSource;
 }
 
 hideEmptyCategories = () => {	

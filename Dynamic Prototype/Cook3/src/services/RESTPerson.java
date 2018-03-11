@@ -85,7 +85,6 @@ public class RESTPerson extends DatabaseAdapter {
 	}
 
 	@PUT
-	// @Path("/{customerMail}/{customerPassword}")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateCookie(@FormParam("id") int id, @FormParam("cookie") String cookie) {
@@ -129,7 +128,6 @@ public class RESTPerson extends DatabaseAdapter {
 
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	// @Produces(MediaType.TEXT_PLAIN)
 	public Person loginPerson(@FormParam("password") String password, @FormParam("username") String userName) {
 		DatabaseResponse response = null;
 		Connection conn = null;
@@ -181,11 +179,80 @@ public class RESTPerson extends DatabaseAdapter {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteTPerson(@FormParam("password") String password, @FormParam("username") String userName) {
-		System.out.println("DELETE----------");
-		if (delete(TYPE_PERSON_LOGIN, userName, password)) {
-			return "Success";
-		} else
-			return "Das Objekt ist nicht Vorhanden in der DB.";
-	}
 
+		DatabaseResponse response = null;
+		Connection conn = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			String select = "id,password,username";
+			st = conn.prepareStatement(	"SELECT "+select+" FROM person WHERE username = ? && password = ? ;");
+			st.setString(1, userName);
+			st.setString(2, password);
+			
+			response = select(TYPE_PERSON_LOGIN, st, select);
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				response = null;
+			} // end finally try
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		}
+		if (null == response) {
+			return "ERROR: Person doesn't exists";
+		}
+		
+		Boolean responseOK = false;
+		Connection conn2 = null;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			conn2 = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			PreparedStatement st;
+
+			st = conn2.prepareStatement("Delete FROM person WHERE username = ? && password = ? ;");
+			st.setString(1, userName);
+			st.setString(2, password);
+			
+			responseOK = delete(st);
+			
+			try {
+				if (conn2 != null)
+					conn2.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				responseOK = false;
+			} // end finally try
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn2 != null)
+					conn2.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+				responseOK=false;
+			} // end finally try
+		}
+		if (responseOK) {
+			return "Success";
+		}
+		return "Error";
+	}
 }

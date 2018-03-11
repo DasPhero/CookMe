@@ -140,7 +140,6 @@ public class RESTRecipe extends DatabaseAdapter {
 	}
 
 	@PUT
-	// @Path("/{customerMail}/{customerPassword}")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updatePerson2(@FormParam("id") int id, @FormParam("username") String userName) {
@@ -194,11 +193,7 @@ public class RESTRecipe extends DatabaseAdapter {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteTPerson(@FormParam("password") String password, @FormParam("username") String userName) {
-		System.out.println("DELETE----------");
-		if (delete(1, userName, password)) {
-			return "Success";
-		} else
-			return "Das Objekt ist nicht Vorhanden in der DB.";
+		return "not implemented yet";
 	}
 
 }

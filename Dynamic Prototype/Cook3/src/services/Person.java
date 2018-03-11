@@ -44,8 +44,6 @@ public class Person {
 		this.sQuestion = sQuestion;
 		this.sAnswer = sAnswer;
 	}
-
-	
 	
 	public String getCookie() {
 		return cookie;

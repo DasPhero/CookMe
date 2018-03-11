@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 
@@ -77,7 +76,6 @@ public class DatabaseAdapter {
 			// Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-//			System.out.println(st.toString());
 			ResultSet rs = st.executeQuery();
 			// Extract data from result set
 			while (rs.next()) {
@@ -167,7 +165,6 @@ public class DatabaseAdapter {
 			// Handle errors for Class.forName
 			e.printStackTrace();
 		} finally {
-			// finally block used to close resources
 		} // end try
 
 		if (!result) {
@@ -177,7 +174,6 @@ public class DatabaseAdapter {
 	}
 
 	public boolean update(int type, PreparedStatement st) {
-		/// TODO add
 		Connection conn = null;
 		try {
 			// Register JDBC driver
@@ -206,65 +202,47 @@ public class DatabaseAdapter {
 		return true;
 	}
 
-	public boolean delete(int type, String username, String password) {
-		// TODO implement
-
-		return false;
-	}
-
-	public boolean insert(int type, String insert, String values) {
-		/// TODO add
-
-		// DatabaseResponse response = new DatabaseResponse();
-		Statement stmt = null;
-		Connection conn = null;
+	public boolean delete(PreparedStatement st) {
 		boolean result = false;
 		try {
 			// Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			// Open a connection
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			/*
-			 * if (!checkSQL(insert, values)) { System.out.println("SQL Injection!"); return
-			 * false; }
-			 */
-			// Execute SQL query
-			stmt = conn.createStatement();
-			String sql = "INSERT INTO  " + insert + " VALUES( " + values + " );";
-			// String s = "Test2";
-			// sql = "INSERT INTO `recipe` (`title`,`description`,`ingredients`,`category`)
-			// VALUES ( '"+ s +"','Beschreibungstext','Zutaten',2);";
-			stmt.executeUpdate(sql);
-
-			stmt.close();
-			conn.close();
+			st.executeUpdate();
+			result = true;
 		} catch (SQLException se) {
 			// Handle errors for JDBC
 			se.printStackTrace();
+			result = false;
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
+			result = false;
 		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} // end finally try
 		} // end try
+		return result;
+	}
 
-		if (!result) {
-			return false;
-		}
-		return true;
+	public boolean insert(PreparedStatement st) {
+
+		boolean result = false;
+		try {
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			st.executeUpdate();
+			result = true;
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+			result = false;
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+			result = false;
+		} finally {
+		} // end try
+		return result;
 	}
 
 }

@@ -31,7 +31,6 @@ public class Recipe{
 		String text= "Titel: "+ title;
 		text = text + "\nAuthor: " + author;
 		text = text + "\nBeschreibung: " + description;
-		//text = text + "\nZutaten: " + ingredients;
 		text = text + "\nID: " + id;
 		text = text + "\nKategorie ID: " + categoryId;
 		text = text + "\nNährwertangaben: " + nutritionFacts;

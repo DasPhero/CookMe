@@ -82,7 +82,6 @@ public class RESTIngredients extends DatabaseAdapter {
 	}
 
 	@PUT
-	// @Path("/{customerMail}/{customerPassword}")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getRecipes(@FormParam("where") String where) {

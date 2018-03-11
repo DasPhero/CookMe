@@ -68,9 +68,6 @@ public class RESTShoppingList extends DatabaseAdapter {
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	public void updateFavourites( @FormParam("cookie") String cookie, @FormParam("selectedrecipes") String selection ){
-		//String updateInformation = "selectedrecipes=\"" + selection +"\"";
-		//String context = "cookie=\"" + cookie + "\"";
-		
 		Boolean responseOK = false;
 		Connection conn = null;
 		try {
@@ -103,8 +100,6 @@ public class RESTShoppingList extends DatabaseAdapter {
 				se.printStackTrace();
 			} // end finally try
 		}
-		
-		//Boolean done = update(TYPE_SELECTION,"cookme.person", updateInformation, context);
 		if(responseOK) { System.out.println("Selected recipes successfully updated."); }
 		else { System.out.println("Failed updating selected recipes! cookie: " + cookie + " selectedrecipes: " + selection); };
 	}

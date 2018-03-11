@@ -1,7 +1,6 @@
 package services;
 
 import static services.Constant.TYPE_RECIPE_ID;
-import static services.Constant.TYPE_COMMENT;
 import static services.Constant.TYPE_FAVOURITES;
 
 import java.io.IOException;

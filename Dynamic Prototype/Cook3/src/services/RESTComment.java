@@ -18,8 +18,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
-
 @Path("/commentary")
 @Produces(MediaType.APPLICATION_JSON)
 public class RESTComment extends DatabaseAdapter {
@@ -114,8 +112,6 @@ public class RESTComment extends DatabaseAdapter {
 			if ( null == response) {
 				return jsonString;
 			}
-			
-			//userId = response.getUserId();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -137,11 +133,15 @@ public class RESTComment extends DatabaseAdapter {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			
-			String inserts = "comments (author, comment, time, recipe)";
-			String values = userId + ", '" + comment + "', " + time.toString() + ", " + recipeId; 
-			
-			responseOK = insert(TYPE_COMMENT, inserts, values);
-			
+			PreparedStatement st;
+			System.out.println("params" + recipeId + userId + comment + time);
+			st = conn.prepareStatement(	"INSERT INTO comments (author, comment, time, recipe) VALUES (?, ?, ?, ?);");
+			st.setInt(1, Integer.parseInt(userId));
+			st.setString(2, comment);
+			st.setLong(3, time);
+			st.setInt(4, Integer.parseInt(recipeId));	
+			responseOK = insert(st);
+
 			try {
 				if (conn != null)
 					conn.close();

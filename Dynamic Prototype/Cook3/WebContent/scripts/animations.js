@@ -36,3 +36,10 @@ markAsActive = (listEntry) => {
 	$(".listEntry").each((i, entry) => {entry.className = "listEntry"});
 	listEntry.className = "listEntry active";
 }
+
+function getImpressum(){
+	let pathname = window.location.pathname;
+	let path2=pathname.substring(0,pathname.length-10)+"impressum";
+	alert(path2);
+	window.location.assign(path2);
+}

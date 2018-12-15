@@ -1,6 +1,7 @@
 package services;
 
 public class Constant {
+	public static int GET_ALL_UNITS = -4;
 	public static int GET_ALL_INGREDIENTS = -3;
 	public static int GET_CATEGORIES = -2;
 	public static int GET_NAV_TITLES = -1;
@@ -16,4 +17,5 @@ public class Constant {
 	public static int TYPE_COMMENT = 9;
 	public static int TYPE_USERID = 10;
 	public static int TYPE_USERNAME = 11;
+	public static int TYPE_UNIT = 12;
 }

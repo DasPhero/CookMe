@@ -27,9 +27,9 @@ import static services.Constant.GET_CATEGORIES;
 import static services.Constant.TYPE_CATEGORY;
 import static services.Constant.TYPE_RECIPE;
 
-@Path("/recipe")
+@Path("/recipeitem")
 @Produces(MediaType.APPLICATION_JSON)
-public class RESTRecipe extends DatabaseAdapter {
+public class RESTRecipeItem extends DatabaseAdapter {
 
 	@GET
 	@Path("/{id}")
@@ -141,7 +141,7 @@ public class RESTRecipe extends DatabaseAdapter {
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertRecipe(@FormParam("recipeTitle") String recipeTitle, @FormParam("category") int category , @FormParam("recipeText") String recipeText ) {
+	public String insertRecipeItem(@FormParam("recipeId") int recipeId, @FormParam("unitId") int unitId , @FormParam("itemId") int itemId, @FormParam("value") int value) {
 		Boolean responseOK = false;
 		Connection conn = null;
 		try {
@@ -151,10 +151,11 @@ public class RESTRecipe extends DatabaseAdapter {
 
 			PreparedStatement st;
 
-			st = conn.prepareStatement(	"insert into recipe (title, category, description) VALUES ( ?, ?, ?) ;");
-			st.setString(1, recipeTitle);
-			st.setInt(2, category);
-			st.setString(3, recipeText);
+			st = conn.prepareStatement(	"insert into recipeitems (fk_recipe, fk_unit, fk_item, value) VALUES ( ?, ?, ?, ?) ;");
+			st.setInt(1, recipeId);
+			st.setInt(2, unitId);
+			st.setInt(3, itemId);
+			st.setInt(4, value);
 			
 			responseOK = insert( st);
 			
@@ -176,7 +177,7 @@ public class RESTRecipe extends DatabaseAdapter {
 			} // end finally try
 		}
 		if (!responseOK) {
-			return "Das Rezept konnte nicht gespeichert werden.";
+			return "Das Rezept konnte nicht erweitert werden.";
 		} else
 			return "Success";
 	}

@@ -94,21 +94,27 @@ function setCookie(){ //set cookie and get ingredients item list
 				styleOnLogin();
 				if (pathName.includes("profile")){
 					getIngredientsList();
-				}else{
+				}else if( pathName.includes("add") ){
+					getIngredientsComboBox();
+				} else{
 					$.holdReady(false); //set document ready
 				}
 			});
 		}else{
-			if (pathName.includes("profile")){
+			if (pathName.includes("profile") ){
 				getIngredientsList();
-			}else{
+			}else if( pathName.includes("add") ){
+				getIngredientsComboBox();
+			} else{
 				$.holdReady(false); //set document ready
 			}
 		}
 	}else{
 		if (pathName.includes("profile")){
 			getIngredientsList();
-		}else{
+		}else if( pathName.includes("add") ){
+			getIngredientsComboBox();
+		} else{
 			$.holdReady(false); //set document ready
 		}
 	}

@@ -148,6 +148,8 @@ public class DatabaseAdapter {
 					 response.addCommentText(rs.getString("comment"));
 					 response.addCommentIds(rs.getInt("id"));
 					 response.addCommentAuthors(rs.getString("username"));
+				 }else if (type == TYPE_UNIT) {
+					 response.addIngredientsUnit(rs.getString("name"));
 				 }
 				
 

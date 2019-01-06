@@ -32,20 +32,24 @@
                 </div>
               </div>
                 
-              <div class="Recipes">
-                <h4>Zutat hinzufügen zu <div class="recipeId"></div></h4>
-                <div class="recipeValue">
-                	<input id="itemValue" type="text" placeholder="Menge angeben..." class="valueTextBox" />
+              <div class="recipes">
+                <div class="ingredientAdder newRecipe">
+                  <h4>Zutat hinzufügen zu <div class="recipeId"></div></h4>
+                  <div class="recipeValue">
+                    <input id="itemValue" type="text" placeholder="Menge angeben..." class="valueTextBox" />
+                  </div>
+                  <div class="recipeUnit"></div>
+                  <div class="recipeItem"></div>
+                  <button name="addToRecipe" onClick="addToRecipe()">Zum Rezept hinzufügen</button>
                 </div>
-                <div class="recipeUnit"></div>
-                <div class="recipeItem"></div>
-                <button name="addToRecipe" onClick="addToRecipe()">Zum Rezept hinzufügen</button>
-                                
-                <h4>Neues Rezept hinzufügen:</h4>
-                <input id="recipeTitle" type="text" placeholder="Titel angeben..." class="valueTextBox" />
-                <div class="recipeCategory"></div>
-                <textarea rows="4" cols="50" id ="recipeText">["Rezeptinhalt eingeben"]</textarea>
-                <button name="addNewRecipe" onClick="addNewRecipe()">Neues Rezept hinzufügen</button>
+                  
+                <div class="recipeAdder newRecipe">
+                  <h4>Neues Rezept hinzufügen:</h4>
+                  <input id="recipeTitle" type="text" placeholder="Titel angeben..." class="valueTextBox" />
+                  <div class="recipeCategory"></div>
+                  <textarea rows="4" cols="50" id ="recipeText">["Rezeptinhalt eingeben"]</textarea>
+                  <button name="addNewRecipe" onClick="addNewRecipe()">Neues Rezept hinzufügen</button>
+                </div>
               </div>
         </div>
     </div>

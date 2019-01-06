@@ -17,8 +17,7 @@
     overflow: hidden;
     user-select: none;
 }
-
-                
+ 
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -36,10 +35,12 @@
 .mainWindow {
     display:flex;
     width: 100vw;
+    background-image: url("../resources/cooking.jpg");
+    background-size: cover;
 
     & .navBar{
         flex-basis: 20%;
-        background-color: @mainNormal;
+        //background-color: @mainNormal;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -77,7 +78,7 @@
             margin: 5px;
             margin-left: 5px;
             padding-top: 10px;
-            background-color: @mainDark + 10%;
+            background-color: @mainDark;
             flex-basis: 90%;
             overflow-y: auto;
 
@@ -147,7 +148,7 @@
     & .recipeView, & .profilePage{
 
         flex-basis: 60%;
-        background-color: @mainNormal;
+        //background-color: @mainNormal;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -340,7 +341,7 @@
     
     & .ingredientsList {
         flex-basis: 20%;
-        background-color: @mainNormal;
+        //background-color: @mainNormal;
         height: 100vh;
         display: flex;
         flex-direction: column;

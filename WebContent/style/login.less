@@ -6,17 +6,18 @@
 .loginMain{
     width: 100vw;
     height: 100vh;
-    background-color: @mainDark; 
+    background-image: url("../resources/cooking.jpg");
+    background-size: cover; 
     display: flex;
     flex-direction: column;
     & .upDiv, & .downDiv{
         flex-basis: 20%;
         width: 100vw;
-
         & h1{
             font-family: 'Playball';
             font-size: 12vh;
             letter-spacing: 2px;
+            background-color: @mainDark;
             color: @fontColorDark;
             padding-top: 20px;
             text-align: center;
@@ -26,6 +27,7 @@
         flex-basis: 60%;
         flex-direction: row;
         display: flex;
+        background-image: none;
 
         & .login{
             flex-direction: column;
